@@ -1,6 +1,7 @@
 #include <map>
 
 #include "lemme.hpp"
+#include <map>
 
 Lemme::Lemme(string lemme, string docID)
 {
@@ -12,12 +13,16 @@ Lemme::Lemme(string lemme, string docID)
 
 int Lemme::getNbOccTotal() const // Renvoie le nombre d'occurrences du lemme dans le corpus
 {
+
 	map<string, int> :: const_iterator it = tableOcc.begin();
+
 	int temp;		//valeur a retourner
+
 	for(it = tableOcc.begin(); it!=tableOcc.end(); ++it)
 	{
-		temp += (*it).second;	//on aditionne l'ensemble des occurences du lemme.
+		temp += (*it).second;	//on additionne l'ensemble des occurences du lemme.
 	}
+	return temp;
 }
 
 bool Lemme::possedeDocID(string docID) const // Renvoie si le tableau associatif contient déjà cet identifiant de document.  
@@ -43,7 +48,8 @@ void Lemme::incrementeOccDansDocID(string docID) // Incrémente le nombre d'occu
 	{
 		ajouteDocID(docID);
 	}
-	else if(tableOcc.count(docID) == 1)
+
+	else if(tableOcc.count(docID)==1)
 	{
 		tableOcc[docID] += 1; // a tester
 	}	
