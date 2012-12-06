@@ -7,7 +7,7 @@
 
   Lemme :: string getLemme() const  // Renvoie le lemme.
   {
-  	caca
+	  
   }
   
   
@@ -19,7 +19,7 @@
   
   Lemme :: int getNbOccDansDocID(string docID) const // Renvoie le nombre d'occurrences du lemme dans le document identifié par docID.
   {
-  	
+	  
   }
   
   
@@ -42,3 +42,4 @@
   {
   	
   }
+caca
