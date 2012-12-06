@@ -2,12 +2,13 @@
 
 Lemme::Lemme(string lemme, string docID)
 {
-
+	this->lemme =  lemme;
+	this->nbDocAyantLemme = 0;
 }	
 
 string Lemme::getLemme() const  // Renvoie le lemme.
 {
-  
+	return this->lemme;
 }
 
 
