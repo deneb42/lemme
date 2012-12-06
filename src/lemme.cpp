@@ -4,6 +4,7 @@ Lemme::Lemme(string lemme, string docID)
 {
 	this->lemme = lemme;
 	this->nbDocAyantLemme = 0;
+	this->tableOc[docID] = 0; 
 }	
 
 int Lemme::getNbOccDansDocID(string docID) const // Renvoie le nombre d'occurrences du lemme dans le document identifié par docID.
