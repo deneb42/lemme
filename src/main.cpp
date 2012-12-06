@@ -11,6 +11,15 @@ void lireFichier(string path);
 
 int main(int argc, char* argv[])
 {
+	//=====================
+	//Jean
+	//=====================
+	
+	vector<string> categories("adjectif", "adverbe", "preposition", "nom commun", "nom propre", "verbe");	//conteneur des différentes catégories.
+	
+	//=====================
+	//fin Jean
+	//=====================	
 	std::cout << "Hello world !" << std::endl;
 	
 	lireFichier("../data/est-republicain-2002-TT.txt");
