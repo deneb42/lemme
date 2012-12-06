@@ -15,8 +15,8 @@
 		public :
 			Lemme(string lemme, string docID);
 
-			string getLemme() const; // Renvoie le lemme.
-			int getNbDocAyantLemme() const; // Renvoie le nombre d'identifiants de documents possédant ce lemme.
+			string getLemme() const {return lemme;}; // Renvoie le lemme.
+			int getNbDocAyantLemme() const {return nbDocAyantLemme}; // Renvoie le nombre d'identifiants de documents possédant ce lemme.
 			int getNbOccDansDocID(string docID) const; // Renvoie le nombre d'occurrences du lemme dans le document identifié par docID.
 			int getNbOccTotal() const; // Renvoie le nombre d'occurrences du lemme dans le corpus
 			bool possedeDocID(string docID) const; // Renvoie si le tableau associatif contient déjà cet identifiant de document.  
