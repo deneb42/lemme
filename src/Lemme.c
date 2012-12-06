@@ -7,7 +7,7 @@
 
   Lemme :: string getLemme() const  // Renvoie le lemme.
   {
-  	
+  	caca
   }
   
   
