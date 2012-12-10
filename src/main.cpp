@@ -1,22 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <cstdlib>
 
 #include "lemme.hpp"
 
 using namespace std;
 
-vector<string> categories;
-map<string, Lemme> tableLemme;
-
 vector<string> SegmenteSelonSymbole(string str, string symbole);
 bool valideEtiquette(string s);
 void calculOccurences(string nomFichier); 
+void ecritureResultat(string nomFichier);
+
+
+vector<string> categories;
+map<string, Lemme> tableLemme;
+
 
 int main(int argc, char* argv[])
 {
-	string nomFichier("../data/est-republicain-2002-TT.txt");
+	string fichierEntree("../data/est-republicain-2002-TT.txt"),
+		   fichierSortie("../data/resultat.txt");
 	
 	categories.push_back("ADJ");
 	categories.push_back("ADV");
@@ -24,10 +27,15 @@ int main(int argc, char* argv[])
 	categories.push_back("NOM");
 	categories.push_back("NAM");
 	categories.push_back("VER");
-
-	//vector<string> categories("adjectif", "adverbe", "preposition", "nom commun", "nom propre", "verbe");	//conteneur des différentes catégories.	
 	
-	calculOccurences(nomFichier);
+	calculOccurences(fichierEntree);
+	if(tableLemme.size()==0)
+	{
+		cerr << "pas de Lemmes lu, fin du programme." << endl;
+		return 1;
+	}
+	ecritureResultat(fichierSortie);
+	
 	return 0;
 }
 
@@ -66,17 +74,18 @@ void calculOccurences(string nomFichier)
 	if(!fichier.good()) 
 	{
 		cerr << "Impossible d'ouvrir le ficher " << nomFichier << endl;
-		exit(1);
+		return;
 	}
 	
-	//while(!fichier.eof())
+	while(!fichier.eof())
 	{
 		getline(fichier, tmp);
 		segId = SegmenteSelonSymbole(tmp, "\t");
 		if(segId.size()<3)
 		{
-			cerr << "Fichier malforme a la ligne n°" << ligne << endl;
-			exit(1);
+			if(!fichier.eof()) // si on n'est pas a la fin du fichier, il y a eu une erreur.
+				cerr << "Fichier malforme a la ligne n°" << ligne << endl;
+			return;
 		}
 		segLemme = SegmenteSelonSymbole(segId[2], " ");
 		
@@ -86,15 +95,39 @@ void calculOccurences(string nomFichier)
 			if(segInLemme.size()<3)
 			{
 				cerr << "Lemme invalide a la " << ligne << "e ligne" << endl;
-				exit(1);
+				return;
 			}
 			if(valideEtiquette(segInLemme[1]))
 			{
-				cout << segInLemme[0] << " " << segInLemme[1] << " " << segInLemme[2] << endl;
+				map<string, Lemme>::iterator it = tableLemme.find(segInLemme[2]);
+				
+				if(it != tableLemme.end())
+				{
+					if(it->second.possedeDocID(segId[0]))
+						it->second.incrementeOccDansDocID(segId[0]);
+					else
+						it->second.ajouteDocID(segId[0]);
+				}
+				else
+					tableLemme.insert(pair<string, Lemme>(segInLemme[2], Lemme(segInLemme[2], segId[0])));
 			}
 		}
 		ligne++;
 	}
-	
 	fichier.close();
 }
+
+void ecritureResultat(string nomFichier)
+{
+	map<string, Lemme>::iterator it;
+	ofstream fichier(nomFichier.c_str());
+	
+	if(fichier.good())
+		for(it=tableLemme.begin();it!=tableLemme.end();it++)
+			fichier << it->first << "\t" << it->second.getNbDocAyantLemme() << "\t" << it->second.getNbOccTotal() << endl;
+	else
+		cerr << "Impossible d'ouvrir " << nomFichier << endl;
+		
+	fichier.close();
+}
+		
