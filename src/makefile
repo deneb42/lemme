@@ -16,6 +16,8 @@ LNKOPT = -g
 
 all: occurences
 
+run: test
+
 test: 
 	$(PROGPATH)$(PROGNAME)
 	
