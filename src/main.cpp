@@ -24,7 +24,8 @@ int main(int argc, char* argv[])
 	categories.push_back("NOM");
 	categories.push_back("NAM");
 	categories.push_back("VER");
-	
+
+	//vector<string> categories("adjectif", "adverbe", "preposition", "nom commun", "nom propre", "verbe");	//conteneur des différentes catégories.	
 	
 	calculOccurences(nomFichier);
 	return 0;
