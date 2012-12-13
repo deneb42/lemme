@@ -50,7 +50,7 @@ vector<string> SegmenteSelonSymbole(string str, string symbole)
 		
 		res.push_back(str.substr(olPos, pos-olPos));
 		olPos=pos+1;		
-	}while(pos != string::npos && olPos<str.length()); // evite de prendre le retour chariot
+	}while(pos < string::npos && olPos<str.length()); // evite de prendre le retour chariot
 	
 	return res;
 }
