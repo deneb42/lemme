@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 vector<string> SegmenteSelonSymbole(string str, string symbole)
 {
 	vector<string> res;
-	unsigned int olPos=0, pos=string::npos;
+	unsigned long olPos=0, pos=string::npos;
 	
 	do 
 	{
