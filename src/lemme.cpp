@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <map>
 
@@ -35,7 +34,8 @@ void Lemme::ajouteDocID(string docID) // Ajoute un identifiant de document au ta
 		nbDocAyantLemme++;
 	}
 	else
-		std::cerr << "on ne devrait pas passer ici..." << std::endl;
+		std::cerr << "on ne devrait pas passer ici..." << std::endl; //Ici on aurait pu mettre une levée d'exception mais pour ne pas modifier 
+																	//la signature on se contente d'un message erreur.
 		
 }
 
@@ -44,6 +44,6 @@ void Lemme::incrementeOccDansDocID(string docID) // Incrémente le nombre d'occu
 	if(possedeDocID(docID))
 		tableOcc[docID]++;		
 	else
-		std::cerr << "on ne devrait pas passer ici..." << std::endl;
+		std::cerr << "on ne devrait pas passer ici..." << std::endl; //idem méthode precendente.
 }
 

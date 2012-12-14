@@ -6,10 +6,10 @@
 
 using namespace std;
 
-vector<string> SegmenteSelonSymbole(string str, string symbole);
-bool valideEtiquette(string s);
-void calculOccurences(string nomFichier); 
-void ecritureResultat(string nomFichier);
+vector<string> SegmenteSelonSymbole(string str, string symbole); //Découpe la chaine passee en parametre en sous-chaine en fonction du symbole.
+bool valideEtiquette(string etiquette); //Verifie que l'etiquette fait parti de l'ensemble considere.
+void calculOccurences(string nomFichier); //Fonction principale, compte le nombre d'occurence de chaque lemme dans le corpus.
+void ecritureResultat(string nomFichier); //Imprime le resultat dans le fichier nomFichier.
 
 
 vector<string> categories;
@@ -18,8 +18,8 @@ map<string, Lemme> tableLemme;
 
 int main(int argc, char* argv[])
 {
-	string fichierEntree("../data/est-republicain-2002-TT.txt"),
-		   fichierSortie("../data/resultat.txt");
+	const string fichierEntree("../data/est-republicain-2002-TT.txt"), //chemin vers le corpus
+		   fichierSortie("../data/resultat.txt"); //chemin vers le fichier resultat.
 	
 	categories.push_back("ADJ");
 	categories.push_back("ADV");
@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 	categories.push_back("NOM");
 	categories.push_back("NAM");
 	categories.push_back("VER");
+	//definition des categories considerees.
 	
 	calculOccurences(fichierEntree);
 	if(tableLemme.size()==0)
@@ -101,7 +102,7 @@ void calculOccurences(string nomFichier)
 			{
 				map<string, Lemme>::iterator it = tableLemme.find(segInLemme[2]);
 				
-				if(it != tableLemme.end())
+				if(it != tableLemme.end()) //si find ne trouve pas il retourne l'iterateur end.
 				{
 					if(it->second.possedeDocID(segId[0]))
 						it->second.incrementeOccDansDocID(segId[0]);
