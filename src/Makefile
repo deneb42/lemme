@@ -9,7 +9,7 @@ FILES = lemme.o main.o
 #Les options du compilateur c++
 #Pensez à mettre -g et enlever -O3 pour le debug!
 #CPPOPT = -O3 -Wall
-CPPOPT = -Wextra -pedantic -g
+CPPOPT = -Wextra -pedantic -g -Wall
 
 #Les options de l'éditeur de lien
 LNKOPT = -g
