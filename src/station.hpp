@@ -17,6 +17,7 @@
 			
 			void addSuccesseur(&Station stat) { listeSuccesseurs.insert(stat); }; //ajout dune station à la liste des successeurs
             void addlisteLignes(string nom) { listeLignes.insert(nom); }; //ajout d'une nouvelle ligne à la liste des lignes passant par la station.
+            void afficheStation(); //Affiche les informations de sa station de métro
         
             set<&Station> getlisteSuccesseurs() { return listeSuccesseurs; };
             set<string> getlisteLigne() { return listeLignes; };
