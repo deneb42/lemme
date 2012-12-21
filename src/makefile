@@ -7,8 +7,9 @@
 
 INC_PATH = 
 LIB_PATH = 
-LIBRARY =
-CFLAGS = -g -Wall -Wextra -pedantic
+LIBRARY = -g
+CFLAGS = -Wall -Wextra -pedantic -g 
+#-O2
 LDFALGS = $(LIB_PATH) $(LIBRARY)
 GCC=g++
 
