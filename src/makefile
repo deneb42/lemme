@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -pedantic -g
 #-O2
 
 # Name of the files (more .o)
-OBJS = main.o plan.o station.o 
+OBJS = main.o plan.o transition.o 
 # Path where the bin will be
 PGM_PATH = ../bin/
 PGM_NAME = metro
