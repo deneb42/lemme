@@ -5,31 +5,27 @@
 #/__________________________________/
 
 
-INC_PATH = 
-LIB_PATH = 
-LIBRARY = -g
+GCC=g++
+LFLAGS = -g
 CFLAGS = -Wall -Wextra -pedantic -g 
 #-O2
-LDFALGS = $(LIB_PATH) $(LIBRARY)
-GCC=g++
 
 # Name of the files (more .o)
-OBJS = main.o
+OBJS = main.o plan.o station.o 
 # Path where the bin will be
-PGM_PATH = ./
+PGM_PATH = ../bin/
 PGM_NAME = metro
 
 # For the generic utilisation, 
 # DO NOT TOUCH ANYTHING UNDER THIS LINE !!!
 # ___________________________________________
 
-# $(OBJS:.o=_client.o ) 
-all : 
-	$(GCC) -o $(PGM_PATH)$(PGM_NAME) $(OBJS) $(LDFALGS) 
+all : $(OBJS)
+	$(GCC) -o $(PGM_PATH)$(PGM_NAME) $(LFALGS) $(OBJS)  
 	
 # generic method for all the .o
-%.o : %.c
-	$(GCC) $(CFLAGS) $(INC_PATH) -c $< 
+%.o : %.cpp
+	$(GCC) $(CFLAGS) -c $< 
 
 run :
 	$(PGM_PATH)$(PGM)
