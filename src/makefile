@@ -21,12 +21,12 @@ PGM_TEST = test
 # For the generic utilisation, 
 # DO NOT TOUCH ANYTHING UNDER THIS LINE !!!
 # ___________________________________________
-
-test : $(OBJS_TEST)
-	$(GCC) -o $(PGM_PATH)$(PGM_TEST) $(LFLAGS) $(OBJS_TEST)  
     
 all : $(OBJS)
 	$(GCC) -o $(PGM_PATH)$(PGM_NAME) $(LFLAGS) $(OBJS)  
+	
+test : $(OBJS_TEST)
+	$(GCC) -o $(PGM_PATH)$(PGM_TEST) $(LFLAGS) $(OBJS_TEST)  
 	
 # generic method for all the .o
 %.o : %.cpp
