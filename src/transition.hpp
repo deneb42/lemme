@@ -4,24 +4,27 @@
 	
 	#include <string>
 	#include <set>
-	#include "station.hpp"
+	
+	class Station;
 	
 	using namespace std;
 
 	class Transition
 	{
 		public:
-			Transition(Station* d, string l):dest(d),ligne(l) {}
+			Transition(const Station* d, string l):dest(d),ligne(l) {}
 			
 			
-			void setDest(Station* d) { dest = d; }
+			void setDest(const Station* d) { dest = d; }
 			void setLigne(string l) { ligne = l; }
-			Station* getDest() { return dest; }
-			string getLigne() { return ligne; }
+			const Station* getDest() const { return dest; }
+			string getLigne() const { return ligne; }
 		
 		private:
-			Station* dest;
+			const Station* dest;
 			string ligne;
 	};
+	
+	bool operator<(const Transition& t1, const Transition& t2);
 	
 #endif

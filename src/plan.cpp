@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Plan::Plan(string path) 
+Plan::Plan(string path) // a revoir
 {
 	ifstream ifs(path.c_str());
 	string tmp, ligne;
@@ -20,28 +20,34 @@ Plan::Plan(string path)
 	{
 		//Station s;
 		set<Station>::iterator act, prec;
+		Station sp(""), sa(""); // hack
 		getline(ifs, ligne);
 		
 		//cout << "ligne " << ligne << endl; // traitement pour garder le nom de la ligne
 		
 		getline(ifs, tmp);
-		prec=graphe.insert(tmp); // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
+		prec=graphe.insert(tmp).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
+		sp=*prec; // hack
 		getline(ifs, tmp);
 		while(!tmp.empty())
 		{
 			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
-			act=graphe.insert(tmp); // ajout de l'element, s'il est deja present, l'elem existant est retourne
-			act.addSuccesseur(prec, ligne);
-			prec.addSuccesseur(act, ligne); // on ajoute les liaisons
+			act=graphe.insert(tmp).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
+			sa=*act; // hack
+			sa.addSuccesseur(&(*prec), ligne);
+			sp.addSuccesseur(&(*act), ligne); // on ajoute les liaisons
+			graphe.insert(sa); // hack
+			graphe.insert(sp); // hack
 			prec = act;
+			sp=sa; // hack
 			getline(ifs, tmp);
 		}
 	}
 }
 
-/* il manque l'implementation de systemes pour continuer */
+/* il manque l'implementation de systemes pour continuer *
 void dijkstra(Station *src)
-{ /* calcule le poid mini pour aller a toutes les stations depuis la station source */
+{ // calcule le poid mini pour aller a toutes les stations depuis la station source
 	set<Station*> visited, *succ = src->getListeSuccesseurs();
 	double poidActu=0, min;
 	Station *dst;
@@ -66,4 +72,4 @@ void dijkstra(Station *src)
 		poidActu+=min;
 		dst->poid=poidActu;
 	}while(visited.size()!=graphe.size)
-}
+}// */

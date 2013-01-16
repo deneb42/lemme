@@ -3,21 +3,22 @@
 
 	#include <set>
 	#include <string>
+	#include "transition.hpp"
 	
-	using namespace std; //NECECITE OP DE COMPARAISON
+	using namespace std;
 
 	class Station {
 		public :
 			Station(string name);//, string line);
 
-			void addSuccesseur(Station* stat, String ligne); //ajout dune station à la liste des successeurs
+			void addSuccesseur(const Station* stat, string ligne); //ajout dune station à la liste des successeurs
 			//void addLigne(string nom) { listeLignes.insert(nom); }; //ajout d'une nouvelle ligne à la liste des lignes passant par la station.
-			void afficheStation(); //Affiche les informations de sa station de métro
+			void afficheStation() const; //Affiche les informations de sa station de métro
 
 			set<Transition> getListeSuccesseurs() { return listeSuccesseurs; };
 			//set<string> getListeLigne() { return listeLignes; };
-			double getPoid() {return poid;}
-			string getName() {return name;}
+			double getPoid() const {return poid;}
+			string getName() const {return nomStation;}
 			void setPoid(double p) {poid=p;}
 		private :
 			string nomStation;
@@ -28,6 +29,7 @@
 			
 	};
 	
-	boolean operator==(Station& s1, Station& s2);
+	bool operator==(const Station& s1, const Station& s2);
+	bool operator<(const Station& s1, const Station& s2); // pour le set
 
 #endif // __STATION_HPP__

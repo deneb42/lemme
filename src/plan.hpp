@@ -4,7 +4,7 @@
 	
 	#include <string>
 	#include <set>
-	//#include "station.hpp"
+	#include "station.hpp"
 	
 	using namespace std;
 
@@ -15,7 +15,7 @@
 			
 			void dijkstra(Station &source);
 			
-		private:
+		//private:
 			set<Station> graphe;
 	};
 	

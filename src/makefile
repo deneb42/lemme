@@ -33,7 +33,7 @@ test : $(OBJS_TEST)
 	$(GCC) $(CFLAGS) -c $< 
 
 run :
-	$(PGM_PATH)$(PGM)
+	$(PGM_PATH)$(PGM_NAME)
 
 runtest :
 	$(PGM_PATH)$(PGM_TEST)

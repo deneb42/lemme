@@ -5,11 +5,9 @@
 #include "transition.hpp"
 
 using namespace std;
-
 /*
-Transition::Transition(Station* d, string l)
+bool operator==(const Transition& t1, const Transition& t2)
 {
-	dest=d;
-	ligne = l;
+	return s1.getName()<s2.getName();
 }
 */

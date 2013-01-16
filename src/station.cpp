@@ -6,19 +6,19 @@
 using namespace std;
 
 Station::Station(string name)//, string line)
-{comp
+{
     this->nomStation = name;
     //this->listeLignes.insert(line);
     coutTr=(int)nomStation[0];
 }
 
-void addSuccesseur(Station* stat, String ligne) 
+void Station::addSuccesseur(const Station* stat, string ligne) 
 { 
-	Transition t(stat, ligne)
+	Transition t(stat, ligne);
 	listeSuccesseurs.insert(t); 
 }
 
-void Station::afficheStation()
+void Station::afficheStation() const
 {
     cout << "Nom de la station : " << nomStation <<endl;
     /*cout << "lignes passant par cette station : " << endl;
@@ -27,12 +27,22 @@ void Station::afficheStation()
     }*/
     cout << "Stations suivantes : " << endl;
     for (std::set<Transition>::iterator it = listeSuccesseurs.begin(); it != listeSuccesseurs.end(); it++) {
-        cout << "\t- nom de la Station : " << (*it)->getDest()->nomStation << "(" << (*it)->getLigne() << ")"<< endl;
+        cout << "\t- nom de la Station : " << it->getDest()->getName() << "(" << it->getLigne() << ")"<< endl;
     }
     cout << "***********" << endl;
 }
 
-boolean operator==(const Station& s1, const Station& s2)
+bool operator==(const Station& s1, const Station& s2)
 {
 	return s1.getName()==s2.getName();
+}
+
+bool operator<(const Station& s1, const Station& s2)
+{
+	return s1.getName()<s2.getName();
+}
+
+bool operator<(const Transition& t1, const Transition& t2)
+{
+	return t1.getDest()->getName()<t2.getDest()->getName();
 }
