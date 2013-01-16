@@ -13,8 +13,10 @@
 		public:
 			Plan(string path);
 			
+			void dijkstra(Station &source);
+			
 		private:
-			//set<Station> graphe;
+			set<Station> graphe;
 	};
 	
 #endif
