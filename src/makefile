@@ -11,7 +11,7 @@ CFLAGS = -Wall -Wextra -pedantic -g
 #-O2
 
 # Name of the files (more .o)
-OBJS = main.o plan.o transition.o 
+OBJS = main.o plan.o  station.o transition.o
 OBJS_TEST = testStation.o station.o
 # Path where the bin will be
 PGM_PATH = ../bin/

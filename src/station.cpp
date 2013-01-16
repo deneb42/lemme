@@ -5,22 +5,34 @@
 
 using namespace std;
 
-Station::Station(string name, string line)
-{
+Station::Station(string name)//, string line)
+{comp
     this->nomStation = name;
-    this->listeLignes.insert(line);
+    //this->listeLignes.insert(line);
+    coutTr=(int)nomStation[0];
+}
+
+void addSuccesseur(Station* stat, String ligne) 
+{ 
+	Transition t(stat, ligne)
+	listeSuccesseurs.insert(t); 
 }
 
 void Station::afficheStation()
 {
     cout << "Nom de la station : " << nomStation <<endl;
-    cout << "lignes passant par cette station : " << endl;
+    /*cout << "lignes passant par cette station : " << endl;
     for (set<string>::iterator it = listeLignes.begin(); it != listeLignes.end(); it++) {
         cout << "\t- ligne " << (*it) <<endl;
-    }
+    }*/
     cout << "Stations suivantes : " << endl;
-    for (std::set<Station*>::iterator it = listeSuccesseurs.begin(); it != listeSuccesseurs.end(); it++) {
-        cout << "\t- nom de la Station : " << (*it)->nomStation << endl;
+    for (std::set<Transition>::iterator it = listeSuccesseurs.begin(); it != listeSuccesseurs.end(); it++) {
+        cout << "\t- nom de la Station : " << (*it)->getDest()->nomStation << "(" << (*it)->getLigne() << ")"<< endl;
     }
     cout << "***********" << endl;
+}
+
+boolean operator==(const Station& s1, const Station& s2)
+{
+	return s1.getName()==s2.getName();
 }

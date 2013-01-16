@@ -18,13 +18,22 @@ Plan::Plan(string path)
 	}
 	while(!ifs.eof())
 	{
+		//Station s;
+		set<Station>::iterator act, prec;
 		getline(ifs, ligne);
 		
-		cout << "ligne " << ligne << endl; // traitement pour garder le nom de la ligne
+		//cout << "ligne " << ligne << endl; // traitement pour garder le nom de la ligne
+		
+		getline(ifs, tmp);
+		prec=graphe.insert(tmp); // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
 		getline(ifs, tmp);
 		while(!tmp.empty())
 		{
-			cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
+			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
+			act=graphe.insert(tmp); // ajout de l'element, s'il est deja present, l'elem existant est retourne
+			act.addSuccesseur(prec, ligne);
+			prec.addSuccesseur(act, ligne); // on ajoute les liaisons
+			prec = act;
 			getline(ifs, tmp);
 		}
 	}

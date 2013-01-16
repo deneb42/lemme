@@ -18,6 +18,7 @@
 			void setLigne(string l) { ligne = l; }
 			Station* getDest() { return dest; }
 			string getLigne() { return ligne; }
+		
 		private:
 			Station* dest;
 			string ligne;
