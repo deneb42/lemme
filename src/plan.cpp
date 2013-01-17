@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <limits>
 #include <set>
+#include <list>
 #include "plan.hpp"
 
 using namespace std;
@@ -52,10 +53,11 @@ Plan::Plan(string path)
 	}
 }
 
-void Plan::dijkstra(Station *s)
+std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
-	set<Station*> visited;
+	std::set<Station*> visited;
+	std::list<Station*> path;
 	map<std::string, Transition> succ;
 	double min;
 	
@@ -75,9 +77,9 @@ void Plan::dijkstra(Station *s)
 			//std::cout << src->getName() << " huhu " << succ.size() << std::endl;
 			for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
-				if(it->second.poid<min && visited.find(it->second.getDest())==visited.end())
+				if(it->second.getTemps()<min && visited.find(it->second.getDest())==visited.end())
 				{
-					min=it->second.poid;
+					min=it->second.getTemps();
 					dst=it->second.getDest();
 					//std::cout << " coucou !!!" << min << std::endl;
 				}
@@ -90,7 +92,14 @@ void Plan::dijkstra(Station *s)
 			visited.insert(dst);
 		}
 		//std::cout << visited.size() << " huhu " << graphe.size() << std::endl;
-	}while(min<numeric_limits<double>::infinity());//visited.size()<268);//graphe.size());
+	}while(min<numeric_limits<double>::infinity() && dst!=d);//visited.size()<268);//graphe.size());
+	
+	while(d->getPrec()!=NULL)
+	{
+		path.push_front(d);
+		d=d->getPrec();
+	}
+	return path;
 }
 
 

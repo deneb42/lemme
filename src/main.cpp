@@ -101,15 +101,12 @@ int main(int argc, char* argv[])
 		it->second.afficheStation();
 	}*/
 	//std::set<Station*> l1 = p.stationsDsLigne("01");
-	p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
+	//p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
 	//for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-<<<<<<< HEAD
 		//it->second.afficheStation();
-=======
-	//	it->second.afficheStation();
->>>>>>> 3902bed38dd2480ab45bfbc06641cbbbf82481d6
+
 	
 	// */
 	

@@ -13,16 +13,16 @@
 			Transition(Station* d, std::string l):dest(d),ligne(l) {}
 			
             double calculerPoidsVoyageurs(int nbPersonnes);
-            double calculerPoidsTransition(int heure);
+            void calculerPoidsTransition(int heure);
 			void setDest(Station* d) { dest = d; }
 			void setLigne(std::string l) { ligne = l; }
 			Station* getDest() const { return dest; }
 			std::string getLigne() const { return ligne; }
-		
-			double poid;
+			double getTemps() const { return temps; }
 		private:
 			Station* dest;
 			std::string ligne;
+			double temps;
 	};
 	
 #endif
