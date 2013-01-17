@@ -3,20 +3,19 @@
 #define __PLAN_HPP__
 	
 	#include <string>
-	#include <set>
+	#include <map>
 	#include "station.hpp"
-	
-	using namespace std;
 
 	class Plan
 	{
 		public:
-			Plan(string path);
+			Plan(std::string path);
 			
-			void dijkstra(Station &source);
+			void dijkstra(Station* source);
 			
-		//private:
-			set<Station> graphe;
+			std::map<std::string, Station>* getGraphe() { return &graphe; }
+		private:
+			std::map<std::string, Station> graphe;
 	};
 	
 #endif

@@ -10,10 +10,10 @@ int main()//int argc, char* argv[])
 	
 	Plan p("../data/metro.txt");
 	
-	for(std::set<Station>::iterator it=p.graphe.begin();it!=p.graphe.end() && i>0;it++)
+	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end() && i>0;it++)
 	{
-		it->afficheStation();
-		i--;
+		it->second.afficheStation();
+		//i--;
 	}
 	
 	return 0;

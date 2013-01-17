@@ -3,11 +3,13 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <limits>
+#include <set>
 #include "plan.hpp"
 
 using namespace std;
 
-Plan::Plan(string path) // a revoir
+Plan::Plan(string path)
 {
 	ifstream ifs(path.c_str());
 	string tmp, ligne;
@@ -18,58 +20,54 @@ Plan::Plan(string path) // a revoir
 	}
 	while(!ifs.eof())
 	{
-		//Station s;
-		set<Station>::iterator act, prec;
-		Station sp(""), sa(""); // hack
+		map<std::string, Station>::iterator act, prec;
+
 		getline(ifs, ligne);
-		
 		//cout << "ligne " << ligne << endl; // traitement pour garder le nom de la ligne
 		
 		getline(ifs, tmp);
-		prec=graphe.insert(tmp).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
-		sp=*prec; // hack
+		prec=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
 		getline(ifs, tmp);
 		while(!tmp.empty())
 		{
 			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
-			act=graphe.insert(tmp).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
-			sa=*act; // hack
-			sa.addSuccesseur(&(*prec), ligne);
-			sp.addSuccesseur(&(*act), ligne); // on ajoute les liaisons
-			graphe.insert(sa); // hack
-			graphe.insert(sp); // hack
+			act=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
+			act->second.addSuccesseur(&(prec->second), ligne);
+			prec->second.addSuccesseur(&(act->second), ligne); // on ajoute les liaisons
 			prec = act;
-			sp=sa; // hack
 			getline(ifs, tmp);
 		}
 	}
 }
 
-/* il manque l'implementation de systemes pour continuer *
-void dijkstra(Station *src)
+/* il manque l'implementation de systemes pour continuer */
+void Plan::dijkstra(Station *s)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
-	set<Station*> visited, *succ = src->getListeSuccesseurs();
+	Station *src=s, *dst;
+	set<Station*> visited;
+	map<std::string, Transition> succ = src->getListeSuccesseurs();
 	double poidActu=0, min;
-	Station *dst;
 	
-	for(set::iterator it=graphe.begin();it!=graphe.end();it++)
-		it->poid=0;
-	visited.add(src); // initialisation : on initialise tout les poids a 0 et on visite le noeud source
+	for(map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
+		it->second.setCoutMin(0);
+	visited.insert(src); // initialisation : on initialise tout les poids a 0 et on visite le noeud source
+	src->setPrec(NULL);
 	
 	do
 	{
-		min= succ->begin()->getCout();
-		dst= succ->begin();
-		for(set::iterator it=succ->begin();it!=succ->end();it++)
+		min= numeric_limits<double>::infinity(); // a tester ou numeric_limits<float>::infinity()
+		for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
 		{
-			if(it->poid<min)
+			if(it->second.poid<min)
 			{
-				min=it->getCout();
-				dst=it;
+				min=it->second.poid;
+				dst=it->second.getDest();
 			}
 		}
-		visited.add(dst);
+		visited.insert(dst);
 		poidActu+=min;
-		dst->poid=poidActu;
-	}while(visited.size()!=graphe.size)
+		dst->setCoutMin(poidActu);
+		dst->setPrec(src);
+		src=dst;
+	}while(visited.size()!=graphe.size());
 }// */

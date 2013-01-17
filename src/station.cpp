@@ -1,48 +1,33 @@
 
 #include <iostream>
-#include <set>
+#include <map>
 #include "station.hpp"
 
 using namespace std;
 
-Station::Station(string name)//, string line)
+Station::Station(string name)
 {
     this->nomStation = name;
-    //this->listeLignes.insert(line);
-    coutTr=(int)nomStation[0];
+    coutCh=(int)nomStation[0]; // gros hack
 }
 
-void Station::addSuccesseur(const Station* stat, string ligne) 
+void Station::addSuccesseur(Station* stat, string ligne) 
 { 
-	Transition t(stat, ligne);
-	listeSuccesseurs.insert(t); 
+	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), Transition(stat, ligne))); 
 }
 
 void Station::afficheStation() const
 {
     cout << "Nom de la station : " << nomStation <<endl;
-    /*cout << "lignes passant par cette station : " << endl;
-    for (set<string>::iterator it = listeLignes.begin(); it != listeLignes.end(); it++) {
-        cout << "\t- ligne " << (*it) <<endl;
-    }*/
     cout << "Stations suivantes : " << endl;
-    for (std::set<Transition>::iterator it = listeSuccesseurs.begin(); it != listeSuccesseurs.end(); it++) {
-        cout << "\t- nom de la Station : " << it->getDest()->getName() << "(" << it->getLigne() << ")"<< endl;
+    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
+        cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << ")"<< endl;
     }
     cout << "***********" << endl;
 }
 
+
 bool operator==(const Station& s1, const Station& s2)
 {
 	return s1.getName()==s2.getName();
-}
-
-bool operator<(const Station& s1, const Station& s2)
-{
-	return s1.getName()<s2.getName();
-}
-
-bool operator<(const Transition& t1, const Transition& t2)
-{
-	return t1.getDest()->getName()<t2.getDest()->getName();
 }

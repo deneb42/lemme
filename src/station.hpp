@@ -1,35 +1,34 @@
 #ifndef __STATION_HPP__
 #define __STATION_HPP_
 
-	#include <set>
+	#include <map>
 	#include <string>
 	#include "transition.hpp"
-	
-	using namespace std;
 
 	class Station {
 		public :
-			Station(string name);//, string line);
+			Station(std::string name);
 
-			void addSuccesseur(const Station* stat, string ligne); //ajout dune station à la liste des successeurs
-			//void addLigne(string nom) { listeLignes.insert(nom); }; //ajout d'une nouvelle ligne à la liste des lignes passant par la station.
+			void addSuccesseur(Station* stat, std::string ligne); //ajout dune station à la liste des successeurs
 			void afficheStation() const; //Affiche les informations de sa station de métro
 
-			set<Transition> getListeSuccesseurs() { return listeSuccesseurs; };
-			//set<string> getListeLigne() { return listeLignes; };
-			double getPoid() const {return poid;}
-			string getName() const {return nomStation;}
-			void setPoid(double p) {poid=p;}
+			std::map<std::string, Transition> getListeSuccesseurs() { return listeSuccesseurs; };
+			
+			double getCoutMin() const {return coutMin;}
+			Station* getPrec() const {return prec;}
+			std::string getName() const {return nomStation;}
+			void setCoutMin(double p) {coutMin=p;}
+			void setPrec(Station* p) {prec=p;}
+			
+			double coutCh; // gros hack
 		private :
-			string nomStation;
-			set<Transition> listeSuccesseurs; //nom des stations vers lesquelles on peut aller
-			//set<string> listeLignes; // liste des lignes qui passent par cette station
-			double poid;
-			double coutTr; // gros hack
+			std::string nomStation;
+			std::map<std::string, Transition> listeSuccesseurs; //nom des stations vers lesquelles on peut aller
+	
+			double coutMin;
+			Station* prec;
 			
 	};
-	
 	bool operator==(const Station& s1, const Station& s2);
-	bool operator<(const Station& s1, const Station& s2); // pour le set
 
 #endif // __STATION_HPP__
