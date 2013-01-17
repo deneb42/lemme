@@ -26,6 +26,10 @@ void Station::afficheStation() const
     cout << "***********" << endl;
 }
 
+double calculerPoidCorrespondance(int age)
+{
+    return (8.0 + 0.1 * (double) age);
+}
 
 bool operator==(const Station& s1, const Station& s2)
 {

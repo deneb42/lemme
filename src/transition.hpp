@@ -12,6 +12,8 @@
 		public:
 			Transition(Station* d, std::string l):dest(d),ligne(l) {}
 			
+            double calculerPoidsVoyageurs(int nbPersonnes);
+            double calculerPoidsTransition(int heure);
 			void setDest(Station* d) { dest = d; }
 			void setLigne(std::string l) { ligne = l; }
 			Station* getDest() const { return dest; }

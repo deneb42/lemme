@@ -7,7 +7,7 @@
 
 GCC=g++
 LFLAGS = -g
-CFLAGS = -Wall -Wextra -pedantic -g -std=c++0x
+CFLAGS = -std=c++11 -Wall -Wextra -pedantic -g
 #-O2
 
 # Name of the files (more .o)

@@ -21,6 +21,8 @@
 			void setPrec(Station* p) {prec=p;}
 			
 			double coutCh; // gros hack
+            double calculerPoidCorrespondance(int age); //calcul le temps pour changer d'un train à l'autre
+                                                        //en fonction de l'heure et de l'age du voyageur
 		private :
 			std::string nomStation;
 			std::map<std::string, Transition> listeSuccesseurs; //nom des stations vers lesquelles on peut aller

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <set>
@@ -6,7 +5,27 @@
 
 int main()//int argc, char* argv[])
 {
-	int i=10;
+	string buffer;
+    string depart, arrivee;
+    int heure;
+    
+    std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
+    std::cout << "\nQuel est votre point de depart ?" << std::endl;
+    std::cin >> buffer;
+    depart = buffer;
+    
+    std::cout << "\nQuel est votre arrivee ?" << std::endl;
+    std::cin >> buffer;
+    arrivee = buffer;
+    
+    std::cout << "\nA quelle heure souhaitez vous partir ? (entier entre 0 et 23)" << std::endl;
+    std::cin >> heure;
+    //heure = buffer;
+    
+    std::cout << "\nVous voulez partir de " << depart << " a destination de " << arrivee << " a " << heure <<" heure. \n\tMERCI DE PATIENTER CALCUL EN COURS." << std::endl;
+    
+    
+  /*  int i=10;
 	
 	Plan p("../data/metro.txt");
 	
@@ -15,6 +34,6 @@ int main()//int argc, char* argv[])
 		it->second.afficheStation();
 		//i--;
 	}
-	
+	*/
 	return 0;
 }
