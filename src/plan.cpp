@@ -52,7 +52,6 @@ Plan::Plan(string path)
 	}
 }
 
-/* il manque l'implementation de systemes pour continuer */
 void Plan::dijkstra(Station *s)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
@@ -66,8 +65,6 @@ void Plan::dijkstra(Station *s)
 	s->setCoutMin(0);
 	visited.insert(s); // initialisation : on initialise tout les poids a l'infini et on visite le noeud source
 	
-	//std::cout << " coucou1:" << ", " << src->getName() << std::endl;
-	//std::cout << " coucou2:"<< visited.size() << " huhu " << succ.size() << std::endl;
 	do
 	{
 		min= numeric_limits<double>::infinity();
