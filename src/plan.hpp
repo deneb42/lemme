@@ -4,6 +4,7 @@
 	
 	#include <string>
 	#include <map>
+	#include <list>
 	#include "station.hpp"
 
 	class Plan
@@ -11,7 +12,7 @@
 		public:
 			Plan(std::string path);
 			
-			void dijkstra(Station* source);
+			std::list<Station*> dijkstra(Station* source, Station *destination);
 			std::set<Station*> stationsDsLigne(std::string ligne);
 			
 			std::map<std::string, Station>* getGraphe() { return &graphe; }

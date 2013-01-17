@@ -20,8 +20,10 @@ int main(int argc, char* argv[])
 		std::cin >> buffer;
 		depart = buffer;
     }
-    else { depart = argv[1];}
+    else  
+    	depart = argv[1];
     std::cout << "Point de départ : " << depart << std::endl;
+    
     if (argc <= 2)
     {
         std::cout << "argc <= 2" <<std::endl;
@@ -30,7 +32,8 @@ int main(int argc, char* argv[])
 		std::cin >> buffer;
 		arrivee = buffer;
     }
-    else {arrivee = argv[2];}
+    else
+        arrivee = argv[2];
     std::cout << "Station de destination : " << arrivee << std::endl;
     
     if (argc <= 3)
@@ -39,8 +42,10 @@ int main(int argc, char* argv[])
 		std::cin >> buffer;
 		heure = buffer;
     }
-    else {heure = argv[3];}
+    else
+        heure = argv[3];
     std::cout << "Moment de la journee : " << heure << std::endl;
+    
     if (argc <= 4)
     {//il y a au moins le point de départ et un point d'arrivee et heure on demande les autres arguments
         std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
@@ -67,11 +72,12 @@ int main(int argc, char* argv[])
 		it->second.afficheStation();
 	}*/
 	//std::set<Station*> l1 = p.stationsDsLigne("01");
-	p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
+	//p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
 	//for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-	//	it->second.afficheStation();
+		//it->second.afficheStation();
+
 	
 	// */
 	
