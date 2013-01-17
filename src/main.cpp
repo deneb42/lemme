@@ -13,96 +13,51 @@ int main(int argc, char* argv[])
     Plan p("../data/metro.txt");
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
     
-    if (argc < 2) {
+    if (argc <= 1)
+    {
         //il n'y a aucun argument on les demandes tous
         std::cout << "\nQuel est votre point de départ ?" << std::endl;
 		std::cin >> buffer;
 		depart = buffer;
-        
-        std::cout << "\nQuel est votre arrivee ?" << std::endl;
-		std::cin >> buffer;
-		arrivee = buffer;
-        
-        std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
-		std::cin >> buffer;
-		heure = buffer;
-        
-        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
-		std::cin >> buffer;
-        if (buffer.compare("oui")) {
-            anomalie = true;
-        }
-        
     }
-    
-    if (argc < 3) {
+    else
+      depart = argv[1];  
+      
+    if (argc <= 2)
+    {
         //il y a au moins le point de départ on demande les autres arguments
-        depart = argv[2];
-        //ensuite on demande les autres arguments
-        std::cout << "Point de départ :" << depart << std::endl;
-
         std::cout << "\nQuel est votre arrivee ?" << std::endl;
 		std::cin >> buffer;
 		arrivee = buffer;
-        
+    }
+    else
+        arrivee = argv[2];
+    
+    if (argc <= 3)
+    {//il y a au moins le point de départ et un point d'arrivee on demande les autres arguments
         std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
 		std::cin >> buffer;
 		heure = buffer;
+    }
+    else
+        heure = argv[3];
         
+    if (argc <= 4)
+    {//il y a au moins le point de départ et un point d'arrivee et heure on demande les autres arguments
         std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
 		std::cin >> buffer;
         if (buffer.compare("oui")) {
             anomalie = true;
         }
-        
     }
-    if (argc < 4) {
-        //il y a au moins le point de départ et un point d'arrivee on demande les autres arguments
-        depart = argv[2];
-        arrivee = argv[3];
-        //ensuite on demande les autres arguments
-        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << std::endl;
-        
-        std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
-		std::cin >> buffer;
-		heure = buffer;
-        
-        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
-		std::cin >> buffer;
+    else
+    {
+        buffer = argv[4];
         if (buffer.compare("oui")) {
             anomalie = true;
         }
-        
     }
-
-    if (argc < 5) {
-        //il y a au moins le point de départ et un point d'arrivee et heure on demande les autres arguments
-        depart = argv[2];
-        arrivee = argv[3];
-        heure = argv[4];
-        //ensuite on demande les autres arguments
-        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << "type d'heure : " << heure << std::endl;
-        
-        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
-		std::cin >> buffer;
-        if (buffer.compare("oui")) {
-            anomalie = true;
-        }
-        
-    }
-    if (argc < 6) {
-        //on a toute les infos en argument du programme
-        depart = argv[2];
-        arrivee = argv[3];
-        heure = argv[4];
-        //ensuite on demande les autres arguments
-        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << "type d'heure : " << heure << "avec anomalie : " << anomalie << std::endl;
-        
-        if (buffer.compare("oui")) {
-            anomalie = true;
-        }
-        
-    }
+    std::cout << "Point de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << std::endl;
 
     /*
 	std::string stDep, stArr, freq, annom;
@@ -150,7 +105,11 @@ int main(int argc, char* argv[])
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
 	//for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 		//std::cout << (*it)->getName() << std::endl;
+<<<<<<< HEAD
 		//it->second.afficheStation();
+=======
+	//	it->second.afficheStation();
+>>>>>>> 3902bed38dd2480ab45bfbc06641cbbbf82481d6
 	
 	// */
 	
