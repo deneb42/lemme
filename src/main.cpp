@@ -4,8 +4,107 @@
 #include "plan.hpp"
 
 int main(int argc, char* argv[])
-{
-/*
+{//par convention un argument on a le point de depart, 2 on a depart et arrivee, 3 l'ehure s'y ajoute 4 on a les anomalies.
+    
+    std::string depart, arrivee, heure;
+    bool anomalie = false;
+    std::string buffer;
+    
+    Plan p("../data/metro.txt");
+    std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
+    
+    if (argc < 2) {
+        //il n'y a aucun argument on les demandes tous
+        std::cout << "\nQuel est votre point de départ ?" << std::endl;
+		std::cin >> buffer;
+		depart = buffer;
+        
+        std::cout << "\nQuel est votre arrivee ?" << std::endl;
+		std::cin >> buffer;
+		arrivee = buffer;
+        
+        std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
+		std::cin >> buffer;
+		heure = buffer;
+        
+        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
+		std::cin >> buffer;
+        if (buffer.compare("oui")) {
+            anomalie = true;
+        }
+        
+    }
+    
+    if (argc < 3) {
+        //il y a au moins le point de départ on demande les autres arguments
+        depart = argv[2];
+        //ensuite on demande les autres arguments
+        std::cout << "Point de départ :" << depart << std::endl;
+
+        std::cout << "\nQuel est votre arrivee ?" << std::endl;
+		std::cin >> buffer;
+		arrivee = buffer;
+        
+        std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
+		std::cin >> buffer;
+		heure = buffer;
+        
+        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
+		std::cin >> buffer;
+        if (buffer.compare("oui")) {
+            anomalie = true;
+        }
+        
+    }
+    if (argc < 4) {
+        //il y a au moins le point de départ et un point d'arrivee on demande les autres arguments
+        depart = argv[2];
+        arrivee = argv[3];
+        //ensuite on demande les autres arguments
+        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << std::endl;
+        
+        std::cout << "\nA quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
+		std::cin >> buffer;
+		heure = buffer;
+        
+        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
+		std::cin >> buffer;
+        if (buffer.compare("oui")) {
+            anomalie = true;
+        }
+        
+    }
+
+    if (argc < 5) {
+        //il y a au moins le point de départ et un point d'arrivee et heure on demande les autres arguments
+        depart = argv[2];
+        arrivee = argv[3];
+        heure = argv[4];
+        //ensuite on demande les autres arguments
+        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << "type d'heure : " << heure << std::endl;
+        
+        std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
+		std::cin >> buffer;
+        if (buffer.compare("oui")) {
+            anomalie = true;
+        }
+        
+    }
+    if (argc < 6) {
+        //on a toute les infos en argument du programme
+        depart = argv[2];
+        arrivee = argv[3];
+        heure = argv[4];
+        //ensuite on demande les autres arguments
+        std::cout << "Point de départ :" << depart << "Point de d'arrivee :" << arrivee << "type d'heure : " << heure << "avec anomalie : " << anomalie << std::endl;
+        
+        if (buffer.compare("oui")) {
+            anomalie = true;
+        }
+        
+    }
+
+    /*
 	std::string stDep, stArr, freq, annom;
 	if(argc==1)
 	{
@@ -40,7 +139,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}*/
 	  //*  
-	Plan p("../data/metro.txt");
+	
 	
 	/*for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
