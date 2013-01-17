@@ -15,7 +15,8 @@ Station::Station(string name)
 
 void Station::addSuccesseur(Station* stat, string ligne) 
 { 
-	Transition t(stat, ligne); //t.poid=coutCh+listeSuccesseurs.size();
+	Transition t(stat, ligne); t.calculerPoidsTransition("normale");
+	//t.poid=coutCh+listeSuccesseurs.size();
 	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t)); 
 }
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <list>
 #include "plan.hpp"
 
 int main(int argc, char* argv[])
@@ -70,16 +71,19 @@ int main(int argc, char* argv[])
 
   	
 	
-	/*for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
+	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
-	}*/
+	}
+	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" <<
+				 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" <<
+				 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	//std::set<Station*> l1 = p.stationsDsLigne("01");
-	//p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
+	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at("LaDefense-GrandeArche")), &(p.getGraphe()->at("Bastille")));
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
-	//for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
+	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-		//it->second.afficheStation();
+		(*it)->afficheStation();
 
 	
 	// */

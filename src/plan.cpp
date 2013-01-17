@@ -53,7 +53,7 @@ Plan::Plan(string path)
 	}
 }
 
-std::list<Station*> Plan::dijkstra(Station *s, Station *d)
+std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
 	std::set<Station*> visited;
@@ -77,9 +77,10 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 			//std::cout << src->getName() << " huhu " << succ.size() << std::endl;
 			for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
-				if(it->second.getTemps()<min && visited.find(it->second.getDest())==visited.end())
+				if((it->second.getTemps()+src->getCoutMin())<min && 
+					visited.find(it->second.getDest())==visited.end())
 				{
-					min=it->second.getTemps();
+					min=it->second.getTemps()+src->getCoutMin();
 					dst=it->second.getDest();
 					//std::cout << " coucou !!!" << min << std::endl;
 				}
@@ -87,7 +88,7 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 		}
 		if(min<numeric_limits<double>::infinity())
 		{
-			dst->setCoutMin(src->getCoutMin()+min);
+			dst->setCoutMin(min);
 			dst->setPrec(src);
 			visited.insert(dst);
 		}
@@ -99,6 +100,7 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 		path.push_front(d);
 		d=d->getPrec();
 	}
+	path.push_front(d);
 	return path;
 }
 
