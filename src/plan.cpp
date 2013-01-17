@@ -89,7 +89,7 @@ void Plan::dijkstra(Station *s)
 			dst->setPrec(src);
 			visited.insert(dst);
 		}
-		std::cout << visited.size() << " huhu " << graphe.size() << std::endl;
+		//std::cout << visited.size() << " huhu " << graphe.size() << std::endl;
 	}while(min<numeric_limits<double>::infinity());//visited.size()<268);//graphe.size());
 }
 
