@@ -29,8 +29,21 @@ void Station::afficheStation() const
     cout << "***********" << endl;
 }
 
-double calculerPoidCorrespondance(int age)
+double Station::calculerPoidCorrespondance(int age)
 {
+    if (this->listeSuccesseurs.size() == 1)
+    { //station par laquele ne passe qu'une ligne
+        return (8.0 + 0.1 * (double) age);
+    }
+    if (this->listeSuccesseurs.size() > 1 && this->listeSuccesseurs.size() <= 3)
+    { //station par laquele passe de 1 a 3 ligne, on ajoute un coefficient de 10% pour le temps de transfert
+        return (8.0 + 0.1 * (double) age) * 1,1;
+    }
+    else
+    { // stations parmis lesquels passe plus de 3 ligne on ajoute
+        //un coefficient de 20% de temps de correspondance en plus
+        return (8.0 + 0.1 * (double) age) * 1,2;
+    }
     return (8.0 + 0.1 * (double) age);
 }
 
