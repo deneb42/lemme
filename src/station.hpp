@@ -14,7 +14,8 @@
 			void addSuccesseur(const Station* stat, string ligne); //ajout dune station à la liste des successeurs
 			//void addLigne(string nom) { listeLignes.insert(nom); }; //ajout d'une nouvelle ligne à la liste des lignes passant par la station.
 			void afficheStation() const; //Affiche les informations de sa station de métro
-
+            double calculerPoidCorrespondance(int age); //calcul le temps pour changer d'un train à l'autre
+                                                        //en fonction de l'heure et de l'age du voyageur
 			set<Transition> getListeSuccesseurs() { return listeSuccesseurs; };
 			//set<string> getListeLigne() { return listeLignes; };
 			double getPoid() const {return poid;}
