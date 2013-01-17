@@ -7,14 +7,14 @@
 
 using namespace std;
 
-double Transition::calculerPoidsTransition(int heure)
+double Transition::calculerPoidsTransition(string heure)
 {
     random_device rd;
-    if ((heure <= 0 && heure > 7) || (heure <= 19 && heure > 23) )
+    if (heure == "creuse")
     { // a ses heures faible traffic (pas de fermeture du réseau la nuit...)                             
         return (double) 2.0 + (calculerPoidsVoyageurs( rd()*1000%250 )) / 10000.0;
     }
-    if ((heure <= 9 && heure > 12) || (heure <= 13 && heure > 17))
+    if (heure == "normale")
     { //heure normale
         return (double) 2.0 + (calculerPoidsVoyageurs(250 + rd()*1000%150) ) / 10000.0;
     }
