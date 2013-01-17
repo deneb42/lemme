@@ -5,8 +5,8 @@
 
 int main()//int argc, char* argv[])
 {
-	string buffer;
-    string depart, arrivee;
+	std::string buffer;
+    std::string depart, arrivee;
     int heure;
     
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;

@@ -27,6 +27,7 @@ Plan::Plan(string path)
 		
 		getline(ifs, tmp);
 		prec=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
+		debLignes.insert(pair<string, Station*>(ligne, &(prec->second)));
 		getline(ifs, tmp);
 		while(!tmp.empty())
 		{

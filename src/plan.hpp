@@ -16,6 +16,7 @@
 			std::map<std::string, Station>* getGraphe() { return &graphe; }
 		private:
 			std::map<std::string, Station> graphe;
+			std::map<std::string, Station*> debLignes;
 	};
 	
 #endif
