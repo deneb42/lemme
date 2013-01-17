@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <map>
+#include <cstdlib>
 #include "station.hpp"
 
 using namespace std;
@@ -9,19 +10,21 @@ Station::Station(string name)
 {
     this->nomStation = name;
     coutCh=(int)nomStation[0]; // gros hack
+  	prec=NULL;
 }
 
 void Station::addSuccesseur(Station* stat, string ligne) 
 { 
-	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), Transition(stat, ligne))); 
+	Transition t(stat, ligne); t.poid=coutCh+listeSuccesseurs.size();
+	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t)); 
 }
 
 void Station::afficheStation() const
 {
-    cout << "Nom de la station : " << nomStation <<endl;
+    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"":prec->getName()) <<endl;
     cout << "Stations suivantes : " << endl;
     for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
-        cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << ")"<< endl;
+        cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << "), cout:" << it->second.poid << endl;
     }
     cout << "***********" << endl;
 }

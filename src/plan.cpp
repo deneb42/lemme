@@ -13,22 +13,31 @@ Plan::Plan(string path)
 {
 	ifstream ifs(path.c_str());
 	string tmp, ligne;
+	int pos;
 	
 	if(!ifs.good()) {
 		cerr << "erreur a l'ouverture du fichier" << endl;
 		exit(1);
 	}
+	ws(ifs);
 	while(!ifs.eof())
 	{
 		map<std::string, Station>::iterator act, prec;
-
+		
 		getline(ifs, ligne);
+		if((pos=ligne.find_first_of(" \t"))!=std::string::npos)
+			ligne.erase(pos); // to get rid of whitespace
 		//cout << "ligne " << ligne << endl; // traitement pour garder le nom de la ligne
 		
 		getline(ifs, tmp);
+		if((pos=tmp.find_first_of(" \t"))!=std::string::npos)
+			tmp.erase(pos); // to get rid of whitespace
 		prec=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
 		debLignes.insert(pair<string, Station*>(ligne, &(prec->second)));
+		
 		getline(ifs, tmp);
+		if((pos=tmp.find_first_of(" \t"))!=std::string::npos)
+			tmp.erase(pos); // to get rid of whitespace
 		while(!tmp.empty())
 		{
 			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
@@ -37,6 +46,8 @@ Plan::Plan(string path)
 			prec->second.addSuccesseur(&(act->second), ligne); // on ajoute les liaisons
 			prec = act;
 			getline(ifs, tmp);
+			if((pos=tmp.find_first_of(" \t"))!=std::string::npos)
+				tmp.erase(pos); // to get rid of whitespace
 		}
 	}
 }
@@ -46,32 +57,44 @@ void Plan::dijkstra(Station *s)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
 	set<Station*> visited;
-	map<std::string, Transition> succ = src->getListeSuccesseurs();
-	double poidActu=0, min;
+	map<std::string, Transition> succ;
+	double min;
 	
 	for(map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
-		it->second.setCoutMin(0);
-	visited.insert(src); // initialisation : on initialise tout les poids a 0 et on visite le noeud source
-	src->setPrec(NULL);
+		it->second.setCoutMin(numeric_limits<double>::infinity());
+	s->setPrec(NULL);
+	s->setCoutMin(0);
+	visited.insert(s); // initialisation : on initialise tout les poids a l'infini et on visite le noeud source
 	
+	//std::cout << " coucou1:" << ", " << src->getName() << std::endl;
+	//std::cout << " coucou2:"<< visited.size() << " huhu " << succ.size() << std::endl;
 	do
 	{
-		min= numeric_limits<double>::infinity(); // a tester ou numeric_limits<float>::infinity()
-		for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
+		min= numeric_limits<double>::infinity();
+		for(set<Station*>::iterator it2=visited.begin(); it2!=visited.end();it2++)
 		{
-			if(it->second.poid<min)
+			src = (*it2);
+			succ = src->getListeSuccesseurs();
+			//std::cout << src->getName() << " huhu " << succ.size() << std::endl;
+			for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
-				min=it->second.poid;
-				dst=it->second.getDest();
+				if(it->second.poid<min && visited.find(it->second.getDest())==visited.end())
+				{
+					min=it->second.poid;
+					dst=it->second.getDest();
+					//std::cout << " coucou !!!" << min << std::endl;
+				}
 			}
 		}
-		visited.insert(dst);
-		poidActu+=min;
-		dst->setCoutMin(poidActu);
-		dst->setPrec(src);
-		src=dst;
-	}while(visited.size()!=graphe.size());
-}// */
+		if(min<numeric_limits<double>::infinity())
+		{
+			dst->setCoutMin(src->getCoutMin()+min);
+			dst->setPrec(src);
+			visited.insert(dst);
+		}
+		std::cout << visited.size() << " huhu " << graphe.size() << std::endl;
+	}while(min<numeric_limits<double>::infinity());//visited.size()<268);//graphe.size());
+}
 
 
 // trouve les differentes stations d'une ligne

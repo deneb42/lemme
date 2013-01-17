@@ -33,9 +33,12 @@ int main()//int argc, char* argv[])
 	{
 		it->second.afficheStation();
 	}*/
-	std::set<Station*> l1 = p.stationsDsLigne("01");
-	for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
-		std::cout << (*it)->getName() << std::endl;
+	//std::set<Station*> l1 = p.stationsDsLigne("01");
+	p.dijkstra(&p.getGraphe()->at("LaDefense-GrandeArche"));
+	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
+	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
+		//std::cout << (*it)->getName() << std::endl;
+		it->second.afficheStation();
 	
 	// */
 	
