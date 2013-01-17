@@ -12,8 +12,10 @@
 			Plan(std::string path);
 			
 			void dijkstra(Station* source);
+			std::set<Station*> stationsDsLigne(std::string ligne);
 			
 			std::map<std::string, Station>* getGraphe() { return &graphe; }
+			std::map<std::string, Station*>* getDebLignes() { return &debLignes; }
 		private:
 			std::map<std::string, Station> graphe;
 			std::map<std::string, Station*> debLignes;

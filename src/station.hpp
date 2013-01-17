@@ -12,7 +12,7 @@
 			void addSuccesseur(Station* stat, std::string ligne); //ajout dune station à la liste des successeurs
 			void afficheStation() const; //Affiche les informations de sa station de métro
 
-			std::map<std::string, Transition> getListeSuccesseurs() { return listeSuccesseurs; };
+			std::map<std::string, Transition>& getListeSuccesseurs() { return listeSuccesseurs; };
 			
 			double getCoutMin() const {return coutMin;}
 			Station* getPrec() const {return prec;}

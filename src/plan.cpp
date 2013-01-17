@@ -72,3 +72,32 @@ void Plan::dijkstra(Station *s)
 		src=dst;
 	}while(visited.size()!=graphe.size());
 }// */
+
+
+// trouve les differentes stations d'une ligne
+std::set<Station*> Plan::stationsDsLigne(std::string ligne)
+{
+	std::set<Station*> visite;
+	Station* act = debLignes[ligne];
+	bool ok;
+	
+	visite.insert(act);
+	do {
+		ok=false;
+		std::map<std::string, Transition> succ = act->getListeSuccesseurs();
+		for(std::map<std::string, Transition>::iterator it2=succ.begin();
+			 it2!=succ.end() && !ok;it2++)
+		{
+			if(it2->second.getLigne()==ligne)
+			{	
+				if(visite.insert(it2->second.getDest()).second) // si pas trouve
+				{
+					act=it2->second.getDest();
+					ok=true;
+				}
+			}
+		}
+	}while(ok);
+	
+	return visite;
+} 

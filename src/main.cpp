@@ -5,6 +5,7 @@
 
 int main()//int argc, char* argv[])
 {
+	/*
 	std::string buffer;
     std::string depart, arrivee;
     int heure;
@@ -24,16 +25,19 @@ int main()//int argc, char* argv[])
     
     std::cout << "\nVous voulez partir de " << depart << " a destination de " << arrivee << " a " << heure <<" heure. \n\tMERCI DE PATIENTER CALCUL EN COURS." << std::endl;
     
-    
-  /*  int i=10;
-	
+    */
+  //*  
 	Plan p("../data/metro.txt");
 	
-	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end() && i>0;it++)
+	/*for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
-		//i--;
-	}
-	*/
+	}*/
+	std::set<Station*> l1 = p.stationsDsLigne("01");
+	for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
+		std::cout << (*it)->getName() << std::endl;
+	
+	// */
+	
 	return 0;
 }
