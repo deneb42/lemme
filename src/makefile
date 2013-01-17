@@ -39,7 +39,7 @@ runtest :
 	$(PGM_PATH)$(PGM_TEST)
 
 clean :
-	-rm *.o *~
+	-rm -Rf *.o *~
 	
 mrproper : clean
-	-rm $(PGM_PATH)$(PGM_NAME)
+	-rm -f $(PGM_PATH)$(PGM_NAME)
