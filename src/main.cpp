@@ -5,7 +5,7 @@
 #include "plan.hpp"
 
 int main(int argc, char* argv[])
-{//par convention un argument on a le point de depart, 2 on a depart et arrivee, 3 l'ehure s'y ajoute 4 on a les anomalies.
+{//par convention si on a 2 arguments on a le point de depart, 3 on a depart et arrivee, 4 l'heure s'y ajoute 5 on a les anomalies.
     
     std::string depart, arrivee, heure;
     bool anomalie = false;
@@ -14,11 +14,8 @@ int main(int argc, char* argv[])
     Plan p("../data/metro.txt");
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
     
-    std::cout << "argc : " << argc << std::endl;
-    
     if (argc <= 1)
     {
-        std::cout << "argc <= 1" <<std::endl;
         //il n'y a aucun argument on les demandes tous
         std::cout << "\nQuel est votre point de départ ?" << std::endl;
 		std::cin >> buffer;
