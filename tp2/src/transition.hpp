@@ -31,6 +31,7 @@
 			Station* getDest() const { return dest; } /*!<Getter sur Dest*/
 			std::string getLigne() const { return ligne; } /*!<Getter sur Ligne*/
 			double getTemps() const { return temps; } /*!<Getter sur Temps*/
+            void setTemps(double t) { temps = t;}
 
 		private:
 			Station* dest; /*!<Station de destination*/
