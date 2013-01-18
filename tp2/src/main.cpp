@@ -101,8 +101,7 @@ Plan p("../data/metro.txt", heure, anomalie);
     /* Affichage des stations renvoyees par dijkstra */
 	for(std::list<Transition>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-		(*it).getDest()->afficheStation();
-
+		(*it).getDest()->afficheStationParParcours();
 	
 	return 0;
 }

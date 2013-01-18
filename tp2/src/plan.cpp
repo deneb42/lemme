@@ -51,8 +51,8 @@ Plan::Plan(string path, string heure, bool anomalie)
 		{
 			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
 			act=graphe.insert(pair<string, Station>(tmp, Station(tmp, age))).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
-			act->second.addSuccesseur(&(prec->second), ligne);
-			prec->second.addSuccesseur(&(act->second), ligne); // on ajoute les liaisons
+			act->second.addSuccesseur(&(prec->second), ligne, heure);
+			prec->second.addSuccesseur(&(act->second), ligne, heure); // on ajoute les liaisons
 			prec = act;
 			getline(ifs, tmp);
 			if((pos=tmp.find_first_of(" \t"))!=std::string::npos)
