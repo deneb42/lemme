@@ -102,8 +102,8 @@ int main(int argc, char* argv[])
     /* Affichage des stations renvoyees par dijkstra */
 	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-		(*it)->afficheStation();
-
+		//(*it)->afficheStation();
+        (*it)->afficheStationParParcours();
 	
 	return 0;
 }
