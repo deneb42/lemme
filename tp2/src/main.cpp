@@ -76,7 +76,8 @@ int main(int argc, char* argv[])
 				 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" <<
 				 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
 	//std::set<Station*> l1 = p.stationsDsLigne("01");
-	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at("LaDefense-GrandeArche")), &(p.getGraphe()->at("Bastille")));
+	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at("LaDefense-GrandeArche")),
+										&(p.getGraphe()->at("Bastille")));
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
 	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;

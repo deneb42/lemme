@@ -22,7 +22,7 @@ void Station::addSuccesseur(Station* stat, string ligne)
 
 void Station::afficheStation() const
 {
-    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"":prec->getName()) <<endl;
+    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"*":prec->getName()) <<endl;
     cout << "Stations suivantes : " << endl;
     for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
         cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << "), cout:" << it->second.getTemps() << endl;
