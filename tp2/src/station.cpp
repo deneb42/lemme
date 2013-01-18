@@ -12,23 +12,24 @@ Station::Station(string name, int age)
     ageVoyageur = age;
     coutCh = calculerPoidCorrespondance(ageVoyageur);
     //   coutCh=(int)nomStation[0]; // gros hack
-  	prec=NULL;
 }
 
 void Station::addSuccesseur(Station* stat, string ligne, string heure)
 { 
 	Transition t(stat, ligne); t.calculerPoidsTransition(heure);
 	//t.poid=coutCh+listeSuccesseurs.size();
-	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t));
+	listeSuccesseurs.push_back(t);
     coutCh = calculerPoidCorrespondance(ageVoyageur);
 }
 
 void Station::afficheStation() const
 {
-    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"*":prec->getName()) <<endl;
+    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " "; 
+    if(prec.getDest()!=NULL)
+		std::cout << "par : " << prec.getDest()->getName()  << "(" << prec.getLigne() << ") " <<endl;
     cout << "Stations suivantes : " << endl;
     for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
-        cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << "), cout:" << it->second.getTemps() << endl;
+        cout << "\t- nom de la Station : " << it->getDest()->getName() << "(" << it->getLigne() << "), cout:" << it->getTemps() << endl;
     }
     cout << "***********" << endl;
 }
