@@ -10,6 +10,19 @@
 
 using namespace std;
 
+/*!
+ * \file plan.cpp
+ * \brief Classe representant l'ensemble du reseau
+ * \author {Jean BADIE, Benjamin BLOIS}
+ * \date 17 janvier 2013
+ *
+*/
+
+
+/*!
+ * \fn Plan
+ * \param path, heure, anomalie
+ */
 
 Plan::Plan(string path, string heure, bool anomalie)
 {
@@ -61,9 +74,14 @@ Plan::Plan(string path, string heure, bool anomalie)
 	}
 }
 
-// trouve les differentes stations d'une ligne
+/**
+ * \fn StationsDsLigne
+ * \param ligne
+ * \return set<Station>
+ */
+
 std::set<Station*> Plan::stationsDsLigne(std::string ligne)
-{
+{ // trouve les differentes stations d'une ligne
 	std::set<Station*> visite;
 	Station* act = debLignes[ligne];
 	bool ok;
@@ -89,7 +107,12 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
 	return visite;
 } 
 
-std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
+/**
+ * \fn dijkstra
+ * \param Station, Station
+ * \return list<Station>
+ */
+std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
 	Transition par;
@@ -111,9 +134,6 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 		{
 			src = (*it2);
 			succ = src->getListeSuccesseurs();
-			//std::cout << src->getName() << " huhu " << succ.size() 
-			//			<< ", " << src->getCoutMin() << " par " << src->getPrec()->getName() <<
-			//			std::endl;
 			for(std::vector<Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
 				couts = it->getTemps()+src->getCoutMin()+src->getCoutCh(it->getLigne());
@@ -122,8 +142,6 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 					min=couts;
 					dst=it->getDest();
 					par.setDest(src); par.setLigne(it->getLigne());
-					//std::cout << " coucou !!! " << dst->getName()<< 
-					//" cout " << min << std::endl;
 				}
 			}
 		}
@@ -133,18 +151,22 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 			dst->setPrec(par);
 			visited.insert(dst);
 		}
-		//std::cout << std::endl;//visited.size() << " huhu " << graphe.size() << std::endl;
-	}while(min<numeric_limits<double>::infinity() && dst!=d);//visited.size()<268);//graphe.size());
+	}while(min<numeric_limits<double>::infinity() && dst!=d);
 	
 	while(d!=s) 
 	{
 		path.push_front(d);
 		d=d->getPrec().getDest();
 	}
-	//path.push_front(Transition(s, "")); // ajout source
+	
 	return path;
 }
 
+
+/**
+ * \fn addAnomLigne
+ * \param ligne
+ */
 void Plan::addAnomLigne(std::string ligne)
 {
 	std::set<Station*> l = stationsDsLigne(ligne);
@@ -157,6 +179,10 @@ void Plan::addAnomLigne(std::string ligne)
 	}
 }
 
+/**
+ * \fn addAnomStation
+ * \param Station
+ */
 void addAnomStation(Station* s)
 {
 	std::vector<Transition> t = s->getListeSuccesseurs();

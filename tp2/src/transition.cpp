@@ -5,9 +5,19 @@
 #include <random>
 #include "transition.hpp"
 
+/*!
+ * \file Transition.cpp
+ * \brief Classe representant une transition entre deux stations
+ * \author {Jean BADIE, Benjamin BLOIS}
+ * \date 17 janvier 2013
+ */
+
 using namespace std;
 
-
+/*!
+ * \fn calculerPoidsTransition
+ * \param heure
+ */
 void Transition::calculerPoidsTransition(std::string heure)
 {
     random_device rd;
@@ -25,6 +35,11 @@ void Transition::calculerPoidsTransition(std::string heure)
     }
 }
 
+/*!
+ * \fn calculerPoidsVoyageurs
+ * \param nbPersonnes
+ * \return double
+ */
 double Transition::calculerPoidsVoyageurs(int nbPersonnes)
 {
     double poids = 0;

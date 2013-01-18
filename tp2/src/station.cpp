@@ -4,8 +4,19 @@
 #include <cstdlib>
 #include "station.hpp"
 
+/*!
+ * \file station.cpp
+ * \brief Classe representant une station
+ * \author {Jean BADIE, Benjamin BLOIS}
+ * \date 17 janvier 2013
+ */
+
 using namespace std;
 
+/*!
+ * \fn Station
+ * \param name, age
+ */
 Station::Station(string name, int age)
 {
     this->nomStation = name;
@@ -13,6 +24,10 @@ Station::Station(string name, int age)
     coutCh = calculerPoidCorrespondance(ageVoyageur);
 }
 
+/*!
+ * \fn addSuccesseur
+ * \param Station, ligne, heure
+ */
 void Station::addSuccesseur(Station* stat, string ligne, string heure)
 { 
 	Transition t(stat, ligne); t.calculerPoidsTransition(heure);
@@ -20,6 +35,10 @@ void Station::addSuccesseur(Station* stat, string ligne, string heure)
     coutCh = calculerPoidCorrespondance(ageVoyageur);
 }
 
+
+/*!
+ * \fn afficheStation
+ */
 void Station::afficheStation() const
 {
     cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " "; 
@@ -32,21 +51,21 @@ void Station::afficheStation() const
     cout << "***********" << endl;
 }
 
+/*!
+ * \fn afficheStationParParcours
+ */
 void Station::afficheStationParParcours() const
 {
 	if(prec.getDest()!=NULL)
 		std::cout << "Depuis: " << prec.getDest()->getName() << std::endl;
 	std::cout << "  Vers: " << nomStation << " par ligne " << prec.getLigne() << " (" << coutMin << " min)" << endl;
-
-    /*
-    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"*":prec->getName()) <<endl;
-    cout << "Stations suivantes : " << endl;
-    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
-        cout << "\t- nom de la Station : " << it->first << "(" << it->second.getLigne() << "), cout:" << it->second.getTemps() << endl;
-    }
-    cout << "***********" << endl;*/
 }
 
+/*!
+ * \fn calculerPoidCorrespondance
+ * \param age
+ * \return double
+ */
 double Station::calculerPoidCorrespondance(int age)
 {
     if (this->listeSuccesseurs.size() == 1)
@@ -64,6 +83,12 @@ double Station::calculerPoidCorrespondance(int age)
     }
 }
 
+
+/*!
+ * \fn getCoutCh
+ * \param ligne
+ * \return double
+ */
 double Station::getCoutCh(std::string ligne)
 {
 	if(prec.getLigne()==ligne)
@@ -71,6 +96,11 @@ double Station::getCoutCh(std::string ligne)
 	return coutCh;
 }
 
+/*!
+ * \fn operator==
+ * \param Station, Station
+ * \return bool
+ */
 bool operator==(const Station& s1, const Station& s2)
 {
 	return s1.getName()==s2.getName();
