@@ -15,6 +15,9 @@
 			std::list<Station*> dijkstra(Station* source, Station *destination);
 			std::set<Station*> stationsDsLigne(std::string ligne);
 			
+			void addAnomLigne(std::string ligne);
+			void addAnomStation(Station* s);
+			
 			std::map<std::string, Station>* getGraphe() { return &graphe; }
 			std::map<std::string, Station*>* getDebLignes() { return &debLignes; }
 		private:

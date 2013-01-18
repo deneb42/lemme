@@ -17,6 +17,7 @@
             void calculerPoidsTransition(std::string heure);
 			void setDest(Station* d) { dest = d; }
 			void setLigne(std::string l) { ligne = l; }
+			void setTemps(double t) { temps = t; }
 			Station* getDest() const { return dest; }
 			std::string getLigne() const { return ligne; }
 			double getTemps() const { return temps; }

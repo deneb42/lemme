@@ -144,3 +144,22 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 	//path.push_front(Transition(s, "")); // ajout source
 	return path;
 }
+
+void Plan::addAnomLigne(std::string ligne)
+{
+	std::set<Station*> l = stationsDsLigne(ligne);
+	for(std::set<Station*>::iterator it=l.begin();it!=l.end();it++)
+	{
+		std::vector<Transition> t = (*it)->getListeSuccesseurs();
+		for(std::vector<Transition>::iterator it2=t.begin();it2!=t.end();it2++)
+			if(it2->getLigne()==ligne)
+				it2->setTemps(numeric_limits<double>::infinity()); // mise a l'infini des valeurs
+	}
+}
+
+void addAnomStation(Station* s)
+{
+	std::vector<Transition> t = s->getListeSuccesseurs();
+	for(std::vector<Transition>::iterator it=t.begin();it!=t.end();it++)
+		it->setTemps(numeric_limits<double>::infinity()); // mise a l'infini des valeurs
+}

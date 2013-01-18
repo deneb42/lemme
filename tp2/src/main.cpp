@@ -69,7 +69,7 @@ Plan p("../data/metro.txt", heure, anomalie);
 	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
-	}/*
+	}
 	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" <<
 				 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" <<
 				 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
