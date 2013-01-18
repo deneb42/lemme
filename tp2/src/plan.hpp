@@ -22,8 +22,13 @@
 			std::list<Station*> dijkstra(Station* source, Station *destination);/*!<Algoritme de Dijkstra*/
 			std::set<Station*> stationsDsLigne(std::string ligne);/*!<Retourne la liste des stations d'une meme ligne*/
 			
+
 			std::map<std::string, Station>* getGraphe() { return &graphe; } /*!<Getter sur le graphe cree*/
 			std::map<std::string, Station*>* getDebLignes() { return &debLignes; }/*!<Getter sur l'ensemble des terminus*/
+
+			void addAnomLigne(std::string ligne); /*!<Ajout d'une anomalie sur la ligne*/
+			void addAnomStation(Station* s); /*!<Ajout d'une Anomalie sur la station*/
+			
 		private:
 			std::map<std::string, Station> graphe; /*!<graphe representant le reseau*/
 			std::map<std::string, Station*> debLignes;/*!<ensemble des terminus*/
