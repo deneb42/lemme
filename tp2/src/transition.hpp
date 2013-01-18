@@ -10,6 +10,7 @@
 	class Transition
 	{
 		public:
+			Transition() {}
 			Transition(Station* d, std::string l):dest(d),ligne(l) {}
 			
             double calculerPoidsVoyageurs(int nbPersonnes);

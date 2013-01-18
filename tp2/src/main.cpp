@@ -64,12 +64,12 @@ int main(int argc, char* argv[])
     
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
 
-  	
-/*
+  /*	
+Plan p("../data/metro.txt", heure, anomalie);
 	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
-	}
+	}/*
 	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" <<
 				 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" <<
 				 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
@@ -79,7 +79,6 @@ int main(int argc, char* argv[])
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
 */
 
-    
     /* CREATION DU PLAN */
     Plan p("../data/metro.txt", heure, anomalie);
     /* VERIFICATION DES NOMS DES STATIONS */
@@ -97,12 +96,12 @@ int main(int argc, char* argv[])
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
     
     /* APPEL DE DIJKSTRA */
-	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
+	std::list<Transition> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
 
     /* Affichage des stations renvoyees par dijkstra */
-	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
+	for(std::list<Transition>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-		(*it)->afficheStation();
+		(*it).getDest()->afficheStation();
 
 	
 	return 0;

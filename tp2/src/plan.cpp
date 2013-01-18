@@ -71,15 +71,15 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
 	visite.insert(act);
 	do {
 		ok=false;
-		std::map<std::string, Transition> succ = act->getListeSuccesseurs();
-		for(std::map<std::string, Transition>::iterator it2=succ.begin();
+		std::vector<Transition> succ = act->getListeSuccesseurs();
+		for(std::vector<Transition>::iterator it2=succ.begin();
 			 it2!=succ.end() && !ok;it2++)
 		{
-			if(it2->second.getLigne()==ligne)
+			if(it2->getLigne()==ligne)
 			{	
-				if(visite.insert(it2->second.getDest()).second) // si pas trouve
+				if(visite.insert(it2->getDest()).second) // si pas trouve
 				{
-					act=it2->second.getDest();
+					act=it2->getDest();
 					ok=true;
 				}
 			}
@@ -89,17 +89,18 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
 	return visite;
 } 
 
-std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
+std::list<Transition> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
-	Station *src=s, *dst, *par;
+	Station *src=s, *dst;
+	Transition par;
 	std::set<Station*> visited;
-	std::list<Station*> path;
-	map<std::string, Transition> succ;
+	std::list<Transition> path;
+	std::vector<Transition> succ;
 	double min;
 	
 	for(map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
 		it->second.setCoutMin(numeric_limits<double>::infinity());
-	s->setPrec(s);
+	s->setPrec(Transition(s, ""));
 	s->setCoutMin(0);
 	visited.insert(s); // initialisation : on initialise tout les poids a l'infini et on visite le noeud source
 	
@@ -113,14 +114,14 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 			//std::cout << src->getName() << " huhu " << succ.size() 
 			//			<< ", " << src->getCoutMin() << " par " << src->getPrec()->getName() <<
 			//			std::endl;
-			for(map<std::string, Transition>::iterator it=succ.begin();it!=succ.end();it++)
+			for(std::vector<Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
-				if((it->second.getTemps()+src->getCoutMin())<min && 
-					visited.find(it->second.getDest())==visited.end())
+				if((it->getTemps()+src->getCoutMin())<min && 
+					visited.find(it->getDest())==visited.end())
 				{
-					min=it->second.getTemps()+src->getCoutMin();
-					dst=it->second.getDest();
-					par=src;
+					min=it->getTemps()+src->getCoutMin();
+					dst=it->getDest();
+					par.setDest(src); par.setLigne(it->getLigne());
 					//std::cout << " coucou !!! " << dst->getName()<< 
 					//" cout " << min << std::endl;
 				}
@@ -135,11 +136,11 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressag
 		//std::cout << std::endl;//visited.size() << " huhu " << graphe.size() << std::endl;
 	}while(min<numeric_limits<double>::infinity() && dst!=d);//visited.size()<268);//graphe.size());
 	
-	while(d->getPrec()!=s)
+	while(d->getPrec().getDest()!=s)
 	{
-		path.push_front(d);
-		d=d->getPrec();
+		path.push_front(d->getPrec());
+		d=d->getPrec().getDest();
 	}
-	path.push_front(d);
+	path.push_front(Transition(s, "")); // ajout source
 	return path;
 }
