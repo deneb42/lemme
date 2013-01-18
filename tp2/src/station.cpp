@@ -11,13 +11,11 @@ Station::Station(string name, int age)
     this->nomStation = name;
     ageVoyageur = age;
     coutCh = calculerPoidCorrespondance(ageVoyageur);
-    //   coutCh=(int)nomStation[0]; // gros hack
 }
 
 void Station::addSuccesseur(Station* stat, string ligne, string heure)
 { 
 	Transition t(stat, ligne); t.calculerPoidsTransition(heure);
-	//t.poid=coutCh+listeSuccesseurs.size();
 	listeSuccesseurs.push_back(t);
     coutCh = calculerPoidCorrespondance(ageVoyageur);
 }
@@ -36,7 +34,9 @@ void Station::afficheStation() const
 
 void Station::afficheStationParParcours() const
 {
-    cout << "Depuis " << (prec==NULL?"*":prec->getName()) << " en direction de " << nomStation << " temps : " << coutCh << " min." << endl;
+	if(prec.getDest()!=NULL)
+		std::cout << "Depuis: " << prec.getDest()->getName() << std::endl;
+	std::cout << "  Vers: " << nomStation << " par ligne " << prec.getLigne() << " (" << coutMin << " min)" << endl;
 
     /*
     cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " par : " << (prec==NULL?"*":prec->getName()) <<endl;
@@ -55,14 +55,20 @@ double Station::calculerPoidCorrespondance(int age)
     }
     if (this->listeSuccesseurs.size() > 1 && this->listeSuccesseurs.size() <= 3)
     { //station par laquele passe de 1 a 3 ligne, on ajoute un coefficient de 10% pour le temps de transfert
-        return (8.0 + 0.1 * (double) age) * 1,1;
+        return (8.0 + 0.1 * (double) age) * 1.1;
     }
     else
     { // stations parmis lesquels passe plus de 3 ligne on ajoute
         //un coefficient de 20% de temps de correspondance en plus
-        return (8.0 + 0.1 * (double) age) * 1,2;
+        return (8.0 + 0.1 * (double) age) * 1.2;
     }
-    return (8.0 + 0.1 * (double) age);
+}
+
+double Station::getCoutCh(std::string ligne)
+{
+	if(prec.getLigne()==ligne)
+		return 0;
+	return coutCh;
 }
 
 bool operator==(const Station& s1, const Station& s2)

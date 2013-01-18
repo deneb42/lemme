@@ -16,7 +16,7 @@ Plan::Plan(string path, string heure, bool anomalie)
     // GENERATION DE L'AGE DU VOYAGEUR
     random_device rd;
     int age = 7 + rd()*10000%80; // un voyageur a de 7 a 87 ans.
-    
+    cout << "age : " << age << endl;
     // TODO Modif signatures appel creation stations et transitions.
     
     
@@ -89,14 +89,14 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
 	return visite;
 } 
 
-std::list<Transition> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
+std::list<Station*> Plan::dijkstra(Station *s, Station *d) // erreurs d'adressages !!!!
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
 	Transition par;
 	std::set<Station*> visited;
-	std::list<Transition> path;
+	std::list<Station*> path;
 	std::vector<Transition> succ;
-	double min;
+	double min, couts;
 	
 	for(map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
 		it->second.setCoutMin(numeric_limits<double>::infinity());
@@ -116,10 +116,10 @@ std::list<Transition> Plan::dijkstra(Station *s, Station *d) // erreurs d'adress
 			//			std::endl;
 			for(std::vector<Transition>::iterator it=succ.begin();it!=succ.end();it++)
 			{
-				if((it->getTemps()+src->getCoutMin())<min && 
-					visited.find(it->getDest())==visited.end())
+				couts = it->getTemps()+src->getCoutMin()+src->getCoutCh(it->getLigne());
+				if(couts<min && visited.find(it->getDest())==visited.end())
 				{
-					min=it->getTemps()+src->getCoutMin();
+					min=couts;
 					dst=it->getDest();
 					par.setDest(src); par.setLigne(it->getLigne());
 					//std::cout << " coucou !!! " << dst->getName()<< 
@@ -136,11 +136,11 @@ std::list<Transition> Plan::dijkstra(Station *s, Station *d) // erreurs d'adress
 		//std::cout << std::endl;//visited.size() << " huhu " << graphe.size() << std::endl;
 	}while(min<numeric_limits<double>::infinity() && dst!=d);//visited.size()<268);//graphe.size());
 	
-	while(d->getPrec().getDest()!=s)
+	while(d!=s) 
 	{
-		path.push_front(d->getPrec());
+		path.push_front(d);
 		d=d->getPrec().getDest();
 	}
-	path.push_front(Transition(s, "")); // ajout source
+	//path.push_front(Transition(s, "")); // ajout source
 	return path;
 }

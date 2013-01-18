@@ -96,12 +96,12 @@ Plan p("../data/metro.txt", heure, anomalie);
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
     
     /* APPEL DE DIJKSTRA */
-	std::list<Transition> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
+	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
 
     /* Affichage des stations renvoyees par dijkstra */
-	for(std::list<Transition>::iterator it=l.begin();it!=l.end();it++)
+	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
-		(*it).getDest()->afficheStationParParcours();
+		(*it)->afficheStationParParcours();
 	
 	return 0;
 }

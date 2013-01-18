@@ -16,6 +16,7 @@
 			std::vector<Transition>& getListeSuccesseurs() { return listeSuccesseurs; };
 			
 			double getCoutMin() const {return coutMin;}
+			double getCoutCh(std::string ligne);
 			Transition getPrec() const {return prec;}
 			std::string getName() const {return nomStation;}
 			void setCoutMin(double p) {coutMin=p;}

@@ -12,7 +12,7 @@
 		public:
             Plan(std::string path, std::string heure, bool anomalie);
 			
-			std::list<Transition> dijkstra(Station* source, Station *destination);
+			std::list<Station*> dijkstra(Station* source, Station *destination);
 			std::set<Station*> stationsDsLigne(std::string ligne);
 			
 			std::map<std::string, Station>* getGraphe() { return &graphe; }
