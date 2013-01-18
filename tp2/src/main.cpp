@@ -92,6 +92,12 @@ Plan p("../data/metro.txt", heure, anomalie);
         std::cin >> buffer;
         arrivee = buffer;
     }
+    while (heure != "normale" && heure != "creuse" && heure != "pointe") {
+        std::cout << "ERREUR de saisie, a quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
+		std::cin >> buffer;
+		heure = buffer;
+
+    }
     
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
     
