@@ -69,7 +69,7 @@ Plan p("../data/metro.txt", heure, anomalie);
 	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
-	}/*
+	}
 	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" <<
 				 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n" <<
 				 "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
@@ -91,6 +91,12 @@ Plan p("../data/metro.txt", heure, anomalie);
         std::cout << "Gare d'arrivee non trouvee, merci de verifier l'orthographe. Ou voulez vous aller : ";
         std::cin >> buffer;
         arrivee = buffer;
+    }
+    while (heure != "normale" && heure != "creuse" && heure != "pointe") {
+        std::cout << "ERREUR de saisie, a quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
+		std::cin >> buffer;
+		heure = buffer;
+
     }
     
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
