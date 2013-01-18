@@ -7,8 +7,8 @@
 int main(int argc, char* argv[])
 {//par convention si on a 2 arguments on a le point de depart, 3 on a depart et arrivee, 4 l'heure s'y ajoute 5 on a les anomalies.
     
-    std::string depart, arrivee, heure;
-    bool anomalie = false;
+    std::string depart, arrivee, heure, cibleAnom;
+    bool anomalie = false, anomLigne; // !anomLigne = anomStation
     std::string buffer;
     
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
@@ -49,18 +49,35 @@ int main(int argc, char* argv[])
     {//il y a au moins le point de départ et un point d'arrivee et heure on demande les autres arguments
         std::cout << "\nSouhaitez vous une anomalie ? (oui ou non)" << std::endl;
 		std::cin >> buffer;
-        if (buffer.compare("oui")) {
-            anomalie = true;
-        }
+        anomalie = (buffer=="oui");
     }
     else
+        anomalie = (std::string(argv[4])=="oui");
+    
+    if(anomalie)
     {
-        buffer = argv[4];
-        if (buffer.compare("oui")) {
-            anomalie = true;
-        }
-    }
-    std::cout << "Avec anomalie ? " << anomalie << std::endl;
+		if (argc <= 5)
+		{
+			std::cout << "\nAnomalie de quel type ? (station ou ligne)" << std::endl;
+			std::cin >> buffer;
+			anomLigne = (buffer == "ligne");
+
+		}
+		else
+			anomLigne = ("ligne" == std::string(argv[5]));
+		
+		if (argc <= 6)
+		{
+			std::cout << "\nCible de l'anomalie (un nom de " << (anomLigne?"ligne ":"station ") << ")" << std::endl;
+			std::cin >> cibleAnom;
+		}
+		else
+			cibleAnom = argv[6];
+	}
+    if(anomalie)
+		std::cout << "Avec anomalie sur la " << (anomLigne?"ligne ":"station ") << cibleAnom << std::endl;
+	else
+		std::cout << "Sans anomalie" << std::endl;
     
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
 
