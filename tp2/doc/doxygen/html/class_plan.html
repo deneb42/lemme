@@ -94,6 +94,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_station.html">Station</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a4d3f0862c729f864e9554ab59829874d">stationsDsLigne</a> (std::string ligne)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a3f2bd682cbedb1a5fdca8c62a4365e1f">getGraphe</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a82799b3ab39fb1129489bf77e72e1744">getDebLignes</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a3799cde04892995f3070cec28031c1f1">addAnomLigne</a> (std::string ligne)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#abcf5db64d661a675d75d17d8291b2e2f">addAnomStation</a> (<a class="el" href="class_station.html">Station</a> *s)</td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae3a898a412335a80aafcda7bf62e612e"></a><!-- doxytag: member="Plan::Plan" ref="ae3a898a412335a80aafcda7bf62e612e" args="(std::string path, std::string heure, bool anomalie)" -->
@@ -131,6 +133,42 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3799cde04892995f3070cec28031c1f1"></a><!-- doxytag: member="Plan::addAnomLigne" ref="a3799cde04892995f3070cec28031c1f1" args="(std::string ligne)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_plan.html#a3799cde04892995f3070cec28031c1f1">Plan::addAnomLigne</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ligne</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Ajout d'une anomalie sur la ligne </p>
+
+</div>
+</div>
+<a class="anchor" id="abcf5db64d661a675d75d17d8291b2e2f"></a><!-- doxytag: member="Plan::addAnomStation" ref="abcf5db64d661a675d75d17d8291b2e2f" args="(Station *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_plan.html#abcf5db64d661a675d75d17d8291b2e2f">Plan::addAnomStation</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_station.html">Station</a> *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Ajout d'une Anomalie sur la station </p>
+
+</div>
+</div>
 <a class="anchor" id="a49495cde6d049082521495076e7f81ac"></a><!-- doxytag: member="Plan::dijkstra" ref="a49495cde6d049082521495076e7f81ac" args="(Station *source, Station *destination)" -->
 <div class="memitem">
 <div class="memproto">
@@ -233,7 +271,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 18 2013 16:20:51 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 18 2013 16:28:40 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
