@@ -15,9 +15,9 @@ Station::Station(string name, int age)
   	prec=NULL;
 }
 
-void Station::addSuccesseur(Station* stat, string ligne) 
+void Station::addSuccesseur(Station* stat, string ligne, string heure)
 { 
-	Transition t(stat, ligne); t.calculerPoidsTransition("normale");
+	Transition t(stat, ligne); t.calculerPoidsTransition(heure);
 	//t.poid=coutCh+listeSuccesseurs.size();
 	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t));
     coutCh = calculerPoidCorrespondance(ageVoyageur);
