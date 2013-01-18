@@ -7,7 +7,7 @@
 
 	class Station {
 		public :
-			Station(std::string name);
+        Station(std::string name, int age);
 
 			void addSuccesseur(Station* stat, std::string ligne); //ajout dune station à la liste des successeurs
 			void afficheStation() const; //Affiche les informations de sa station de métro
@@ -26,7 +26,7 @@
 		private :
 			std::string nomStation;
 			std::map<std::string, Transition> listeSuccesseurs; //nom des stations vers lesquelles on peut aller
-	
+            int ageVoyageur;
 			double coutMin;
 			Station* prec;
 			

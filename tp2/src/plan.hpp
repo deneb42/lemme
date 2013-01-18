@@ -10,7 +10,7 @@
 	class Plan
 	{
 		public:
-			Plan(std::string path);
+            Plan(std::string path, std::string heure, bool anomalie);
 			
 			std::list<Station*> dijkstra(Station* source, Station *destination);
 			std::set<Station*> stationsDsLigne(std::string ligne);
