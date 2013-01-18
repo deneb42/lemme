@@ -82,6 +82,19 @@ int main(int argc, char* argv[])
     
     /* CREATION DU PLAN */
     Plan p("../data/metro.txt", heure, anomalie);
+    /* VERIFICATION DES NOMS DES STATIONS */
+    while (p.getGraphe()->find(depart) == p.getGraphe()->end()) {
+        std::cout << "Gare de départ non trouvee, merci de verifier l'orthographe. D'ou voulez vous partir : ";
+        std::cin >> buffer;
+        depart = buffer;
+    }
+    while (p.getGraphe()->find(arrivee) == p.getGraphe()->end()) {
+        std::cout << "Gare d'arrivee non trouvee, merci de verifier l'orthographe. Ou voulez vous aller : ";
+        std::cin >> buffer;
+        arrivee = buffer;
+    }
+    
+    std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
     
     /* APPEL DE DIJKSTRA */
 	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
