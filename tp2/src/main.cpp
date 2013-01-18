@@ -11,7 +11,6 @@ int main(int argc, char* argv[])
     bool anomalie = false;
     std::string buffer;
     
-    Plan p("../data/metro.txt");
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
     
     if (argc <= 1)
@@ -27,7 +26,6 @@ int main(int argc, char* argv[])
     
     if (argc <= 2)
     {
-        std::cout << "argc <= 2" <<std::endl;
         //il y a au moins le point de départ on demande les autres arguments
         std::cout << "\nQuel est votre arrivee ?" << std::endl;
 		std::cin >> buffer;
@@ -67,7 +65,7 @@ int main(int argc, char* argv[])
     std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
 
   	
-	
+/*
 	for(std::map<std::string, Station>::iterator it=p.getGraphe()->begin();it!=p.getGraphe()->end();it++)
 	{
 		it->second.afficheStation();
@@ -79,12 +77,20 @@ int main(int argc, char* argv[])
 	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at("LaDefense-GrandeArche")),
 										&(p.getGraphe()->at("Bastille")));
 	//for(std::set<Station*>::iterator it=l1.begin();it!=l1.end();it++)
+*/
+
+    
+    /* CREATION DU PLAN */
+    Plan p("../data/metro.txt", heure, anomalie);
+    
+    /* APPEL DE DIJKSTRA */
+	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
+
+    /* Affichage des stations renvoyees par dijkstra */
 	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
 		//std::cout << (*it)->getName() << std::endl;
 		(*it)->afficheStation();
 
-	
-	// */
 	
 	return 0;
 }

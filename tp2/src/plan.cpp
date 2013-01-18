@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,13 +5,21 @@
 #include <limits>
 #include <set>
 #include <list>
+#include <random>
 #include "plan.hpp"
 
 using namespace std;
 
 
-Plan::Plan(string path)
+Plan::Plan(string path, string heure, bool anomalie)
 {
+    // GENERATION DE L'AGE DU VOYAGEUR
+    random_device rd;
+    int age = 7 + rd()*10000%80; // un voyageur a de 7 a 87 ans.
+    
+    // TODO Modif signatures appel creation stations et transitions.
+    
+    
 	ifstream ifs(path.c_str());
 	string tmp, ligne;
 	int pos;
@@ -34,7 +41,7 @@ Plan::Plan(string path)
 		getline(ifs, tmp);
 		if((pos=tmp.find_first_of(" \t"))!=std::string::npos)
 			tmp.erase(pos); // to get rid of whitespace
-		prec=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
+		prec=graphe.insert(pair<string, Station>(tmp, Station(tmp, age))).first; // traitement particulier pour le premier elem, le cast automatique fait appel au constructeur
 		debLignes.insert(pair<string, Station*>(ligne, &(prec->second)));
 		
 		getline(ifs, tmp);
@@ -43,7 +50,7 @@ Plan::Plan(string path)
 		while(!tmp.empty())
 		{
 			//cout << "ajout de la station " << tmp << " a la ligne " << ligne << endl;
-			act=graphe.insert(pair<string, Station>(tmp, Station(tmp))).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
+			act=graphe.insert(pair<string, Station>(tmp, Station(tmp, age))).first; // ajout de l'element, s'il est deja present, l'elem existant est retourne
 			act->second.addSuccesseur(&(prec->second), ligne);
 			prec->second.addSuccesseur(&(act->second), ligne); // on ajoute les liaisons
 			prec = act;

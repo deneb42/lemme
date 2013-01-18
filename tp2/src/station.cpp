@@ -6,10 +6,12 @@
 
 using namespace std;
 
-Station::Station(string name)
+Station::Station(string name, int age)
 {
     this->nomStation = name;
-    coutCh=(int)nomStation[0]; // gros hack
+    ageVoyageur = age;
+    coutCh = calculerPoidCorrespondance(ageVoyageur);
+    //   coutCh=(int)nomStation[0]; // gros hack
   	prec=NULL;
 }
 
@@ -17,7 +19,8 @@ void Station::addSuccesseur(Station* stat, string ligne)
 { 
 	Transition t(stat, ligne); t.calculerPoidsTransition("normale");
 	//t.poid=coutCh+listeSuccesseurs.size();
-	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t)); 
+	listeSuccesseurs.insert(pair<std::string, Transition>(stat->getName(), t));
+    coutCh = calculerPoidCorrespondance(ageVoyageur);
 }
 
 void Station::afficheStation() const
