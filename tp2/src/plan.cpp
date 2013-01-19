@@ -159,7 +159,6 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d) throw(int)
 	if(d==NULL)
 		throw 0;
 	
-	std::cout << " ave djik ok" << std::endl;
 	return path;
 }
 
@@ -187,7 +186,7 @@ void Plan::addAnomStation(Station* s)
 {
 	for(std::vector<Transition>::iterator it=s->getListeSuccesseurs()->begin();it!=s->getListeSuccesseurs()->end();it++) {
 		it->setTemps(numeric_limits<double>::infinity()); // mise a l'infini des valeurs
-		std::cout << it->getTemps() << std::endl;
+		//std::cout << it->getTemps() << std::endl;
 	}
 }
 
