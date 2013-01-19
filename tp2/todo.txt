@@ -1,4 +1,3 @@
-vérifier nom des stations Done
-ta soeur
+prise en compte du temps de changement dans la premiere station...
 
 

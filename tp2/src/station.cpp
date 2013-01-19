@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <cstdlib>
+#include <limits>
 #include "station.hpp"
 
 /*!
@@ -22,6 +23,8 @@ Station::Station(string name, int age)
     this->nomStation = name;
     ageVoyageur = age;
     coutCh = calculerPoidCorrespondance(ageVoyageur);
+    coutMin=numeric_limits<double>::infinity();
+    prec = Transition();
 }
 
 /*!
@@ -39,16 +42,18 @@ void Station::addSuccesseur(Station* stat, string ligne, string heure)
 /*!
  * \fn afficheStation
  */
-void Station::afficheStation() const
+std::string Station::toString() const
 {
-    cout << "Nom de la station : " << nomStation << ", coutmin " << coutMin << " "; 
+	std::string str("Nom de la station : ");
+	str+= nomStation + ", coutmin " + std::to_string(coutMin) + " "; 
     if(prec.getDest()!=NULL)
-		std::cout << "par : " << prec.getDest()->getName()  << "(" << prec.getLigne() << ") " <<endl;
-    cout << "Stations suivantes : " << endl;
-    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++) {
-        cout << "\t- nom de la Station : " << it->getDest()->getName() << "(" << it->getLigne() << "), cout:" << it->getTemps() << endl;
-    }
-    cout << "***********" << endl;
+		str+= "par : " + prec.getDest()->getName() + "(" + prec.getLigne() + ")\n";
+    str+= "Stations suivantes : \n";
+    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++)
+        str+= "\t- nom de la Station : " + it->getDest()->getName() + "(" + it->getLigne() + "), cout:" + std::to_string(it->getTemps()) + "\n";
+        
+    str+= "***********\n";
+    return str;
 }
 
 /*!

@@ -90,11 +90,10 @@ int main(int argc, char* argv[])
 		std::cout << "Avec anomalie sur la " << (anomLigne?"ligne ":"station ") << cibleAnom << std::endl;
 	else
 		std::cout << "Sans anomalie" << std::endl;
-    
-    std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
 
     /* CREATION DU PLAN */
-    Plan p("../data/metro.txt", heure, anomalie);
+    Plan p("../data/metro.txt", heure);
+
     /* VERIFICATION DES NOMS DES STATIONS */
     while (p.getGraphe()->find(depart) == p.getGraphe()->end()) {
         std::cout << "Gare de départ non trouvee, merci de verifier l'orthographe. D'ou voulez vous partir : ";
@@ -110,17 +109,36 @@ int main(int argc, char* argv[])
         std::cout << "ERREUR de saisie, a quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
 		std::cin >> buffer;
 		heure = buffer;
-
     }
     
-    std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : " << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
+    std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : "
+			  << heure << " avec anomalie : " << anomalie << "\nCALCUL EN COURS" << std::endl;
     
+    if(anomalie & anomLigne)
+		p.addAnomLigne(cibleAnom);
+	else if (anomalie) {
+		std::cout << p.getGraphe()->at(cibleAnom).toString();
+		p.addAnomStation(&(p.getGraphe()->at(cibleAnom)));
+		std::cout << p.getGraphe()->at(cibleAnom).toString();
+	}
+	
     /* APPEL DE DIJKSTRA */
-	std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
-
-    /* Affichage des stations renvoyees par dijkstra */
-	for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
-		(*it)->afficheStationParParcours();
+    try 
+    {
+		std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
+		std::cout << "djik ok" << std::endl;
+		
+		std::cout << p.toString() << std::endl;
+			
+		/* Affichage des stations renvoyees par dijkstra */
+		for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
+			(*it)->afficheStationParParcours();
+	}
+	catch(int i)
+	{
+		if (i==0)
+			std::cout << "Trajet impossible" << std::endl;
+	}
 	
 	return 0;
 }

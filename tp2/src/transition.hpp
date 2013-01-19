@@ -3,6 +3,7 @@
 #define __TRANSITION_HPP__
 	
 	#include <string>
+	#include <cstdlib>
 
 /*!
  * \file Transition.hpp
@@ -18,7 +19,7 @@
 	class Transition
 	{
 		public:
-            Transition() {} /*!<Constructeur vide*/
+            Transition() {dest=NULL; } /*!<Constructeur vide*/
 			Transition(Station* d, std::string l):dest(d),ligne(l) {} /*!<Constructeur*/
 			
 
@@ -28,6 +29,7 @@
                                                           creation du graphe*/
 			void setDest(Station* d) { dest = d; } /*!<Setter sur Destination*/
 			void setLigne(std::string l) { ligne = l; } /*!<Setter sur ligne*/
+			void setTemps(double t) { temps = t; } /*!<Setter sur temps*/
 			Station* getDest() const { return dest; } /*!<Getter sur Dest*/
 			std::string getLigne() const { return ligne; } /*!<Getter sur Ligne*/
 			double getTemps() const { return temps; } /*!<Getter sur Temps*/

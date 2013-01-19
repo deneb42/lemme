@@ -1,2 +1,2 @@
 #!/bin/bash
-../bin/metro PorteDeVersailles Madeleine normal non
+../bin/metro PorteDeVersailles Madeleine normale oui station Montparnasse-Bienvenue

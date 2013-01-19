@@ -24,7 +24,7 @@ using namespace std;
  * \param path, heure, anomalie
  */
 
-Plan::Plan(string path, string heure, bool anomalie)
+Plan::Plan(string path, string heure)
 {
     // GENERATION DE L'AGE DU VOYAGEUR
     random_device rd;
@@ -89,9 +89,8 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
 	visite.insert(act);
 	do {
 		ok=false;
-		std::vector<Transition> succ = act->getListeSuccesseurs();
-		for(std::vector<Transition>::iterator it2=succ.begin();
-			 it2!=succ.end() && !ok;it2++)
+		for(std::vector<Transition>::iterator it2=act->getListeSuccesseurs()->begin();
+			 it2!=act->getListeSuccesseurs()->end() && !ok;it2++)
 		{
 			if(it2->getLigne()==ligne)
 			{	
@@ -112,18 +111,17 @@ std::set<Station*> Plan::stationsDsLigne(std::string ligne)
  * \param Station, Station
  * \return list<Station>
  */
-std::list<Station*> Plan::dijkstra(Station *s, Station *d)
+std::list<Station*> Plan::dijkstra(Station *s, Station *d) throw(int)
 { // calcule le poid mini pour aller a toutes les stations depuis la station source
 	Station *src=s, *dst;
 	Transition par;
 	std::set<Station*> visited;
 	std::list<Station*> path;
-	std::vector<Transition> succ;
 	double min, couts;
 	
 	for(map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
 		it->second.setCoutMin(numeric_limits<double>::infinity());
-	s->setPrec(Transition(s, ""));
+	s->setPrec(Transition());
 	s->setCoutMin(0);
 	visited.insert(s); // initialisation : on initialise tout les poids a l'infini et on visite le noeud source
 	
@@ -133,8 +131,7 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 		for(set<Station*>::iterator it2=visited.begin(); it2!=visited.end();it2++)
 		{
 			src = (*it2);
-			succ = src->getListeSuccesseurs();
-			for(std::vector<Transition>::iterator it=succ.begin();it!=succ.end();it++)
+			for(std::vector<Transition>::iterator it=src->getListeSuccesseurs()->begin();it!=src->getListeSuccesseurs()->end();it++)
 			{
 				couts = it->getTemps()+src->getCoutMin()+src->getCoutCh(it->getLigne());
 				if(couts<min && visited.find(it->getDest())==visited.end())
@@ -152,13 +149,17 @@ std::list<Station*> Plan::dijkstra(Station *s, Station *d)
 			visited.insert(dst);
 		}
 	}while(min<numeric_limits<double>::infinity() && dst!=d);
-	
-	while(d!=s) 
+
+	while(d!=s && d!= NULL) 
 	{
 		path.push_front(d);
 		d=d->getPrec().getDest();
 	}
 	
+	if(d==NULL)
+		throw 0;
+	
+	std::cout << " ave djik ok" << std::endl;
 	return path;
 }
 
@@ -172,8 +173,7 @@ void Plan::addAnomLigne(std::string ligne)
 	std::set<Station*> l = stationsDsLigne(ligne);
 	for(std::set<Station*>::iterator it=l.begin();it!=l.end();it++)
 	{
-		std::vector<Transition> t = (*it)->getListeSuccesseurs();
-		for(std::vector<Transition>::iterator it2=t.begin();it2!=t.end();it2++)
+		for(std::vector<Transition>::iterator it2=(*it)->getListeSuccesseurs()->begin();it2!=(*it)->getListeSuccesseurs()->end();it2++)
 			if(it2->getLigne()==ligne)
 				it2->setTemps(numeric_limits<double>::infinity()); // mise a l'infini des valeurs
 	}
@@ -183,9 +183,18 @@ void Plan::addAnomLigne(std::string ligne)
  * \fn addAnomStation
  * \param Station
  */
-void addAnomStation(Station* s)
+void Plan::addAnomStation(Station* s)
 {
-	std::vector<Transition> t = s->getListeSuccesseurs();
-	for(std::vector<Transition>::iterator it=t.begin();it!=t.end();it++)
+	for(std::vector<Transition>::iterator it=s->getListeSuccesseurs()->begin();it!=s->getListeSuccesseurs()->end();it++) {
 		it->setTemps(numeric_limits<double>::infinity()); // mise a l'infini des valeurs
+		std::cout << it->getTemps() << std::endl;
+	}
+}
+
+std::string Plan::toString()
+{
+	std::string str("");
+	for(std::map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
+		str+= it->second.toString();
+	return str;
 }

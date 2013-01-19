@@ -18,14 +18,14 @@
         Station(std::string name, int age);
 
             void addSuccesseur(Station* stat, std::string ligne, std::string heure); /*!<ajout dune station à la liste des successeurs*/
-			void afficheStation() const; /*!<Affiche les informations de sa station de métro*/
+			std::string toString() const; /*!<Retourne une chaine de caracteres contenant les informations de la station*/
             void afficheStationParParcours() const; /*!< Format special pour afficher le parcours correctement.*/
 
-			std::vector<Transition>& getListeSuccesseurs() { return listeSuccesseurs; }; /*!<Getter de la liste des successeurs de la station*/
+			std::vector<Transition>* getListeSuccesseurs() { return &listeSuccesseurs; }; /*!<Getter de la liste des successeurs de la station*/
 			
             double getCoutMin() const {return coutMin;} /*!<Getter de le coutMin, cout minimum renvoye par dijkstra*/
 			double getCoutCh(std::string ligne); /*!<Getter sur coutCh, cout du changement de ligne dans la station*/
-			Transition getPrec() const {return prec;} /*<Getter surPrec, transition qui mene à la station precedente par dijkstra*/
+			Transition getPrec() const {return prec;} /*!<Getter surPrec, transition qui mene à la station precedente par dijkstra*/
 			std::string getName() const {return nomStation;} /*!<Getter sur le nom de la station*/
 			void setCoutMin(double p) {coutMin=p;} /*!<Setter sur coutMin*/
 			void setPrec(Transition p) {prec=p;} /*!<Setter sur Prec*/
