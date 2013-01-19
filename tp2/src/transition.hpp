@@ -30,7 +30,7 @@
 			void setDest(Station* d) { dest = d; } /*!<Setter sur Destination*/
 			void setLigne(std::string l) { ligne = l; } /*!<Setter sur ligne*/
 			void setTemps(double t) { temps = t; } /*!<Setter sur temps*/
-			Station* getDest() const { return dest; } /*!<Getter sur Dest*/
+			Station* getDest() const { return dest; } /*!<Getter sur dest*/
 			std::string getLigne() const { return ligne; } /*!<Getter sur Ligne*/
 			double getTemps() const { return temps; } /*!<Getter sur Temps*/
 

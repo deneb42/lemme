@@ -105,6 +105,13 @@ int main(int argc, char* argv[])
         std::cin >> buffer;
         arrivee = buffer;
     }
+    if (anomalie && !anomLigne) {
+        while (p.getGraphe()->find(cibleAnom) == p.getGraphe()->end()) {
+            std::cout << "Gare de l'anomalie non trouvee, merci de verifier l'orthographe. Ou se situe l'anomalie : ";
+            std::cin >> buffer;
+            cibleAnom = buffer;
+        }
+    }
     while (heure != "normale" && heure != "creuse" && heure != "pointe") {
         std::cout << "ERREUR de saisie, a quel moment souhaitez-vous partir ? (creuse, normale, pointe)" << std::endl;
 		std::cin >> buffer;
