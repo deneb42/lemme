@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>TP2 CPP: Class Members</title>
+<title>TP2 Cpp - Modelisation du metro Parisien: Class Members</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,8 +27,8 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">TP2 CPP
-   &#160;<span id="projectnumber">1.0</span>
+   <div id="projectname">TP2 Cpp - Modelisation du metro Parisien
+   
    </div>
    
   </td>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div><ul>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div><ul>
 <li>addAnomLigne()
 : <a class="el" href="class_plan.html#a3799cde04892995f3070cec28031c1f1">Plan</a>
 </li>
@@ -91,12 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>addSuccesseur()
 : <a class="el" href="class_station.html#ac3ed426fa365d9be54dfee6ca66e58a5">Station</a>
-</li>
-<li>afficheStation()
-: <a class="el" href="class_station.html#afd68a2fae2dd89eb9b01d93cdff8382d">Station</a>
-</li>
-<li>afficheStationParParcours()
-: <a class="el" href="class_station.html#a745a450d73609b7c88c6e5b81324bae0">Station</a>
 </li>
 <li>calculerPoidCorrespondance()
 : <a class="el" href="class_station.html#ae1edba32fbae536789f4175ab9dbe007">Station</a>
@@ -128,9 +122,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getLigne()
 : <a class="el" href="class_transition.html#adc43f25575c1839e9a789c9ff0ca03ee">Transition</a>
 </li>
-<li>getListeSuccesseurs()
-: <a class="el" href="class_station.html#a5e703dcf618d4dd288c7ea6b88812828">Station</a>
-</li>
 <li>getName()
 : <a class="el" href="class_station.html#aca9223fefeacc74f64c982e2de82e801">Station</a>
 </li>
@@ -141,7 +132,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_transition.html#a3f6a3ddcb4b902962767eeec5faef805">Transition</a>
 </li>
 <li>Plan()
-: <a class="el" href="class_plan.html#ae3a898a412335a80aafcda7bf62e612e">Plan</a>
+: <a class="el" href="class_plan.html#a9d277a4a2c9343f62442978cd008e8d0">Plan</a>
 </li>
 <li>setCoutMin()
 : <a class="el" href="class_station.html#aa78a78da264085b34ade0f3f2181c422">Station</a>
@@ -149,17 +140,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>setDest()
 : <a class="el" href="class_transition.html#ac08fba302cc48715addfcb315092cdea">Transition</a>
 </li>
+<li>setHeure()
+: <a class="el" href="class_station.html#a68687a53c8efb954f9a7b29a9397d6a9">Station</a>
+, <a class="el" href="class_plan.html#afc8c6f06f445fb86b892db4fa9125c88">Plan</a>
+</li>
 <li>setLigne()
 : <a class="el" href="class_transition.html#a9c19e89bfed2edba5920c97b1d029530">Transition</a>
 </li>
 <li>setPrec()
 : <a class="el" href="class_station.html#af105a053db1d623901201e9998009f14">Station</a>
 </li>
-<li>Station()
-: <a class="el" href="class_station.html#a7ac1d320ee82b3f07e8979a9b294881e">Station</a>
+<li>setTemps()
+: <a class="el" href="class_transition.html#a8ac92fc3c64e7f137e29a082115c7e86">Transition</a>
 </li>
 <li>stationsDsLigne()
 : <a class="el" href="class_plan.html#a4d3f0862c729f864e9554ab59829874d">Plan</a>
+</li>
+<li>stringStationParParcours()
+: <a class="el" href="class_station.html#ac8d2ae43cd78ddc26ae781d83fa23d39">Station</a>
+</li>
+<li>toString()
+: <a class="el" href="class_plan.html#aa842cf9658f0b854aa4b7c8c24b4e627">Plan</a>
+, <a class="el" href="class_station.html#ab20f75e6bdf3f42cc65f59efb6739d3c">Station</a>
 </li>
 <li>Transition()
 : <a class="el" href="class_transition.html#a73b44b2338b11807f77b620a3e810f92">Transition</a>
@@ -171,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -183,7 +185,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 18 2013 16:28:40 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 20 2013 16:27:22 for TP2 Cpp - Modelisation du metro Parisien by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

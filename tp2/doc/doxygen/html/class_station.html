@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>TP2 CPP: Station Class Reference</title>
+<title>TP2 Cpp - Modelisation du metro Parisien: Station Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,8 +27,8 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">TP2 CPP
-   &#160;<span id="projectnumber">1.0</span>
+   <div id="projectname">TP2 Cpp - Modelisation du metro Parisien
+   
    </div>
    
   </td>
@@ -83,53 +83,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Station" -->
-<p><code>#include &lt;<a class="el" href="station_8hpp_source.html">station.hpp</a>&gt;</code></p>
-
 <p><a href="class_station-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a7ac1d320ee82b3f07e8979a9b294881e">Station</a> (std::string name, int age)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac1d320ee82b3f07e8979a9b294881e"></a><!-- doxytag: member="Station::Station" ref="a7ac1d320ee82b3f07e8979a9b294881e" args="(std::string name, int age)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><b>Station</b> (std::string name, int age)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ac3ed426fa365d9be54dfee6ca66e58a5">addSuccesseur</a> (<a class="el" href="class_station.html">Station</a> *stat, std::string ligne, std::string heure)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#afd68a2fae2dd89eb9b01d93cdff8382d">afficheStation</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a745a450d73609b7c88c6e5b81324bae0">afficheStationParParcours</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_transition.html">Transition</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a5e703dcf618d4dd288c7ea6b88812828">getListeSuccesseurs</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ae1edba32fbae536789f4175ab9dbe007">calculerPoidCorrespondance</a> (int age)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ac8d2ae43cd78ddc26ae781d83fa23d39">stringStationParParcours</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ab20f75e6bdf3f42cc65f59efb6739d3c">toString</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae43aa18c6147f44d01d486ad4d24dfbd"></a><!-- doxytag: member="Station::getListeSuccesseurs" ref="ae43aa18c6147f44d01d486ad4d24dfbd" args="()" -->
+std::vector&lt; <a class="el" href="class_transition.html">Transition</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getListeSuccesseurs</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a9327219bc8fc7cd5a30603bf6f59e2e1">getCoutMin</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a184fef04f1f4efe6f11d119bdf29170c">getCoutCh</a> (std::string ligne)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_transition.html">Transition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ac783d3cfa0029c07b8baaadbe027cce9">getPrec</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#aca9223fefeacc74f64c982e2de82e801">getName</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#aa78a78da264085b34ade0f3f2181c422">setCoutMin</a> (double p)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#af105a053db1d623901201e9998009f14">setPrec</a> (<a class="el" href="class_transition.html">Transition</a> p)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#ae1edba32fbae536789f4175ab9dbe007">calculerPoidCorrespondance</a> (int age)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_station.html#a68687a53c8efb954f9a7b29a9397d6a9">setHeure</a> (std::string h)</td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7ac1d320ee82b3f07e8979a9b294881e"></a><!-- doxytag: member="Station::Station" ref="a7ac1d320ee82b3f07e8979a9b294881e" args="(std::string name, int age)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_station.html#a7ac1d320ee82b3f07e8979a9b294881e">Station::Station</a> </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>age</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ac3ed426fa365d9be54dfee6ca66e58a5"></a><!-- doxytag: member="Station::addSuccesseur" ref="ac3ed426fa365d9be54dfee6ca66e58a5" args="(Station *stat, std::string ligne, std::string heure)" -->
 <div class="memitem">
@@ -161,41 +134,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>ajout dune station à la liste des successeurs </p>
-
-</div>
-</div>
-<a class="anchor" id="afd68a2fae2dd89eb9b01d93cdff8382d"></a><!-- doxytag: member="Station::afficheStation" ref="afd68a2fae2dd89eb9b01d93cdff8382d" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_station.html#afd68a2fae2dd89eb9b01d93cdff8382d">Station::afficheStation</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Affiche les informations de sa station de métro </p>
-
-</div>
-</div>
-<a class="anchor" id="a745a450d73609b7c88c6e5b81324bae0"></a><!-- doxytag: member="Station::afficheStationParParcours" ref="a745a450d73609b7c88c6e5b81324bae0" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_station.html#a745a450d73609b7c88c6e5b81324bae0">Station::afficheStationParParcours</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Format special pour afficher le parcours correctement. </p>
+<p>constructeur d'une station ajout dune station à la liste des successeurs </p>
 
 </div>
 </div>
@@ -252,22 +191,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5e703dcf618d4dd288c7ea6b88812828"></a><!-- doxytag: member="Station::getListeSuccesseurs" ref="a5e703dcf618d4dd288c7ea6b88812828" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="class_transition.html">Transition</a>&gt;&amp; <a class="el" href="class_station.html#a5e703dcf618d4dd288c7ea6b88812828">Station::getListeSuccesseurs</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="aca9223fefeacc74f64c982e2de82e801"></a><!-- doxytag: member="Station::getName" ref="aca9223fefeacc74f64c982e2de82e801" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -298,6 +221,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Getter surPrec, transition qui mene à la station precedente par dijkstra </p>
 
 </div>
 </div>
@@ -319,6 +243,24 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a68687a53c8efb954f9a7b29a9397d6a9"></a><!-- doxytag: member="Station::setHeure" ref="a68687a53c8efb954f9a7b29a9397d6a9" args="(std::string h)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_station.html#a68687a53c8efb954f9a7b29a9397d6a9">Station::setHeure</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Recalcule les temps de changement en fonction de la nouvelle heure </p>
+
+</div>
+</div>
 <a class="anchor" id="af105a053db1d623901201e9998009f14"></a><!-- doxytag: member="Station::setPrec" ref="af105a053db1d623901201e9998009f14" args="(Transition p)" -->
 <div class="memitem">
 <div class="memproto">
@@ -337,6 +279,40 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac8d2ae43cd78ddc26ae781d83fa23d39"></a><!-- doxytag: member="Station::stringStationParParcours" ref="ac8d2ae43cd78ddc26ae781d83fa23d39" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_station.html#ac8d2ae43cd78ddc26ae781d83fa23d39">Station::stringStationParParcours</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Format special pour afficher le parcours correctement. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab20f75e6bdf3f42cc65f59efb6739d3c"></a><!-- doxytag: member="Station::toString" ref="ab20f75e6bdf3f42cc65f59efb6739d3c" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_station.html#ab20f75e6bdf3f42cc65f59efb6739d3c">Station::toString</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Retourne une chaine de caracteres contenant les informations de la station </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="station_8hpp_source.html">station.hpp</a></li>
 <li><a class="el" href="station_8cpp.html">station.cpp</a></li>
@@ -347,7 +323,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -359,7 +335,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 18 2013 16:28:40 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 20 2013 16:27:22 for TP2 Cpp - Modelisation du metro Parisien by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

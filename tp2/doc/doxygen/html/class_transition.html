@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>TP2 CPP: Transition Class Reference</title>
+<title>TP2 Cpp - Modelisation du metro Parisien: Transition Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,8 +27,8 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">TP2 CPP
-   &#160;<span id="projectnumber">1.0</span>
+   <div id="projectname">TP2 Cpp - Modelisation du metro Parisien
+   
    </div>
    
   </td>
@@ -83,8 +83,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Transition" -->
-<p><code>#include &lt;<a class="el" href="transition_8hpp_source.html">transition.hpp</a>&gt;</code></p>
-
 <p><a href="class_transition-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -93,11 +91,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#aa824fd87631479e31fe7a1a36192a7ca">Transition</a> (<a class="el" href="class_station.html">Station</a> *d, std::string l)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#ae34341dd2084731dc07a0d705e30e339">calculerPoidsVoyageurs</a> (int nbPersonnes)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#aed1670ec521721aca9fbbc6f1991d1c0">calculerPoidsTransition</a> (std::string heure)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#ac08fba302cc48715addfcb315092cdea">setDest</a> (<a class="el" href="class_station.html">Station</a> *d)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#a9c19e89bfed2edba5920c97b1d029530">setLigne</a> (std::string l)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_station.html">Station</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#acbcf0a21354e09d087c0385955d8afab">getDest</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#adc43f25575c1839e9a789c9ff0ca03ee">getLigne</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#a3f6a3ddcb4b902962767eeec5faef805">getTemps</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#ac08fba302cc48715addfcb315092cdea">setDest</a> (<a class="el" href="class_station.html">Station</a> *d)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#a9c19e89bfed2edba5920c97b1d029530">setLigne</a> (std::string l)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_transition.html#a8ac92fc3c64e7f137e29a082115c7e86">setTemps</a> (double t)</td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a73b44b2338b11807f77b620a3e810f92"></a><!-- doxytag: member="Transition::Transition" ref="a73b44b2338b11807f77b620a3e810f92" args="()" -->
@@ -113,7 +112,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Constructeur vide </p>
+<p>Constructeur par defaut </p>
 
 </div>
 </div>
@@ -141,7 +140,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Constructeur </p>
+<p>Constructeur de <a class="el" href="class_transition.html">Transition</a> </p>
 
 </div>
 </div>
@@ -195,7 +194,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Getter sur Dest </p>
+<p>Getter sur destination </p>
 
 </div>
 </div>
@@ -212,7 +211,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Getter sur Ligne </p>
+<p>Getter sur ligne </p>
 
 </div>
 </div>
@@ -229,7 +228,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Getter sur Temps </p>
+<p>Getter sur temps </p>
 
 </div>
 </div>
@@ -247,7 +246,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Setter sur Destination </p>
+<p>Setter sur destination </p>
 
 </div>
 </div>
@@ -269,6 +268,24 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8ac92fc3c64e7f137e29a082115c7e86"></a><!-- doxytag: member="Transition::setTemps" ref="a8ac92fc3c64e7f137e29a082115c7e86" args="(double t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_transition.html#a8ac92fc3c64e7f137e29a082115c7e86">Transition::setTemps</a> </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Setter sur temps </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="transition_8hpp_source.html">transition.hpp</a></li>
 <li><a class="el" href="transition_8cpp.html">transition.cpp</a></li>
@@ -279,7 +296,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -291,7 +308,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 18 2013 16:28:40 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 20 2013 16:27:22 for TP2 Cpp - Modelisation du metro Parisien by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

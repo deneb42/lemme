@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>TP2 CPP: Plan Class Reference</title>
+<title>TP2 Cpp - Modelisation du metro Parisien: Plan Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,8 +27,8 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">TP2 CPP
-   &#160;<span id="projectnumber">1.0</span>
+   <div id="projectname">TP2 Cpp - Modelisation du metro Parisien
+   
    </div>
    
   </td>
@@ -83,27 +83,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Plan" -->
-<p><code>#include &lt;<a class="el" href="plan_8hpp_source.html">plan.hpp</a>&gt;</code></p>
-
 <p><a href="class_plan-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#ae3a898a412335a80aafcda7bf62e612e">Plan</a> (std::string path, std::string heure, bool anomalie)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_station.html">Station</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a49495cde6d049082521495076e7f81ac">dijkstra</a> (<a class="el" href="class_station.html">Station</a> *source, <a class="el" href="class_station.html">Station</a> *destination)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a9d277a4a2c9343f62442978cd008e8d0">Plan</a> (std::string path, std::string heure=&quot;normale&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_station.html">Station</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a49495cde6d049082521495076e7f81ac">dijkstra</a> (<a class="el" href="class_station.html">Station</a> *source, <a class="el" href="class_station.html">Station</a> *destination)  throw (int)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_station.html">Station</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a4d3f0862c729f864e9554ab59829874d">stationsDsLigne</a> (std::string ligne)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a3f2bd682cbedb1a5fdca8c62a4365e1f">getGraphe</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a82799b3ab39fb1129489bf77e72e1744">getDebLignes</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a3799cde04892995f3070cec28031c1f1">addAnomLigne</a> (std::string ligne)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#abcf5db64d661a675d75d17d8291b2e2f">addAnomStation</a> (<a class="el" href="class_station.html">Station</a> *s)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#aa842cf9658f0b854aa4b7c8c24b4e627">toString</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a3f2bd682cbedb1a5fdca8c62a4365e1f">getGraphe</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="class_station.html">Station</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#a82799b3ab39fb1129489bf77e72e1744">getDebLignes</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa404591c64b19159ff8add19c5df610c"></a><!-- doxytag: member="Plan::getHeure" ref="aa404591c64b19159ff8add19c5df610c" args="()" -->
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getHeure</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plan.html#afc8c6f06f445fb86b892db4fa9125c88">setHeure</a> (std::string h)</td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae3a898a412335a80aafcda7bf62e612e"></a><!-- doxytag: member="Plan::Plan" ref="ae3a898a412335a80aafcda7bf62e612e" args="(std::string path, std::string heure, bool anomalie)" -->
+<a class="anchor" id="a9d277a4a2c9343f62442978cd008e8d0"></a><!-- doxytag: member="Plan::Plan" ref="a9d277a4a2c9343f62442978cd008e8d0" args="(std::string path, std::string heure=&quot;normale&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_plan.html#ae3a898a412335a80aafcda7bf62e612e">Plan::Plan</a> </td>
+          <td class="memname"><a class="el" href="class_plan.html#a9d277a4a2c9343f62442978cd008e8d0">Plan::Plan</a> </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -112,13 +114,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>heure</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>anomalie</em>&#160;</td>
+          <td class="paramname"><em>heure</em> = <code>&quot;normale&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -188,7 +184,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>  throw (int)</td>
         </tr>
       </table>
 </div>
@@ -231,6 +227,24 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afc8c6f06f445fb86b892db4fa9125c88"></a><!-- doxytag: member="Plan::setHeure" ref="afc8c6f06f445fb86b892db4fa9125c88" args="(std::string h)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_plan.html#afc8c6f06f445fb86b892db4fa9125c88">Plan::setHeure</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Getter sur l'heure du reseau Setter sur l'heure du reseau (transmet aux stations) </p>
+
+</div>
+</div>
 <a class="anchor" id="a4d3f0862c729f864e9554ab59829874d"></a><!-- doxytag: member="Plan::stationsDsLigne" ref="a4d3f0862c729f864e9554ab59829874d" args="(std::string ligne)" -->
 <div class="memitem">
 <div class="memproto">
@@ -249,6 +263,23 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa842cf9658f0b854aa4b7c8c24b4e627"></a><!-- doxytag: member="Plan::toString" ref="aa842cf9658f0b854aa4b7c8c24b4e627" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string <a class="el" href="class_plan.html#aa842cf9658f0b854aa4b7c8c24b4e627">Plan::toString</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Retourne une chaine de caractere contenant une description user-friendly du reseau </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="plan_8hpp_source.html">plan.hpp</a></li>
 <li><a class="el" href="plan_8cpp.html">plan.cpp</a></li>
@@ -259,7 +290,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -271,7 +302,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 18 2013 16:28:40 for TP2 CPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 20 2013 16:27:22 for TP2 Cpp - Modelisation du metro Parisien by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
