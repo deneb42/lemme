@@ -17,7 +17,7 @@
 	class Plan
 	{
 		public:
-            Plan(std::string path, std::string heure);/*!< Conctructeur du plan*/
+            Plan(std::string path, std::string heure="normale");/*!< Conctructeur du plan*/
 			
 			std::list<Station*> dijkstra(Station* source, Station *destination) throw(int);/*!<Algoritme de Dijkstra*/
 			std::set<Station*> stationsDsLigne(std::string ligne);/*!<Retourne la liste des stations d'une meme ligne*/
@@ -28,9 +28,12 @@
 			std::string toString(); /*!<Retourne une chaine de caractere contenant une description user-friendly du reseau*/
 			std::map<std::string, Station>* getGraphe() { return &graphe; } /*!<Getter sur le graphe cree*/
 			std::map<std::string, Station*>* getDebLignes() { return &debLignes; }/*!<Getter sur l'ensemble des terminus*/
+			std::string getHeure() {return heure;}; /*!<Getter sur l'heure du reseau*/
+			void setHeure(std::string h); /*!<Setter sur l'heure du reseau (transmet aux stations)*/
 		private:
 			std::map<std::string, Station> graphe; /*!<graphe representant le reseau*/
 			std::map<std::string, Station*> debLignes;/*!<ensemble des terminus*/
+			std::string heure;
 	};
 	
 #endif // __PLAN_HPP__

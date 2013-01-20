@@ -103,6 +103,17 @@ double Station::getCoutCh(std::string ligne)
 }
 
 /*!
+ * \fn setHeure
+ */
+void Station::setHeure(std::string h)
+{
+	for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++)
+		it->calculerPoidsTransition(h);
+}
+
+
+
+/*!
  * \fn operator==
  * \param Station, Station
  * \return bool

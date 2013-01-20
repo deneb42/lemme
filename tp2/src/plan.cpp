@@ -191,3 +191,13 @@ std::string Plan::toString()
 		str+= it->second.toString();
 	return str;
 }
+
+/**
+ * \fn setHeure
+ */
+void Plan::setHeure(std::string h)
+{
+	heure = h;
+	for(std::map<std::string, Station>::iterator it=graphe.begin();it!=graphe.end();it++)
+		it->second.setHeure(h);
+}

@@ -30,6 +30,7 @@
 			std::string getName() const {return nomStation;} /*!<Getter sur le nom de la station*/
 			void setCoutMin(double p) {coutMin=p;} /*!<Setter sur coutMin*/
 			void setPrec(Transition p) {prec=p;} /*!<Setter sur Prec*/
+			void setHeure(std::string h); /*!< Recalcule les temps de changement en fonction de la nouvelle heure */
 		private :
 			std::string nomStation; /*!<Nom de la station*/
 			std::vector<Transition> listeSuccesseurs; /*!<Nom des stations vers lesquelles on peut aller*/
