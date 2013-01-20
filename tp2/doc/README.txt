@@ -13,9 +13,9 @@ TypeD'heure : {creuse, normale, pointe}
 Anomalie : {oui, non}
 TypeD'Anomalie : {station, ligne}, que si Anomalie est à oui.
 
-Il est également possible depuis le dossier src de lancer un fichier sh de test nommé : test.sh.
-Ce test appelle la commande suivante : 
-../bin/metro PorteDeVersailles Madeleine normale oui station Montparnasse-Bienvenue
+Ces arguments peuvent etre definis dans le makefile (champ PARAMS), afin d'etre passes 
+au programme via "make run"
+
 
 Nettoyer le programme :
 Le Makefile propose deux solutions de nettoyage :
