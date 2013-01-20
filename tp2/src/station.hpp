@@ -18,10 +18,10 @@
 			Station(std::string name, int age); /*! constructeur d'une station*/
 
             void addSuccesseur(Station* stat, std::string ligne, std::string heure); /*!<ajout dune station à la liste des successeurs*/
-            void afficheStationParParcours() const; /*!< Format special pour afficher le parcours correctement.*/
 			double calculerPoidCorrespondance(int age); /*!<calcul le temps pour changer d'un train à l'autre
                                                          * en fonction de l'heure et de l'age du voyageur*/
-
+			
+			std::string stringStationParParcours() const; /*!< Format special pour afficher le parcours correctement.*/
             std::string toString() const; /*!<Retourne une chaine de caracteres contenant les informations de la station*/
             std::vector<Transition>* getListeSuccesseurs() { return &listeSuccesseurs; }; /*!<Getter de la liste des successeurs de la station*/
             double getCoutMin() const {return coutMin;} /*!<Getter de le coutMin, cout minimum renvoye par dijkstra*/

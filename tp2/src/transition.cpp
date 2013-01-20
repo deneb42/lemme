@@ -1,10 +1,4 @@
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <random>
-#include "transition.hpp"
-
 /*!
  * \file Transition.cpp
  * \brief Classe representant une transition entre deux stations
@@ -12,7 +6,12 @@
  * \date 17 janvier 2013
  */
 
-using namespace std;
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <random>
+#include "transition.hpp"
+
 
 /*!
  * \fn calculerPoidsTransition
@@ -20,7 +19,7 @@ using namespace std;
  */
 void Transition::calculerPoidsTransition(std::string heure)
 {
-    random_device rd;
+    std::random_device rd;
     if (heure == "creuse")
     { // a ses heures faible traffic (pas de fermeture du réseau la nuit...)                             
 		temps = (double) 2.0 + (calculerPoidsVoyageurs( rd()*1000%250 )) / 10000.0;
@@ -43,7 +42,7 @@ void Transition::calculerPoidsTransition(std::string heure)
 double Transition::calculerPoidsVoyageurs(int nbPersonnes)
 {
     double poids = 0;
-    random_device rd;
+    std::random_device rd;
     for (int i = 0; i < nbPersonnes; i++) {
         poids += 50 + (rd()*1000%50); //le poid des personne va de 50 à 100kg.
     }

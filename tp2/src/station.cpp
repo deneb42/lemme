@@ -1,29 +1,28 @@
 
-#include <iostream>
-#include <map>
-#include <cstdlib>
-#include <limits>
-#include "station.hpp"
-
 /*!
  * \file station.cpp
  * \brief Classe representant une station
  * \author {Jean BADIE, Benjamin BLOIS}
  * \date 17 janvier 2013
  */
+ 
+#include <map>
+#include <cstdlib>
+#include <limits>
 
-using namespace std;
+#include "station.hpp"
+
 
 /*!
  * \fn Station
  * \param name, age
  */
-Station::Station(string name, int age)
+Station::Station(std::string name, int age)
 {
     this->nomStation = name;
     ageVoyageur = age;
     coutCh = calculerPoidCorrespondance(ageVoyageur);
-    coutMin=numeric_limits<double>::infinity();
+    coutMin=std::numeric_limits<double>::infinity();
     prec = Transition();
 }
 
@@ -31,39 +30,11 @@ Station::Station(string name, int age)
  * \fn addSuccesseur
  * \param Station, ligne, heure
  */
-void Station::addSuccesseur(Station* stat, string ligne, string heure)
+void Station::addSuccesseur(Station* stat, std::string ligne, std::string heure)
 { 
 	Transition t(stat, ligne); t.calculerPoidsTransition(heure);
 	listeSuccesseurs.push_back(t);
     coutCh = calculerPoidCorrespondance(ageVoyageur);
-}
-
-
-/*!
- * \fn afficheStation
- */
-std::string Station::toString() const
-{
-	std::string str("Nom de la station : ");
-	str+= nomStation + ", coutmin " + std::to_string(coutMin) + " "; 
-    if(prec.getDest()!=NULL)
-		str+= "par : " + prec.getDest()->getName() + "(" + prec.getLigne() + ")\n";
-    str+= "Stations suivantes : \n";
-    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++)
-        str+= "\t- nom de la Station : " + it->getDest()->getName() + "(" + it->getLigne() + "), cout:" + std::to_string(it->getTemps()) + "\n";
-        
-    str+= "***********\n";
-    return str;
-}
-
-/*!
- * \fn afficheStationParParcours
- */
-void Station::afficheStationParParcours() const
-{
-	if(prec.getDest()!=NULL)
-		std::cout << "Depuis: " << prec.getDest()->getName() << std::endl;
-	std::cout << "  Vers: " << nomStation << " par ligne " << prec.getLigne() << " (" << coutMin << " min)" << endl;
 }
 
 /*!
@@ -88,6 +59,36 @@ double Station::calculerPoidCorrespondance(int age)
     }
 }
 
+/*!
+ * \fn stringStationParParcours
+ */
+std::string Station::stringStationParParcours() const
+{
+	std::string str("");
+	
+	if(prec.getDest()!=NULL)
+		str+= "Depuis: " + prec.getDest()->getName() + "\n";
+	str+= "  Vers: " + nomStation + " par ligne " + prec.getLigne() + " (" + std::to_string(coutMin) + " min)\n";
+	
+	return str;
+}
+
+/*!
+ * \fn afficheStation
+ */
+std::string Station::toString() const
+{
+	std::string str("Nom de la station : ");
+	str+= nomStation + ", coutmin " + std::to_string(coutMin) + " "; 
+    if(prec.getDest()!=NULL)
+		str+= "par : " + prec.getDest()->getName() + "(" + prec.getLigne() + ")\n";
+    str+= "Stations suivantes : \n";
+    for(auto it = listeSuccesseurs.begin();it!=listeSuccesseurs.end();it++)
+        str+= "\t- nom de la Station : " + it->getDest()->getName() + "(" + it->getLigne() + "), cout:" + std::to_string(it->getTemps()) + "\n";
+        
+    str+= "***********\n";
+    return str;
+}
 
 /*!
  * \fn getCoutCh

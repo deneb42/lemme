@@ -1,8 +1,3 @@
-#include <iostream>
-#include <string>
-#include <set>
-#include <list>
-#include "plan.hpp"
 
 /*!
 * \file main.cpp
@@ -12,6 +7,13 @@
 * 
 **/
 
+#include <iostream>
+#include <string>
+#include <set>
+#include <list>
+
+#include "plan.hpp"
+
 /*!
  *  \param StationdeDepart, StationDarrivee, TypeD'heure, Anomalie
  *  \return 1 si bonne execution
@@ -20,14 +22,26 @@ int main(int argc, char* argv[])
 {//par convention si on a 2 arguments on a le point de depart, 3 on a depart et arrivee, 4 l'heure s'y ajoute 5 on a les anomalies.
     
     std::string depart, arrivee, heure, cibleAnom;
-    bool anomalie = false, anomLigne; // !anomLigne = anomStation
     std::string buffer;
+    bool anomalie = false, anomLigne; // !anomLigne signifie une anom sur une station
     char choix;
     Plan p("../data/metro.txt", heure);
+    
     std::cout << "Modelisation du METRO parisien\n\tBADIE Jean & BLOIS Benjamin" << std::endl;
-    while (choix != 'q')
+    do
 	{
-		if (choix == 'c' || argc > 1)
+		if (argc > 1)
+			choix='c';
+		else
+	    {
+	        std::cout << "- tapez a pour afficher toutes les stations" << std::endl;
+	        std::cout << "- tapez b pour afficher les stations d'une meme ligne" << std::endl;
+			std::cout << "- tapez c pour calculer un parcours" << std::endl;
+	        std::cout << "- q pour quitter" << std::endl;
+	        std::cin >> choix;
+	    }
+		
+		if (choix == 'c')
 	    {
 		    if (argc <= 1)
 		    {
@@ -128,24 +142,19 @@ int main(int argc, char* argv[])
 		    std::cout << "RAPPEL TRAJET\nPoint de départ : " << depart << " Point de d'arrivee : " << arrivee << " type d'heure : "
 					  << heure << " avec anomalie : " << anomalie << std::endl;
 		    
-		    if(anomalie & anomLigne)
+			if(anomalie & anomLigne)
 				p.addAnomLigne(cibleAnom);
-			else if (anomalie) {
-				//std::cout << p.getGraphe()->at(cibleAnom).toString();
+			else if (anomalie)
 				p.addAnomStation(&(p.getGraphe()->at(cibleAnom)));
-				//std::cout << p.getGraphe()->at(cibleAnom).toString();
-			}
 			
 		    /* APPEL DE DIJKSTRA */
 		    try 
 		    {
 				std::list<Station*> l = p.dijkstra(&(p.getGraphe()->at(depart)), &(p.getGraphe()->at(arrivee)));
 				
-				//std::cout << p.toString() << std::endl;
-					
 				/* Affichage des stations renvoyees par dijkstra */
 				for(std::list<Station*>::iterator it=l.begin();it!=l.end();it++)
-					(*it)->afficheStationParParcours();
+					std::cout << (*it)->stringStationParParcours();
 			}
 			catch(int i)
 			{
@@ -155,30 +164,22 @@ int main(int argc, char* argv[])
 	        std::cout << "\n\n\nCalcul termine que souhaitez-vous faire ?" << std::endl;
 			argc= 0;
 	    }
-		if (choix == 'a') {//affichage de tout le reseau
+		else if (choix == 'a') {//affichage de tout le reseau
 			std::cout << p.toString() << std::endl;
 			choix='z';
 		}
-		if (choix == 'b') {
-			std::string ligne;
-			std::cout << "Quelle ligne souhaitez vous voir ? (format a deux chiffes, ex : 01) ";
-			std::cin >> ligne;
+		else if (choix == 'b') {
+			std::cout << "Quelle ligne souhaitez vous voir ? (ex : 01, 07bis) ";
+			std::cin >> buffer;
 			
-			std::set<Station*> list = p.stationsDsLigne(ligne);
+			std::set<Station*> list = p.stationsDsLigne(buffer);
 			for(std::set<Station*>::iterator it=list.begin();it!=list.end();it++)
-				(*it)->afficheStationParParcours();
+				(*it)->stringStationParParcours();
 			std::cout << std::endl;
 			choix='z';
 		}
 		
-	    else
-	    {
-	        std::cout << "- tapez a pour afficher toutes les stations" << std::endl;
-	        std::cout << "- tapez b pour afficher les stations d'une meme ligne" << std::endl;
-			std::cout << "- tapez c pour calculer un parcours" << std::endl;
-	        std::cout << "- q pour quitter" << std::endl;
-	        std::cin >> choix;
-	    }
-	}
-        return 0;
+	}while (choix != 'q');
+    
+    return 0;
 }
