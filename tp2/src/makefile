@@ -1,7 +1,7 @@
 #|  C++ TP2    makefile             |
 #|                                  |
-#|  by :deneb                       |
-#|  last modif : 21/12/12           |
+#|  by : Benjamin Blois             |
+#|  last modif : 17/01/13           |
 #/__________________________________/
 
 
@@ -12,11 +12,11 @@ CFLAGS = -std=c++0x -Wall -Wextra -pedantic -g
 
 # Name of the files (more .o)
 OBJS = main.o plan.o  station.o transition.o
-OBJS_TEST = testStation.o station.o
+PARAMS = 
+
 # Path where the bin will be
 PGM_PATH = ../bin/
 PGM_NAME = metro
-PGM_TEST = test
 
 # For the generic utilisation, 
 # DO NOT TOUCH ANYTHING UNDER THIS LINE !!!
@@ -25,18 +25,12 @@ PGM_TEST = test
 all : $(OBJS)
 	$(GCC) -o $(PGM_PATH)$(PGM_NAME) $(LFLAGS) $(OBJS)  
 	
-test : $(OBJS_TEST)
-	$(GCC) -o $(PGM_PATH)$(PGM_TEST) $(LFLAGS) $(OBJS_TEST)  
-	
 # generic method for all the .o
 %.o : %.cpp
 	$(GCC) $(CFLAGS) -c $< 
 
 run :
-	$(PGM_PATH)$(PGM_NAME)
-
-runtest :
-	$(PGM_PATH)$(PGM_TEST)
+	$(PGM_PATH)$(PGM_NAME) $(PARAMS)
 
 clean :
 	-rm -Rf *.o *~
