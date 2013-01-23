@@ -20,7 +20,7 @@
 			void initialize();
 		private:
 			std::istream* is;
-			std::map<u_int32, std::vector<char> > dict;
-	}
+			std::map<uint_32, std::vector<char> > dict;
+	};
 			
 #endif // __ILZWSTREAM_HPP__	
