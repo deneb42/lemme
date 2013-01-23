@@ -11,7 +11,8 @@
 	class olzwstream : lzwstream_base
 	{
 		public:
-			olzwstream(std::ostream* strm);
+			olzwstream(std::ostream* strm);//constructeur par défaut
+
 			void put(char c); // takes an input byte and writes some encoded data to stream.
 			void close(); //terminates the encoding
 			void initialize();
