@@ -11,7 +11,7 @@
 	class ilzwstream : lzwstream_base
 	{
 		public:
-			ilzwstream(std::istream* ptr);
+			ilzwstream(std::istream* strm);
 			
 			void read_to_buffer();
 			int get(char& c);

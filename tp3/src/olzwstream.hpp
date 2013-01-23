@@ -17,6 +17,7 @@
 			void initialize();
 
 		private:
+			std::ostream* os;
 			std::map<std::vector<char>, uint_32> dict;
 	};
 			
