@@ -1,7 +1,7 @@
 #include "extra.h"
 #include <fstream>
 #include <sstream>
-#include "olzwstream.h"
+#include "olzwstream.hpp"
 
 const uint_8 BLOCK_SIZE = 255;
 
