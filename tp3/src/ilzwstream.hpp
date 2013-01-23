@@ -4,6 +4,7 @@
 	
 	#include <iostream>
 	#include <vector>
+	#include <map>
 	#include "lzwstream_base.hpp"
 	
 	
@@ -19,7 +20,7 @@
 			void initialize();
 		private:
 			std::istream* is;
-			std::vector<u_int32, std::vector<char> > dict;
+			std::map<u_int32, std::vector<char> > dict;
 	}
 			
 #endif // __ILZWSTREAM_HPP__	
