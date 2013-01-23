@@ -2,7 +2,8 @@
 #ifndef __LZWSTREAM_BASE_HPP__
 #define __LZWSTREAM_BASE_HPP__
 	
-	#include <iostream>
+	#include <string>
+	#include "extra.h"
 	
 	class lzwstream_base
 	{
