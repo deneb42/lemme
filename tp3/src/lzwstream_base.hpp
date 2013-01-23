@@ -5,6 +5,8 @@
 	#include <vector>
 	#include "extra.h"
 	
+	#define VERBOSE 0
+	
 	class lzwstream_base
 	{
 		public:

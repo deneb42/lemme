@@ -4,7 +4,7 @@
 
 int main()
 {
-	std::cout << "coucou" << std::endl;
+	std::cout << "Compression lzw" << std::endl;
 	
 	olzwstream ol(NULL);
 	
