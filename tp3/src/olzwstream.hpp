@@ -3,6 +3,7 @@
 #define OLZWSTREAM_H
 
 	#include <iostream>
+	#include <map>
 	#include "lzwstream_base.hpp"
 
 	class olzwstream : lzwstream_base
@@ -13,6 +14,7 @@
 			void close(); //terminates the encoding
 		
 		private:
+			std::map<std::vector<char>, uint_32> dict;
 	}
-
+			
 #endif // OLZWSTREAM_H
