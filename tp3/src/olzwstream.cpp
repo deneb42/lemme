@@ -1,29 +1,25 @@
-#include "olzwstrean.hpp"
+#include "olzwstream.hpp"
 
-using namespace std;
+olzwstream::olzwstream(std::ostream* strm)
+{
+	
+}
 
-void Olzwstream::put(char c){
-	
-	Olzwstream::Olzwstream(std::ostream* strm)
-	{
-		
+void olzwstream::put(char c)
+{
+	if (last+c) {
+		<#statements#>
 	}
 	
-	void Olzwstream::put(char c)
-	{
-		if (last+c) {
-			<#statements#>
-		}
-	}
+}
+
+void olzwstream::close()
+{
 	
-	void Olzwstream::close()
-	{
-		
-		
-	}
-	void initialize()
-	{
-		
-	}
+}
+
+void olzwstream::initialize()
+{
+
 	
 }
