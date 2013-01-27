@@ -18,6 +18,7 @@
 			void put(char c); // takes an input byte and writes some encoded data to stream.
 			void close(); //terminates the encoding
 			void initialize();
+			void write();
 			
 			std::string dictToString();
 		private:

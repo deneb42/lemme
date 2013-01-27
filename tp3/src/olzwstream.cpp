@@ -102,12 +102,18 @@ void olzwstream::initialize()
 	dict.clear();
 	last.clear();
 	dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(), clear_code()));
+	dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(), end_code()));
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
 		dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(1, i), i));
 
 	cur_code_size = min_code_size+1;
 	next_code = nb_symbols+2;
+}
+
+void olzwstream::write()
+{
+	std::cout << std::endl;
 }
 
 std::string olzwstream::dictToString()
