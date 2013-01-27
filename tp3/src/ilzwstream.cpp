@@ -29,7 +29,7 @@ void ilzwstream::initialize()
 	dict.insert(std::pair<uint_32, std::vector<char> >(clear_code(), std::vector<char>()));
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
-		dict.insert(std::pair<uint_32, std::vector<char> >(i, std::vector<char>(i)));
+		dict.insert(std::pair<uint_32, std::vector<char> >(i, std::vector<char>(1, i)));
 	
 	cur_code_size = min_code_size+1;
 	next_code = nb_symbols+2;

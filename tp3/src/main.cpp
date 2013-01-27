@@ -8,7 +8,12 @@ int main()
 	
 	olzwstream ol(NULL);
 	
-	ol.put('a');
+	char c[] = "TOBEORNOTTOBEORTOBEORNOT";
+
+	for(int i=0;c[i]!='\0';i++)
+		ol.put(c[i]);
+	//ol.put('b');
+	//std::cout << ol.dictToString();
 	
 	return 0;
 }

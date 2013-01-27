@@ -1,4 +1,5 @@
 
+#include <string>
 #include "olzwstream.hpp"
 
 using namespace std;
@@ -29,23 +30,46 @@ olzwstream::olzwstream(std::ostream* strm):os(strm)
 	initialize();
 }
 
+olzwstream::~olzwstream() {
+	if(!last.empty())
+		cout << " code word: " << dict[last]  << "Meaning : ";
+	for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
+			cout << *it;
+	cout << endl;
+}
+
 void olzwstream::put(char c)
 {
 	vector<char> actual = last;
-	actual.push_back(c);
-	
+	actual.push_back(c); // actual is the concatenation of last and the new caracter
+		
+	if(VERBOSE>1)
+	{	cout << "last: ";
+		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
+			cout << *it;
+		cout << endl << "actual: ";
+		for(vector<char>::const_iterator it=actual.begin(); it!=actual.end();it++)
+			cout << *it;
+		cout << endl;
+	}
 	
 	if (contains(dict, actual)) {
 		last = actual;
-		//cout << "lulz "  << endl;
 	}
 	else
 	{
-		cout << "last: ";
+		if(VERBOSE>1)
+		{
+			cout << "last: ";
+			for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
+				cout << *it;
+		}
+		
+		cout << " code word: " << dict[last]  << "Meaning : ";
 		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-			cout << *it;
-		cout << " code word: " << dict[last] << endl;
-		dict[actual] = next_code;
+				cout << *it;
+		cout << endl;
+		dict[actual] = next_code; // insertion of the new tuple
 		if (next_code == (1ul << cur_code_size))
 		{
 			if (cur_code_size == max_code_size)
@@ -55,15 +79,17 @@ void olzwstream::put(char c)
 			}
 			else
 			{
-				next_code += 1;
-				cur_code_size += 1;
+				next_code++;
+				cur_code_size++;
+				cout << "inc " << endl;
 			}
 		}
+		else
+			next_code++;
+			
 		last.clear();
 		last.push_back(c);
-		
 	}
-	
 }
 
 void olzwstream::close()
@@ -82,11 +108,17 @@ void olzwstream::initialize()
 
 	cur_code_size = min_code_size+1;
 	next_code = nb_symbols+2;
-	
-	if(VERBOSE)
-		for(std::map<std::vector<char>, uint_32>::const_iterator it=dict.begin();it!=dict.end();it++)
-			{for(std::vector<char>::const_iterator it2=it->first.begin();it2!=it->first.end();it2++)
-				cout << (*it2);
-			cout << " val : " << it->second << endl;
-		}
+}
+
+std::string olzwstream::dictToString()
+{
+	std::string str("");
+	for(std::map<std::vector<char>, uint_32>::const_iterator it=dict.begin();it!=dict.end();it++)
+	{	
+		str += "<" + to_string(it->second) + ">\t";
+		for(std::vector<char>::const_iterator it2=it->first.begin();it2!=it->first.end();it2++)
+			str+= (*it2);
+		str+= "\n";
+	}
+	return str;
 }

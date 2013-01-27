@@ -5,6 +5,7 @@
 	#include <iostream>
 	#include <map>
 	#include <vector>
+	#include <string>
 	#include "extra.h"
 	#include "lzwstream_base.hpp"
 
@@ -12,11 +13,13 @@
 	{
 		public:
 			olzwstream(std::ostream* strm);//constructeur
+			~olzwstream();
 
 			void put(char c); // takes an input byte and writes some encoded data to stream.
 			void close(); //terminates the encoding
 			void initialize();
-
+			
+			std::string dictToString();
 		private:
 			std::ostream* os;
 			std::map<std::vector<char>, uint_32> dict;
