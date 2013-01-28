@@ -2,7 +2,7 @@
 #ifndef __LZWSTREAM_BASE_HPP__
 #define __LZWSTREAM_BASE_HPP__
 	
-	#include <vector>
+	#include <string>
 	#include "extra.h"
 	
 	#define VERBOSE 0
@@ -21,7 +21,7 @@
 			static const uint_32 cc = nb_symbols;
 			static const uint_32 ec = nb_symbols+1;
 			
-			std::vector<char> last;
+			std::string last;
 			int cur_code_size; 
 			uint_32 next_code;
 	};

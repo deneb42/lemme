@@ -37,10 +37,10 @@ olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 
 void olzwstream::put(char c)
 {
-	vector<char> actual = last;
+	std::string actual = last;
 
-	actual.push_back(c); // actual is the concatenation of last and the new caracter
-		
+	actual +=c; // actual is the concatenation of last and the new caracter
+	/*	
 	if(VERBOSE>1)
 	{	cout << "last: ";
 		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
@@ -49,9 +49,9 @@ void olzwstream::put(char c)
 		for(vector<char>::const_iterator it=actual.begin(); it!=actual.end();it++)
 			cout << *it;
 		cout << endl;
-	}
+	}*/
 	
-	if (contains(dict, actual))
+	if (dict.find(actual)!=dict.end())
 		last = actual;
 	else
 	{	
@@ -77,7 +77,7 @@ void olzwstream::put(char c)
 			next_code++;
 			
 		last.clear();
-		last.push_back(c);
+		last += c;
 	}
 }
 
@@ -95,7 +95,7 @@ void olzwstream::initialize()
 	last.clear(); 
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
-		dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(1, i), i));
+		dict.insert(std::pair<std::string, uint_32>(std::string(1, char(i)), i));
 
 	cur_code_size = min_code_size+1;
 	obs.setLength(cur_code_size);
@@ -115,8 +115,7 @@ void olzwstream::write(uint_32 c)
 		else if(c==end_code())
 			std::cout << "end_code";
 		else
-			for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-				std::cout << *it;
+			std::cout << last;
 		std::cout << std::endl;
 	}
 }
@@ -124,12 +123,9 @@ void olzwstream::write(uint_32 c)
 std::string olzwstream::dictToString()
 {
 	std::string str("");
-	for(std::map<std::vector<char>, uint_32>::const_iterator it=dict.begin();it!=dict.end();it++)
+	for(std::map<std::string, uint_32>::const_iterator it=dict.begin();it!=dict.end();it++)
 	{	
-		str += "<" + to_string(it->second) + ">\t";
-		for(std::vector<char>::const_iterator it2=it->first.begin();it2!=it->first.end();it2++)
-			str+= (*it2);
-		str+= "\n";
+		str += "<" + to_string(it->second) + ">\t"+ it->first + "\n";
 	}
 	return str;
 }

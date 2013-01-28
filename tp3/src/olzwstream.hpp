@@ -27,7 +27,7 @@
 			//std::ostream* os;
 			int writen;
 			obitstream obs;
-			std::map<std::vector<char>, uint_32> dict;
+			std::map<std::string, uint_32> dict;
 	};
 			
 #endif // OLZWSTREAM_H
