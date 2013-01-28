@@ -12,6 +12,7 @@ int main()
 
 	for(int i=0;c[i]!='\0';i++)
 		ol.put(c[i]);
+	ol.close();
 	//ol.put('b');
 	//std::cout << ol.dictToString();
 	

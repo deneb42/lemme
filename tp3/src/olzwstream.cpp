@@ -28,15 +28,11 @@ bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<c
 olzwstream::olzwstream(std::ostream* strm):os(strm)
 {
 	initialize();
+	write(clear_code());
 }
 
-olzwstream::~olzwstream() {
-	if(!last.empty())
-		cout << " code word: " << dict[last]  << "Meaning : ";
-	for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-			cout << *it;
-	cout << endl;
-}
+//olzwstream::~olzwstream() {
+//}
 
 void olzwstream::put(char c)
 {
@@ -53,35 +49,25 @@ void olzwstream::put(char c)
 		cout << endl;
 	}
 	
-	if (contains(dict, actual)) {
+	if (contains(dict, actual))
 		last = actual;
-	}
 	else
-	{
-		if(VERBOSE>1)
-		{
-			cout << "last: ";
-			for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-				cout << *it;
-		}
+	{	
+		write(dict[last]);
 		
-		cout << " code word: " << dict[last]  << "Meaning : ";
-		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-				cout << *it;
-		cout << endl;
 		dict[actual] = next_code; // insertion of the new tuple
 		if (next_code == (1ul << cur_code_size))
 		{
 			if (cur_code_size == max_code_size)
 			{
-				cout << "clear code: " << clear_code() << endl;
 				initialize();
+				write(clear_code());
 			}
 			else
 			{
 				next_code++;
 				cur_code_size++;
-				cout << "inc " << endl;
+				//cout << "inc " << endl;
 			}
 		}
 		else
@@ -94,15 +80,15 @@ void olzwstream::put(char c)
 
 void olzwstream::close()
 {
-	
+	if(!last.empty())
+		write(dict[last]);
+	write(end_code());
 }
 
 void olzwstream::initialize()
 {
 	dict.clear();
-	last.clear();
-	dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(), clear_code()));
-	dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(), end_code()));
+	last.clear(); 
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
 		dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(1, i), i));
@@ -111,8 +97,16 @@ void olzwstream::initialize()
 	next_code = nb_symbols+2;
 }
 
-void olzwstream::write()
+void olzwstream::write(uint_32 c)
 {
+	std::cout << " code word: " << c << " Meaning : ";
+	if(c==clear_code())
+		std::cout << "clear_code";
+	else if(c==end_code())
+		std::cout << "end_code";
+	else
+		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
+			std::cout << *it;
 	std::cout << std::endl;
 }
 
