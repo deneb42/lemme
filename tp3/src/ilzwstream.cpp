@@ -27,26 +27,30 @@ void ilzwstream::read_to_buffer()
 		_eof = true;
 		return ;
 	}
-	if (dict.find(cw) != dict.end()) {
+	if (dict.find(cw) != dict.end()) 
+	{
 		str = dict[cw];
+		//cout << "str : " << str[0] << endl;
 	}
 	else
 	{
 		str = last;
-		str.push_back(*last.begin());
+		str.push_back(*str.begin());
 	}
-	for (std::vector<char>::iterator it = str.begin(); it != str.end(); it ++) {
-		buffer.push_back(*it);
-	}
-	if (last.size() != 0) {
-		str = last;
-		str.push_back(*last.begin());
-		dict.at(next_code) = str;
-		next_code += 1;
+	if(!str.empty())
+		for (std::vector<char>::iterator it = str.begin(); it != str.end(); it ++) {
+			buffer.push_back(*it);
+			//cout << "coucou " << *it << "huhu " << buffer.back() << std::endl;
+			
+		}
+	if (!last.empty()) {
+		last.push_back(*str.begin());
+		dict[next_code] = last;
+		next_code++;
 		
 		if (next_code == 1ul << cur_code_size) {
 			if (cur_code_size < max_code_size) {
-				cur_code_size += 1;
+				cur_code_size++;
 			}
 		}
 	}
@@ -56,12 +60,26 @@ void ilzwstream::read_to_buffer()
 
 int ilzwstream::get(char& c)
 {
-	return c;
+	if(buffer.empty() && !_eof)
+		read_to_buffer();
+		
+	if(buffer.empty())
+	{
+		_eof = true;
+		return 0;
+	}
+	else
+	{
+		c = buffer.front();
+		//std::cout << " data : " << buffer.front() << std::endl;
+		buffer.pop_front();
+		return 1;
+	}
 }
 
 bool ilzwstream::eof()
 {
-	return true;
+	return _eof;
 }
 
 uint_32 ilzwstream::read()
