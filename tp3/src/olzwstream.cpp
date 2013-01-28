@@ -28,6 +28,7 @@ bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<c
 olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 {
 	initialize();
+	writen=0;
 	write(clear_code());
 }
 
@@ -104,8 +105,9 @@ void olzwstream::initialize()
 void olzwstream::write(uint_32 c)
 {
 	obs.put(c);
+	writen+=cur_code_size;
 	
-	if(VERBOSE)
+	//if(VERBOSE)
 	{
 		std::cout << " code word: " << c << " Meaning : ";
 		if(c==clear_code())

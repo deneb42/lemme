@@ -20,10 +20,12 @@
 			void close(); //terminates the encoding
 			void initialize();
 			void write(uint_32 c);
+			int getWriten() {return writen;}
 			
 			std::string dictToString();
 		private:
 			//std::ostream* os;
+			int writen;
 			obitstream obs;
 			std::map<std::vector<char>, uint_32> dict;
 	};
