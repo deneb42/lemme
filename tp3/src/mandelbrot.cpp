@@ -7,8 +7,8 @@
 
 using namespace std;
 
-const complex<double> c1(-2,-1);
-const complex<double> c2(1,1);
+const complex<double> c1(-2,-1); // -2, -1
+const complex<double> c2(-0.5, -0.3); // 1, 1,  diminuer étire resp vers la droite et le bas
 
 void write_mandel(std::string name, int x, int y)
 {

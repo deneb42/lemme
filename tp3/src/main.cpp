@@ -8,7 +8,6 @@
 using namespace std;
 
 int main()
-
 {/*
 	int i;
 	std::cout << "Compression lzw" << std::endl;
@@ -51,9 +50,8 @@ int main()
 	 */
 	
 
-	write_mandel("toto.gif", 1500, 1500);
-	std::cout << "Compression terminee, "<< std::endl; //<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
-	
+	write_mandel("toto2.gif", 1500, 1500);
+	std::cout << "Compression terminee, "<< std::endl; 	
 
 	return 0;
 }
