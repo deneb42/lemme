@@ -95,7 +95,7 @@ void olzwstream::initialize()
 	last.clear(); 
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
-		dict.insert(std::pair<std::string, uint_32>("" + (char)i, i));
+		dict.insert(std::pair<std::string, uint_32>(std::string(1, char(i)), i));
 
 	cur_code_size = min_code_size+1;
 	obs.setLength(cur_code_size);

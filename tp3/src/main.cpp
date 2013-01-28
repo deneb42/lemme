@@ -22,6 +22,8 @@ int main()
 		for(i=0;c[i]!='\0';i++)
 			ol.put(c[i]);
 		ol.close();
+		
+		//std::cout << ol.dictToString();
 	
 	std::cout << "Compression terminee, "<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
 }

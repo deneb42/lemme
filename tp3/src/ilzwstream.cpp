@@ -34,7 +34,7 @@ void ilzwstream::read_to_buffer()
 	}
 	else
 	{
-		str = last + str[0];
+		str = last + last[0];
 	}
 	if(!str.empty())
 		for (std::string::iterator it = str.begin(); it != str.end(); it ++) {
@@ -96,7 +96,7 @@ void ilzwstream::initialize()
 	last.clear();
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
-		dict.insert(std::pair<uint_32, std::string >(i, "" + (char)i));
+		dict.insert(std::pair<uint_32, std::string >(i, std::string(1, char(i))));
 	
 	cur_code_size = min_code_size+1;
 	ibs.setLength(cur_code_size);
