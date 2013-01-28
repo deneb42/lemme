@@ -42,4 +42,6 @@ void write_mandel(std::string name, int x, int y)
     }
   }
   write_gif(name.c_str(), x, y, data.data(), col);
+  
+  
 }
