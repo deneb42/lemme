@@ -31,7 +31,7 @@ void write_gif(const char *name,
       SIZE_OF_GLOBAL_COLOR_TABLE_256, // use 256 colours
       0x00, // default background colour
       0x00 };
-
+      
   std::ofstream out(name);
   
   out.write((char*)header, 13); // write Header
@@ -53,7 +53,7 @@ void write_gif(const char *name,
   // encode img_data
   {
     olzwstream lzw(&str);
-    for (int i = 0; i < x_size*y_size; i++)
+    for (int i = 0; i < x_size*y_size; i++) 
       lzw.put(img_data[i]);
     lzw.close();
   }

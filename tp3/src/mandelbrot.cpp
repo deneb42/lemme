@@ -38,7 +38,7 @@ void write_mandel(std::string name, int x, int y)
 		z = z*z+c;
 		iter++;
       }
-      data[i*x+j] = MAX_ITER-iter;
+      data[i*x+j] = ((MAX_ITER-iter)*255)/40;
     }
   }
   write_gif(name.c_str(), x, y, data.data(), col);

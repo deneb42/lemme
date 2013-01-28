@@ -61,8 +61,8 @@ void olzwstream::put(char c)
 		{
 			if (cur_code_size == max_code_size)
 			{
-				initialize();
 				write(clear_code());
+				initialize();
 			}
 			else
 			{
