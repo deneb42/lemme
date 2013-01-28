@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	int i;
+	
 	std::cout << "Compression lzw" << std::endl;
 
 	/*
@@ -42,11 +42,12 @@ int main()
 	cout << std::endl;
 	//cout << std::endl << il.dictToString();
 	}
+
  	std::cout << "Decompression terminee" << std::endl;
 	 */
 	
 
-	write_mandel("toto.gif", 800, 800);
+	write_mandel("toto.gif", 400, 400);
 	std::cout << "Compression terminee, "<< std::endl; //<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
 
 	

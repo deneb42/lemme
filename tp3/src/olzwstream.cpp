@@ -107,7 +107,7 @@ void olzwstream::write(uint_32 c)
 	obs.put(c);
 	writen+=cur_code_size;
 	
-	//if(VERBOSE)
+	if(VERBOSE)
 	{
 		std::cout << " code word: " << c << " Meaning : ";
 		if(c==clear_code())
