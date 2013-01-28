@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "olzwstream.hpp"
-#include "mandel.hpp"
+#include "mandelbrot.hpp"
 
 int main()
 {
