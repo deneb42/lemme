@@ -21,6 +21,7 @@
 		private:
 			std::istream* is;
 			std::map<uint_32, std::vector<char> > dict;
+			bool _eof = false;
 	};
 			
 #endif // __ILZWSTREAM_HPP__	
