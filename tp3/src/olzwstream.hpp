@@ -8,6 +8,7 @@
 	#include <string>
 	#include "extra.h"
 	#include "lzwstream_base.hpp"
+	#include "obitstream.h"
 
 	class olzwstream : lzwstream_base
 	{
@@ -22,7 +23,8 @@
 			
 			std::string dictToString();
 		private:
-			std::ostream* os;
+			//std::ostream* os;
+			obitstream obs;
 			std::map<std::vector<char>, uint_32> dict;
 	};
 			

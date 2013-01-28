@@ -25,7 +25,7 @@ bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<c
 	return false;
 }
 
-olzwstream::olzwstream(std::ostream* strm):os(strm)
+olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 {
 	initialize();
 	write(clear_code());
@@ -67,6 +67,7 @@ void olzwstream::put(char c)
 			{
 				next_code++;
 				cur_code_size++;
+				obs.setLength(cur_code_size);
 				//cout << "inc " << endl;
 			}
 		}
@@ -83,6 +84,7 @@ void olzwstream::close()
 	if(!last.empty())
 		write(dict[last]);
 	write(end_code());
+	obs.flush();
 }
 
 void olzwstream::initialize()
@@ -94,20 +96,26 @@ void olzwstream::initialize()
 		dict.insert(std::pair<std::vector<char>, uint_32>(std::vector<char>(1, i), i));
 
 	cur_code_size = min_code_size+1;
+	obs.setLength(cur_code_size);
 	next_code = nb_symbols+2;
 }
 
 void olzwstream::write(uint_32 c)
 {
-	std::cout << " code word: " << c << " Meaning : ";
-	if(c==clear_code())
-		std::cout << "clear_code";
-	else if(c==end_code())
-		std::cout << "end_code";
-	else
-		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-			std::cout << *it;
-	std::cout << std::endl;
+	obs.put(c);
+	
+	if(VERBOSE)
+	{
+		std::cout << " code word: " << c << " Meaning : ";
+		if(c==clear_code())
+			std::cout << "clear_code";
+		else if(c==end_code())
+			std::cout << "end_code";
+		else
+			for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
+				std::cout << *it;
+		std::cout << std::endl;
+	}
 }
 
 std::string olzwstream::dictToString()
