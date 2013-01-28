@@ -9,8 +9,8 @@ olzwstream::olzwstream(std::ostream* strm)
 
 void olzwstream::put(char c)
 {
-	vector<char> actual = last.push_back(c);
-	
+	vector<char> actual = last;
+	actual.push_back(c);
 	
 	if (dict.find(actual)) {
 		last = actual;
