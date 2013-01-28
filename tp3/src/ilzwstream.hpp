@@ -5,7 +5,9 @@
 	#include <iostream>
 	#include <vector>
 	#include <map>
+	#include <list>
 	#include "lzwstream_base.hpp"
+	#include "ibitstream.h"
 	
 	
 	class ilzwstream : lzwstream_base
@@ -22,9 +24,10 @@
 			void initialize();
 		private:
 			//std::istream* is;
-			ibitstream* ibs;
+			ibitstream ibs;
 			std::map<uint_32, std::vector<char> > dict;
-			bool _eof = false;
+			bool _eof;
+			std::list<char> buffer;
 	};
 			
 #endif // __ILZWSTREAM_HPP__	

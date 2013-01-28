@@ -4,10 +4,10 @@
 
 int main()
 {
-	std::ostream os;
+	//std::ostream os;
 	std::cout << "Compression lzw" << std::endl;
 	
-	olzwstream ol(&os);
+	olzwstream ol(&std::cout);
 	
 	char c[] = "TOBEORNOTTOBEORTOBEORNOT";
 
