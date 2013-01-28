@@ -25,7 +25,7 @@
 		private:
 			//std::istream* is;
 			ibitstream ibs;
-			std::map<uint_32, std::vector<char> > dict;
+			std::map<uint_32, std::string> dict;
 			bool _eof;
 			std::list<char> buffer;
 	};

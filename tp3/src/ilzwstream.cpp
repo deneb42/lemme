@@ -15,7 +15,7 @@ ilzwstream::ilzwstream(std::istream* strm):ibs(strm, 0)
 void ilzwstream::read_to_buffer()
 {
 	uint_32 cw = read();
-	std::vector<char> str;
+	std::string str;
 	
 	if (cw == clear_code())
 	{
@@ -34,18 +34,16 @@ void ilzwstream::read_to_buffer()
 	}
 	else
 	{
-		str = last;
-		str.push_back(*str.begin());
+		str = last + last[0];
 	}
 	if(!str.empty())
-		for (std::vector<char>::iterator it = str.begin(); it != str.end(); it ++) {
+		for (std::string::iterator it = str.begin(); it != str.end(); it ++) {
 			buffer.push_back(*it);
 			//cout << "coucou " << *it << "huhu " << buffer.back() << std::endl;
 			
 		}
 	if (!last.empty()) {
-		last.push_back(*str.begin());
-		dict[next_code] = last;
+		dict[next_code] = last + str[0];
 		next_code++;
 		
 		if (next_code == 1ul << cur_code_size) {
@@ -98,7 +96,7 @@ void ilzwstream::initialize()
 	last.clear();
 
 	for(unsigned int i=0;i<nb_symbols;i++) // initializing the first caracters
-		dict.insert(std::pair<uint_32, std::vector<char> >(i, std::vector<char>(1, i)));
+		dict.insert(std::pair<uint_32, std::string >(i, std::string(1, char(i))));
 	
 	cur_code_size = min_code_size+1;
 	ibs.setLength(cur_code_size);
@@ -108,11 +106,9 @@ void ilzwstream::initialize()
 std::string ilzwstream::dictToString()
 {
 	std::string str("");
-	for(std::map<uint_32, std::vector<char>>::const_iterator it=dict.begin();it!=dict.end();it++)
+	for(std::map<uint_32, std::string>::const_iterator it=dict.begin();it!=dict.end();it++)
 	{	
-		for(std::vector<char>::const_iterator it2=it->second.begin();it2!=it->second.end();it2++)
-			str+= (*it2);
-		str+= "\t<" + std::to_string(it->first) + ">\n";
+		str+= it->second + "\t<" + std::to_string(it->first) + ">\n";
 	}
 	return str;
 }

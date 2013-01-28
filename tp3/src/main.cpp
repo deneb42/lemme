@@ -8,11 +8,12 @@
 using namespace std;
 
 int main()
-{
-	
+
+{/*
+	int i;
 	std::cout << "Compression lzw" << std::endl;
 
-	/*
+	
 	//char c[] = "TOBEORNOTTOBEORTOBEORNOT";
 	char c[] = "Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean ";
 	
@@ -22,6 +23,8 @@ int main()
 		for(i=0;c[i]!='\0';i++)
 			ol.put(c[i]);
 		ol.close();
+
+		//std::cout << ol.dictToString();
 	
 	std::cout << "Compression terminee, "<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
 }
@@ -43,13 +46,13 @@ int main()
 	//cout << std::endl << il.dictToString();
 	}
 
+
  	std::cout << "Decompression terminee" << std::endl;
 	 */
 	
 
-	write_mandel("toto.gif", 400, 400);
+	write_mandel("toto.gif", 1500, 1500);
 	std::cout << "Compression terminee, "<< std::endl; //<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
-
 	
 
 	return 0;
