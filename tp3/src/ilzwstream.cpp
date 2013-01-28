@@ -35,13 +35,13 @@ void ilzwstream::read_to_buffer()
 		str = last;
 		str.push_back(*last.begin());
 	}
-	for (vector<char>::iterator it = str.begin(); it = str.end(); it ++) {
+	for (std::vector<char>::iterator it = str.begin(); it != str.end(); it ++) {
 		buffer.push_back(*it);
 	}
 	if (last.size() != 0) {
 		str = last;
 		str.push_back(*last.begin());
-		dict.at(next_code()) = str;
+		dict.at(next_code) = str;
 		next_code += 1;
 		
 		if (next_code == 1ul << cur_code_size) {
