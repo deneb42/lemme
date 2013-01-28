@@ -1,15 +1,17 @@
 
 #include <iostream>
 #include "olzwstream.hpp"
+#include "mandel.hpp"
 
 int main()
 {
-	std::ostream os;
 	std::cout << "Compression lzw" << std::endl;
 	
-	olzwstream ol(&os);
+	/*olzwstream ol(&os);
 	
 	char c[] = "TOBEORNOTTOBEORTOBEORNOT";
+	
+	write_mandel(x; y; col, buff);
 
 	for(int i=0;c[i]!='\0';i++)
 		ol.put(c[i]);
@@ -19,6 +21,8 @@ int main()
 	std::cout << std::endl;
 	//ol.put('b');
 	//std::cout << ol.dictToString();
+	*/
+	write_mandel("toto.gif");
 	
 	return 0;
 }

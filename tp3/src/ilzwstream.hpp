@@ -6,6 +6,7 @@
 	#include <vector>
 	#include <map>
 	#include "lzwstream_base.hpp"
+	#include "ibitstream.h"
 	
 	
 	class ilzwstream : lzwstream_base
@@ -22,7 +23,7 @@
 			void initialize();
 		private:
 			//std::istream* is;
-			ibitstream* ibs;
+			ibitstream ibs;
 			std::map<uint_32, std::vector<char> > dict;
 	};
 			

@@ -1,9 +1,11 @@
 
 #include <iostream>
+#include <string>
 #include "ilzwstream.hpp"
+#include "ibitstream.h"
 
 
-ilzwstream::ilzwstream(std::istream* strm):ibs(strm)
+ilzwstream::ilzwstream(std::istream* strm):ibs(strm, 0)
 {
 	initialize();
 }
@@ -25,10 +27,12 @@ bool ilzwstream::eof()
 
 uint_32 ilzwstream::read()
 {
-	uint32 c = ibs.read();
+	uint_32 c;
+	ibs.get(c);
 	
 	if(VERBOSE)
 		std::cout << " Read code word: " << c;
+	return c;
 }
 
 void ilzwstream::initialize()
@@ -49,9 +53,9 @@ std::string ilzwstream::dictToString()
 	std::string str("");
 	for(std::map<uint_32, std::vector<char>>::const_iterator it=dict.begin();it!=dict.end();it++)
 	{	
-		for(std::vector<char>::const_iterator it2=it->first.begin();it2!=it->first.end();it2++)
+		for(std::vector<char>::const_iterator it2=it->second.begin();it2!=it->second.end();it2++)
 			str+= (*it2);
-		str+= "\t<" + to_string(it->second) + ">\n";
+		str+= "\t<" + std::to_string(it->first) + ">\n";
 	}
 	return str;
 }
