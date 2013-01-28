@@ -4,16 +4,18 @@
 #include "ilzwstream.hpp"
 #include "ibitstream.h"
 
+using namespace std;
 
 ilzwstream::ilzwstream(std::istream* strm):ibs(strm, 0)
 {
+	_eof = false;
 	initialize();
 }
 			
 void ilzwstream::read_to_buffer()
 {
 	uint_32 cw = read();
-	std::vector<char> = str;
+	std::vector<char> str;
 	
 	if (cw == clear_code())
 	{
@@ -25,9 +27,31 @@ void ilzwstream::read_to_buffer()
 		_eof = true;
 		return ;
 	}
-	if (dict.find(cw)) {
-		
+	if (dict.find(cw) != dict.end()) {
+		str = dict[cw];
 	}
+	else
+	{
+		str = last;
+		str.push_back(*last.begin());
+	}
+	for (vector<char>::iterator it = str.begin(); it = str.end(); it ++) {
+		buffer.push_back(*it);
+	}
+	if (last.size() != 0) {
+		str = last;
+		str.push_back(*last.begin());
+		dict.at(next_code()) = str;
+		next_code += 1;
+		
+		if (next_code == 1ul << cur_code_size) {
+			if (cur_code_size < max_code_size) {
+				cur_code_size += 1;
+			}
+		}
+	}
+	last = str;
+	
 }
 
 int ilzwstream::get(char& c)

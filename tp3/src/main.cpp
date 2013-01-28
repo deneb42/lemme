@@ -7,12 +7,11 @@ int main()
 {
 	std::cout << "Compression lzw" << std::endl;
 	
-	/*olzwstream ol(&os);
+	/*
+	olzwstream ol(&std::cout);
 	
 	char c[] = "TOBEORNOTTOBEORTOBEORNOT";
 	
-	write_mandel(x; y; col, buff);
-
 	for(int i=0;c[i]!='\0';i++)
 		ol.put(c[i]);
 	ol.close();
