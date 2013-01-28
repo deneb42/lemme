@@ -8,7 +8,7 @@
 using namespace std;
 
 int main()
-{
+{/*
 	int i;
 	std::cout << "Compression lzw" << std::endl;
 
@@ -47,7 +47,7 @@ int main()
 	//*/
 	
 	
-	//write_mandel("toto.gif", 400, 200);
+	write_mandel("toto.gif", 1500, 1500);
 	
 	std::cout << "Decompression terminee" << std::endl;
 	return 0;
