@@ -12,7 +12,22 @@ ilzwstream::ilzwstream(std::istream* strm):ibs(strm, 0)
 			
 void ilzwstream::read_to_buffer()
 {
+	uint_32 cw = read();
+	std::vector<char> = str;
 	
+	if (cw == clear_code())
+	{
+		initialize(); //last.clear() fait par initialise()
+		cw = read();
+	}
+	if (cw == end_code())
+	{
+		_eof = true;
+		return ;
+	}
+	if (dict.find(cw)) {
+		
+	}
 }
 
 int ilzwstream::get(char& c)
