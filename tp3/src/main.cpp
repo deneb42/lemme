@@ -15,7 +15,7 @@ int main()
 		ol.put(c[i]);
 	ol.close();
 	
-	os
+	//os
 	std::cout << std::endl;
 	//ol.put('b');
 	//std::cout << ol.dictToString();

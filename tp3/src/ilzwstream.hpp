@@ -16,10 +16,13 @@
 			void read_to_buffer();
 			int get(char& c);
 			bool eof();
+			uint_32 read();
 			
+			std::string dictToString();
 			void initialize();
 		private:
-			std::istream* is;
+			//std::istream* is;
+			ibitstream* ibs;
 			std::map<uint_32, std::vector<char> > dict;
 	};
 			
