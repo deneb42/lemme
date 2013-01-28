@@ -37,6 +37,7 @@ olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 void olzwstream::put(char c)
 {
 	vector<char> actual = last;
+
 	actual.push_back(c); // actual is the concatenation of last and the new caracter
 		
 	if(VERBOSE>1)
