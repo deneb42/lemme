@@ -20,7 +20,7 @@ void write_mandel(std::string name, int x, int y)
   {
 	  col[3*i]=i;
 	  col[3*i+1]=i;
-	  col[3*i+2]=i; // initialisation des couleurs (nuances de gris)
+	  col[3*i+2]=(char)255; // initialisation des couleurs (nuances de gris)
   }
   
   data.resize(y*x);
@@ -42,6 +42,5 @@ void write_mandel(std::string name, int x, int y)
     }
   }
   write_gif(name.c_str(), x, y, data.data(), col);
-  
   
 }
