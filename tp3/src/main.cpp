@@ -21,7 +21,7 @@ int main()
 	//ol.put('b');
 	//std::cout << ol.dictToString();
 	*/
-	write_mandel("toto.gif", 400, 200);
+	write_mandel("toto.gif", 400, 400);
 	
 	return 0;
 }
