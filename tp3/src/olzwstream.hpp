@@ -25,7 +25,7 @@
 			std::string dictToString();
 		private:
 			//std::ostream* os;
-			int writen;
+			int writen, read;
 			obitstream obs;
 			std::map<std::string, uint_32> dict;
 	};

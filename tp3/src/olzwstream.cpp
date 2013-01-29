@@ -28,7 +28,7 @@ bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<c
 olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 {
 	initialize();
-	writen=0;
+	writen=0; read=0;
 	write(clear_code());
 }
 
@@ -38,7 +38,8 @@ olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 void olzwstream::put(char c)
 {
 	std::string actual = last;
-
+	read+=8;
+	
 	actual +=c; // actual is the concatenation of last and the new caracter
 	/*	
 	if(VERBOSE>1)
@@ -87,10 +88,13 @@ void olzwstream::close()
 		write(dict[last]);
 	write(end_code());
 	obs.flush();
+	std::cout << read/8 << " bytes lus." << std::endl
+			  << writen/8 << " bytes ecris." << std::endl;
 }
 
 void olzwstream::initialize()
 {
+	//std::cout << dictToString();
 	dict.clear();
 	last.clear(); 
 
@@ -125,7 +129,8 @@ std::string olzwstream::dictToString()
 	std::string str("");
 	for(std::map<std::string, uint_32>::const_iterator it=dict.begin();it!=dict.end();it++)
 	{	
-		str += "<" + to_string(it->second) + ">\t"+ it->first + "\n";
+		if(it->second > 255)
+			str += "<" + to_string(it->second) + ">\t"+ it->first + "\n";
 	}
 	return str;
 }

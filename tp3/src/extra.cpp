@@ -56,8 +56,6 @@ void write_gif(const char *name,
     for (int i = 0; i < x_size*y_size; i++) 
       lzw.put(img_data[i]);
     lzw.close();
-      std::cout << "taille de l'image non compressee : " << x_size*y_size*3 << " bytes" << std::endl;
-	  std::cout << "taille de l'image     compressee : " << lzw.getWriten()/8 << " bytes" << std::endl;
   }
 
   const std::string& obj = str.str();

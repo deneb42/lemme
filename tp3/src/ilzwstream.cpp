@@ -49,6 +49,7 @@ void ilzwstream::read_to_buffer()
 		if (next_code == 1ul << cur_code_size) {
 			if (cur_code_size < max_code_size) {
 				cur_code_size++;
+				ibs.setLength(cur_code_size);
 			}
 		}
 	}
@@ -86,7 +87,7 @@ uint_32 ilzwstream::read()
 	ibs.get(c);
 	
 	if(VERBOSE)
-		std::cout << " Read code word: " << c;
+		std::cout << " Read code word: " << c << std::endl;
 	return c;
 }
 

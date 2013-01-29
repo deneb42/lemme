@@ -7,51 +7,49 @@
 
 using namespace std;
 
-int main()
-{/*
-	int i;
-	std::cout << "Compression lzw" << std::endl;
-
-	
-	//char c[] = "TOBEORNOTTOBEORTOBEORNOT";
-	char c[] = "Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean Jean ";
-	
-	{
-		ofstream toto ("test.txt", fstream::out);
-		olzwstream ol(&toto);
-		for(i=0;c[i]!='\0';i++)
-			ol.put(c[i]);
-		ol.close();
-
-		//std::cout << ol.dictToString();
-	
-	std::cout << "Compression terminee, "<< i*8 << "bits => " << ol.getWriten() << "bits." << std::endl;
-}
-
+int main(int argc, char* argv[])
 {
-		std::cout << "Decompression lzw" << std::endl;
-		ifstream toto2 ("test.txt", fstream::in);
-		ilzwstream il(&toto2);
-
-	while(!il.eof())
-	//for(int i=0;i<10;i++)
-	{
-		//std::cout << "toto" << std::endl;
-		char tmp;
-		if(il.get(tmp)!=0)
-			std::cout << tmp; // << std::endl;
-	}
-	cout << std::endl;
-	//cout << std::endl << il.dictToString();
-	}
-
-
- 	std::cout << "Decompression terminee" << std::endl;
-	 */
+	std::ifstream in;
+	std::ofstream out;
+	char c;
 	
+	if(argc==3)
+	{		
+		if(argv[1][0]=='c')
+		{
+			in.open(argv[2], fstream::in);
+			out.open("out.lzw", fstream::out);
+			std::cout << "Compression lzw" << std::endl;
+			olzwstream ol(&out);
+			
+			while(!in.eof())
+			{
+				c = (char)in.get();
+				if(!in.eof())
+					ol.put(c);
+			}
+			ol.close();
+			std::cout << "Compression terminee" << std::endl;
+		}
+		else if(argv[1][0]=='d')
+		{
+			in.open("out.lzw", fstream::in);
+			out.open(argv[2], fstream::out);
+			std::cout << "Decompression lzw" << std::endl;
+			ilzwstream il(&in);
 
-	write_mandel("toto2.gif", 1500, 1500);
-	std::cout << "Compression terminee, "<< std::endl; 	
+			while(!il.eof())
+			{
+				if(il.get(c)!=0)
+					out.put(c);
+			}
+			std::cout << "Decompression terminee" << std::endl;
+		}
+		else
+			write_mandel("../mandel.gif", 1500, 1500);
+	}
+	else
+		write_mandel("../mandel.gif", 1500, 1500);
 
 	return 0;
 }
