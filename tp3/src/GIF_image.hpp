@@ -1,5 +1,4 @@
 
-
 #ifndef ____GIF_image__
 #define ____GIF_image__
 
@@ -39,4 +38,5 @@ class GIF_image
 	
 };
 
-#endif /* defined(____GIF_image__) */
+
+#endif // __GIF_IMAGE_HPP__
