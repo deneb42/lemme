@@ -35,5 +35,63 @@ void GIF_image::readFromFile(const char *name)
 }
 void GIF_image::writeToFile(const char *name)
 {
-	
+	uint_8 header[13] = 
+		{ 	0x47, 0x49, 0x46, 0x38, 0x39, 0x61, // GIF89a
+			(uint_8)(x_size&0xff), (uint_8)(x_size>>8), // width
+			(uint_8)(y_size&0xff), (uint_8)(y_size>>8), // height
+			GLOBAL_COLOR_TABLE_FLAG | // use global color table
+			COLOR_RESOLUTION_8_BIT |  // use 8 bit per R/G/B
+			SIZE_OF_GLOBAL_COLOR_TABLE_256, // use 256 colours
+			0x00, // default background colour
+			0x00 
+		};
+      
+	std::ofstream out(name);
+
+	out.write((char*)header, 13); // write Header
+	out.write(col_data, 3*(1ul << (SIZE_OF_GLOBAL_COLOR_TABLE_256+1))); // write Global Colour Table
+	out.put(0x2c); // start Image Descriptor
+	out.put(0x00);
+	out.put(0x00);
+	out.put(0x00);
+	out.put(0x00);
+	out.write((char*)(header+6), 4);
+	out.put(0x00); // start of image
+
+	uint_8 code_size = 1+SIZE_OF_GLOBAL_COLOR_TABLE_256;
+
+	out.put(code_size); // LZW minimum code size
+
+	std::ostringstream str;
+
+	// encode img_data
+	{
+		olzwstream lzw(&str);
+		for (int i = 0; i < y_size; i++)
+			for (int j = 0; j < x_size; j++)
+				lzw.put(pixels[i][j]);
+		lzw.close();
+	}
+
+	const std::string& obj = str.str();
+	const char* ptr = obj.c_str();
+	int size = obj.size();
+
+	// write encoded data as chunks of BLOCK_SIZE bytes
+	for (int i = 0; i < size/BLOCK_SIZE; i++) 
+	{
+		out.put(BLOCK_SIZE);
+		out.write(ptr, BLOCK_SIZE);
+		ptr += BLOCK_SIZE;
+	}
+
+	// write remaining bytes
+	if (size%BLOCK_SIZE != 0) 
+	{
+		out.put(size%BLOCK_SIZE);
+		out.write(ptr, size%BLOCK_SIZE);
+	}
+
+	out.put(0x00);
+	out.put(0x3b); // GIF file terminator
 }

@@ -7,6 +7,9 @@
 
 using namespace std;
 
+typedef unsigned char uint_8;
+typedef unsigned int uint_32;
+
 class GIF_image
 {
 	public:
@@ -20,7 +23,9 @@ class GIF_image
 		void readFromFile(const char *name);
 		void writeToFile(const char *name);
 	
-	
+		
+		static const uint_8 BLOCK_SIZE = 255;
+		
 		static const uint_8 GLOBAL_COLOR_TABLE_FLAG = 0x80;
 		static const uint_8 COLOR_RESOLUTION_8_BIT = 0x70;
 		static const uint_8 SORT_FLAG = 0x08;
