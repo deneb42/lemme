@@ -5,26 +5,6 @@
 using namespace std;
 
 
-bool toto(const std::vector<char> v1, const std::vector<char> v2)
-{
-	if(v1.size() != v2.size())
-		return false;
-	for(unsigned int i=0;i<v1.size();i++)
-		if(v1[i]!=v2[i])
-			return false;
-	return true;
-}
-
-bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<char> &a)
-{
-	for(std::map<std::vector<char>, uint_32>::const_iterator it=d.begin();it!=d.end();it++)
-	{
-		if(toto(it->first, a))
-			return true;
-	}
-	return false;
-}
-
 olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 {
 	initialize();
@@ -32,8 +12,6 @@ olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 	write(clear_code());
 }
 
-//olzwstream::~olzwstream() {
-//}
 
 void olzwstream::put(char c)
 {
@@ -41,16 +19,6 @@ void olzwstream::put(char c)
 	read+=8;
 	
 	actual +=c; // actual is the concatenation of last and the new caracter
-	/*	
-	if(VERBOSE>1)
-	{	cout << "last: ";
-		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-			cout << *it;
-		cout << endl << "actual: ";
-		for(vector<char>::const_iterator it=actual.begin(); it!=actual.end();it++)
-			cout << *it;
-		cout << endl;
-	}*/
 	
 	if (dict.find(actual)!=dict.end())
 		last = actual;
@@ -110,18 +78,7 @@ void olzwstream::write(uint_32 c)
 {
 	obs.put(c);
 	writen+=cur_code_size;
-	
-	if(VERBOSE)
-	{
-		std::cout << " code word: " << c << " Meaning : ";
-		if(c==clear_code())
-			std::cout << "clear_code";
-		else if(c==end_code())
-			std::cout << "end_code";
-		else
-			std::cout << last;
-		std::cout << std::endl;
-	}
+
 }
 
 std::string olzwstream::dictToString()
