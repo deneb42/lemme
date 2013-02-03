@@ -41,9 +41,9 @@ class GIF_image
 	private:
 	
 		//header
-		static const unsigned char* version = "GIF89a";
-		unsigned int x_size, y_size;
-		vector<unsigned char> couleur;
+		char* version;
+		int x_size, y_size;
+		vector<char> color;
 		static const unsigned char backColor = '0';
 	
 		//contenu

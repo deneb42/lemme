@@ -1,10 +1,14 @@
 #include "GIF_image.hpp"
+#include <fstream>
+#include <sstream>
+#include "olzwstream.hpp"
 
 
 GIF_image::GIF_image(int x, int y)
 {
 	x_size	= x;
 	y_size = y;
+	//version = 0x47, 0x49, 0x46, 0x38, 0x39, 0x61; // {'G', 'I', 'F','8', '9', 'a'};
 	pixels.resize(y_size); // dimensionnement de la hauteur
 	
 	for (std::vector<std::vector<unsigned char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
@@ -34,19 +38,19 @@ void GIF_image::readFromFile(const char *name)
 void GIF_image::writeToFile(const char *name)
 {
 	uint_8 header[13] =
-    { (uint_8) version,
+    {   0x47, 0x49, 0x46, 0x38, 0x39, 0x61,
 		(uint_8)(x_size&0xff), (uint_8)(x_size>>8), // width
 		(uint_8)(y_size&0xff), (uint_8)(y_size>>8), // height
 		GLOBAL_COLOR_TABLE_FLAG | // use global color table
 		COLOR_RESOLUTION_8_BIT |  // use 8 bit per R/G/B
 		SIZE_OF_GLOBAL_COLOR_TABLE_256, // use 256 colours
-		(uint_8) backColor;
+		(uint_8) backColor,
 		0x00 };
 	
 	std::ofstream out(name);
 	
 	out.write((char*)header, 13); // write Header
-	out.write(col_data, 3*(1ul << (SIZE_OF_GLOBAL_COLOR_TABLE_256+1))); // write Global Colour Table
+	out.write(color.data(), 3*(1ul << (SIZE_OF_GLOBAL_COLOR_TABLE_256+1))); // write Global Colour Table
 	out.put(0x2c); // start Image Descriptor
 	out.put(0x00);
 	out.put(0x00);
@@ -98,4 +102,5 @@ void GIF_image::writeToFile(const char *name)
 	out.put(0x00);
 	out.put(0x3b); // GIF file terminator
 
+	}
 }
