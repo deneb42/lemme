@@ -4,6 +4,7 @@
 
 #include "extra.h"
 #include "mandelbrot.hpp"
+#include "GIF_image.hpp"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ void write_mandel(std::string name, int x, int y)
   
   for(int i=0; i<256;i++)
   {
-	  gif.setColor(i, i, i, 255);
+	  gif.setColor(i, i, i, (char)255);
   }
 
   for (int i = 0; i < y; i++) 
@@ -32,9 +33,11 @@ void write_mandel(std::string name, int x, int y)
 		z = z*z+c;
 		iter++;
       }
-      gif.setPixel(i, j, ((MAX_ITER-iter)*255)/40);
+      //cout << "coucou" << endl;
+      gif.setPixel(j, i, ((MAX_ITER-iter)*255)/40);
     }
   }
+  cout << "coucou" << endl;
   gif.writeToFile(name.c_str());
   
 }

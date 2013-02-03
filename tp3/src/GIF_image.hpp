@@ -16,12 +16,12 @@ class GIF_image
 	public:
 		GIF_image(int x_size, int y_size);
 		
-		void setColor(int id, char r, char g char b);
-		void setPixel(int posX, int posY, unsigned char val) { pixels[posY][posX] = val; }
+		void setColor(int id, char r, char g, char b);
+		void setPixel(int posX, int posY, unsigned char val) { pixels[posY][posX] = val;}
 		
-		void getRed(int id) const { return color[3*id]; }
-		void getGreen(int id) const { return color[3*id+1]; }
-		void getBlue(int id) const { return color[3*id+2]; }
+		char getRed(int id) const { return color[3*id]; }
+		char getGreen(int id) const { return color[3*id+1]; }
+		char getBlue(int id) const { return color[3*id+2]; }
 		unsigned char getPixel(int posX, int posY) const { return pixels[posY][posX]; }
 		
 		void resize(int x, int y);

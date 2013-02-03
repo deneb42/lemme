@@ -10,15 +10,16 @@ GIF_image::GIF_image(int x, int y)
 	y_size = y;
 	//version = 0x47, 0x49, 0x46, 0x38, 0x39, 0x61; // {'G', 'I', 'F','8', '9', 'a'};
 	pixels.resize(y_size); // dimensionnement de la hauteur
+	color.resize(3*256);
 	
 
 	for (unsigned int i=0;i<pixels.size();i++) {
-		pixels.resize(x_size);
+		pixels[i].resize(x_size);
 	} //dimensionnement de la largeur de chaque ligne.
 	
 }
 
-void setColor(int id, char r, char g char b)
+void GIF_image::setColor(int id, char r, char g,char b)
 {
 	color[3*id] = r; 
 	color[3*id+1] = g; 
@@ -54,7 +55,7 @@ void GIF_image::readFromFile(const char *name)
 	std::ofstream out(name);
 
 	out.write((char*)header, 13); // write Header
-	out.write(col_data, 3*(1ul << (SIZE_OF_GLOBAL_COLOR_TABLE_256+1))); // write Global Colour Table
+	out.write(color.data(), 3*(1ul << (SIZE_OF_GLOBAL_COLOR_TABLE_256+1))); // write Global Colour Table
 	out.put(0x2c); // start Image Descriptor
 	out.put(0x00);
 	out.put(0x00);
