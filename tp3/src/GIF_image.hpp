@@ -4,8 +4,12 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
+
+typedef unsigned char uint_8;
+typedef unsigned int uint_32;
 
 class GIF_image
 {
@@ -13,14 +17,16 @@ class GIF_image
 		GIF_image(int x_size, int y_size);
 		
 		void setPixel(int posX, int posY, unsigned char val){pixels[posY][posX] = val;};
-		void getPixel(int posX, int posY) const { return pixels[posY][posX]; }
+		unsigned char getPixel(int posX, int posY) const { return pixels[posY][posX]; }
 		
 		void resize(int x, int y);
 		
 		void readFromFile(const char *name);
 		void writeToFile(const char *name);
 	
-	
+		
+		static const uint_8 BLOCK_SIZE = 255;
+		
 		static const uint_8 GLOBAL_COLOR_TABLE_FLAG = 0x80;
 		static const uint_8 COLOR_RESOLUTION_8_BIT = 0x70;
 		static const uint_8 SORT_FLAG = 0x08;
@@ -35,8 +41,9 @@ class GIF_image
 	private:
 	
 		//header
-		static const string version = "GIF89a";
+		static const unsigned char* version = "GIF89a";
 		unsigned int x_size, y_size;
+		vector<unsigned char> couleur;
 		static const unsigned char backColor = '0';
 	
 		//contenu
@@ -44,7 +51,7 @@ class GIF_image
 		static const char fin = '0';
 	
 		//terminator
-		static const char terminator = ";";
+		static const char terminator = ';';
 	
 };
 
