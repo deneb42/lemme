@@ -33,11 +33,9 @@ void write_mandel(std::string name, int x, int y)
 		z = z*z+c;
 		iter++;
       }
-      //cout << "coucou" << endl;
       gif.setPixel(j, i, ((MAX_ITER-iter)*255)/40);
     }
   }
-  cout << "coucou" << endl;
-  gif.writeToFile(name.c_str());
   
+  gif.writeToFile(name.c_str());
 }

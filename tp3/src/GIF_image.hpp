@@ -29,6 +29,7 @@ class GIF_image
 		void readFromFile(const char *name);
 		void writeToFile(const char *name);
 	
+void writeToFile2(const char *name);
 		
 		static const uint_8 BLOCK_SIZE = 255;
 		
@@ -49,10 +50,10 @@ class GIF_image
 		char* version;
 		int x_size, y_size;
 		vector<char> color;
-		static const unsigned char backColor = '0';
+		static const unsigned char backColor = 0;
 	
 		//contenu
-		vector<vector<unsigned char> > pixels;
+		vector<vector<char> > pixels;
 		static const char fin = '0';
 	
 		//terminator

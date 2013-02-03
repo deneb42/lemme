@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "olzwstream.hpp"
+#include "extra.h"
 
 
 GIF_image::GIF_image(int x, int y)
@@ -12,11 +13,10 @@ GIF_image::GIF_image(int x, int y)
 	pixels.resize(y_size); // dimensionnement de la hauteur
 	color.resize(3*256);
 	
-
 	for (unsigned int i=0;i<pixels.size();i++) {
 		pixels[i].resize(x_size);
 	} //dimensionnement de la largeur de chaque ligne.
-	
+
 }
 
 void GIF_image::setColor(int id, char r, char g,char b)
@@ -28,7 +28,7 @@ void GIF_image::setColor(int id, char r, char g,char b)
 
 void GIF_image::resize(int x, int y)
 {
-	for (std::vector<vector<unsigned char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
+	for (std::vector<vector<char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
 		it->resize(x);
 	} //dimensionnement de la largeur de chaque ligne.
 
@@ -40,7 +40,7 @@ void GIF_image::resize(int x, int y)
 }
 
 void GIF_image::readFromFile(const char *name)
-{
+{/*
 	uint_8 header[13] = 
 		{ 	0x47, 0x49, 0x46, 0x38, 0x39, 0x61, // GIF89a
 			(uint_8)(x_size&0xff), (uint_8)(x_size>>8), // width
@@ -99,7 +99,7 @@ void GIF_image::readFromFile(const char *name)
 	}
 
 	out.put(0x00);
-	out.put(0x3b); // GIF file terminator
+	out.put(0x3b); // GIF file terminator */
 }
 
 void GIF_image::writeToFile(const char *name)
@@ -140,34 +140,25 @@ void GIF_image::writeToFile(const char *name)
 				lzw.put(pixels[i][j]);
 		lzw.close();
 	}
-
+	
 	const std::string& obj = str.str();
 	const char* ptr = obj.c_str();
 	int size = obj.size();
 
 	// write encoded data as chunks of BLOCK_SIZE bytes
-	for (int i = 0; i < size/BLOCK_SIZE; i++) 
-	{
-	
+	for (int i = 0; i < size/BLOCK_SIZE; i++) {
+		out.put(BLOCK_SIZE);
+		out.write(ptr, BLOCK_SIZE);
+		ptr += BLOCK_SIZE;
+	}
+
 	// write remaining bytes
 	if (size%BLOCK_SIZE != 0) {
 		out.put(size%BLOCK_SIZE);
 		out.write(ptr, size%BLOCK_SIZE);
 	}
-	
-	out.put(0x00);
-	out.put(0x3b); // GIF file terminator
-
-
-	// write remaining bytes
-	if (size%BLOCK_SIZE != 0) 
-	{
-		out.put(size%BLOCK_SIZE);
-		out.write(ptr, size%BLOCK_SIZE);
-	}
 
 	out.put(0x00);
 	out.put(0x3b); // GIF file terminator
-
-	}
 }
+
