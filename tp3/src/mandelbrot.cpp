@@ -13,7 +13,7 @@ const complex<double> c2(-0.5, -0.3); // 1, 1,  diminuer étire resp vers la dro
 void write_mandel(std::string name, int x, int y)
 {
   GIF_image gif(x, y);
-  
+
   for(int i=0; i<256;i++)
   {
 	  gif.setColor(i, i, i, (char)255);

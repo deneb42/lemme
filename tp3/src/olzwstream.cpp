@@ -21,16 +21,6 @@ void olzwstream::put(char c)
 	read+=8;
 	
 	actual +=c; // actual is the concatenation of last and the new caracter
-	/*	
-	if(VERBOSE>1)
-	{	cout << "last: ";
-		for(vector<char>::const_iterator it=last.begin(); it!=last.end();it++)
-			cout << *it;
-		cout << endl << "actual: ";
-		for(vector<char>::const_iterator it=actual.begin(); it!=actual.end();it++)
-			cout << *it;
-		cout << endl;
-	}*/
 	
 	if (dict.find(actual)!=dict.end())
 		last = actual;

@@ -12,7 +12,7 @@
 	class GIF_image
 	{
 		public:
-			GIF_image(int x_size, int y_size);
+			GIF_image(int x_size=1, int y_size=1);
 			
 			void setColor(int id, char r, char g, char b);
 			void setPixel(int posX, int posY, unsigned char val) { pixels[posY][posX] = val;}
@@ -23,11 +23,10 @@
 			unsigned char getPixel(int posX, int posY) const { return pixels[posY][posX]; }
 			
 			void resize(int x, int y);
+			void stamp();
 			
-			void readFromFile(const char *name);
+			bool readFromFile(const char *name);
 			void writeToFile(const char *name);
-		
-	void writeToFile2(const char *name);
 			
 			static const uint_8 BLOCK_SIZE = 255;
 			
@@ -47,8 +46,9 @@
 			//header
 			char* version;
 			int x_size, y_size;
+			int origX, origY, width, height;
 			std::vector<char> color;
-			static const unsigned char backColor = 0;
+			uint_8 backColor;
 		
 			//contenu
 			std::vector<std::vector<char> > pixels;

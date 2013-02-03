@@ -4,6 +4,7 @@
 #include "olzwstream.hpp"
 #include "ilzwstream.hpp"
 #include "mandelbrot.hpp"
+#include "GIF_image.hpp"
 
 using namespace std;
 
@@ -13,12 +14,12 @@ int main(int argc, char* argv[])
 	std::ofstream out;
 	char c;
 	
-	if(argc==3)
+	if(argc>=3)
 	{		
 		if(argv[1][0]=='c')
 		{
 			in.open(argv[2], fstream::in);
-			out.open("out.lzw", fstream::out);
+			out.open((argc>3?argv[3]:"out.lzw"), fstream::out);
 			std::cout << "Compression lzw" << std::endl;
 			olzwstream ol(&out);
 			
@@ -33,8 +34,8 @@ int main(int argc, char* argv[])
 		}
 		else if(argv[1][0]=='d')
 		{
-			in.open("out.lzw", fstream::in);
-			out.open(argv[2], fstream::out);
+			in.open(argv[2], fstream::in);
+			out.open((argc>3?argv[3]:"out"), fstream::out);
 			std::cout << "Decompression lzw" << std::endl;
 			ilzwstream il(&in);
 
@@ -45,6 +46,17 @@ int main(int argc, char* argv[])
 			}
 			std::cout << "Decompression terminee" << std::endl;
 		}
+		/*else if(argv[1][0]=='r')
+		{
+			std::cout << "toto 0" << std::endl;
+			GIF_image gif;
+			std::cout << "toto 1" << std::endl;
+			gif.readFromFile(argv[2]);
+			std::cout << "toto 2" << std::endl;
+			gif.stamp();
+			std::cout << "toto 3" << std::endl;
+			//gif.writeToFile((argc>3?argv[3]:"read.gif"));
+		}*/
 		else
 			write_mandel("../mandel.gif", 1500, 1500);
 	}
