@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ class GIF_image
 		void getRed(int id) const { return color[3*id]; }
 		void getGreen(int id) const { return color[3*id+1]; }
 		void getBlue(int id) const { return color[3*id+2]; }
-		void getPixel(int posX, int posY) const { return pixels[posY][posX]; }
+		unsigned char getPixel(int posX, int posY) const { return pixels[posY][posX]; }
 		
 		void resize(int x, int y);
 		
@@ -45,8 +46,9 @@ class GIF_image
 	private:
 	
 		//header
-		static const string version = "GIF89a";
-		unsigned int x_size, y_size;
+		char* version;
+		int x_size, y_size;
+		vector<char> color;
 		static const unsigned char backColor = '0';
 	
 		//contenu
@@ -54,7 +56,7 @@ class GIF_image
 		static const char fin = '0';
 	
 		//terminator
-		static const char terminator = ";";
+		static const char terminator = ';';
 	
 };
 
