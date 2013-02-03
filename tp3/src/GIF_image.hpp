@@ -26,8 +26,6 @@
 			
 			void readFromFile(const char *name);
 			void writeToFile(const char *name);
-		
-	void writeToFile2(const char *name);
 			
 			static const uint_8 BLOCK_SIZE = 255;
 			

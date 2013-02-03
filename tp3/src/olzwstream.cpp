@@ -39,7 +39,6 @@ void olzwstream::put(char c)
 				next_code++;
 				cur_code_size++;
 				obs.setLength(cur_code_size);
-				//cout << "inc " << endl;
 			}
 		}
 		else
@@ -62,7 +61,6 @@ void olzwstream::close()
 
 void olzwstream::initialize()
 {
-	//std::cout << dictToString();
 	dict.clear();
 	last.clear(); 
 

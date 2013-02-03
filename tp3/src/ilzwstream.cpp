@@ -77,13 +77,11 @@ bool ilzwstream::eof()
 	return _eof;
 }
 
-uint_32 ilzwstream::read()
+uint_32 ilzwstream::read() throw(int)
 {
 	uint_32 c;
 	ibs.get(c);
 	
-	if(VERBOSE)
-		std::cout << " Read code word: " << c << std::endl;
 	return c;
 }
 

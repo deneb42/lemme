@@ -13,7 +13,6 @@
 	{
 		public:
 			olzwstream(std::ostream* strm);//constructeur
-			//~olzwstream();
 
 			void put(char c); // takes an input byte and writes some encoded data to stream.
 			void close(); //terminates the encoding
@@ -23,7 +22,6 @@
 			
 			std::string dictToString();
 		private:
-			//std::ostream* os;
 			int writen, read;
 			obitstream obs;
 			std::map<std::string, uint_32> dict;
