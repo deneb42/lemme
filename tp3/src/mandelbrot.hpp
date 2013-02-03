@@ -3,7 +3,6 @@
 #define __MANDELBROT_HPP__
 
 	#include <string>
-	#include "extra.h"
 	
 	#define X 720
 	#define Y 480

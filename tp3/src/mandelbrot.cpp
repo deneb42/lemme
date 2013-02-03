@@ -2,7 +2,6 @@
 #include <complex>
 #include <vector>
 
-#include "extra.h"
 #include "mandelbrot.hpp"
 #include "GIF_image.hpp"
 

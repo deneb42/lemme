@@ -12,7 +12,7 @@ CFLAGS = -std=c++0x -Wall -Wextra -pedantic  -O2
 #-O2
 
 # Name of the files (more .o)
-OBJS = main.o extra.o ibitstream.o obitstream.o ilzwstream.o olzwstream.o mandelbrot.o GIF_image.o
+OBJS = main.o ibitstream.o obitstream.o ilzwstream.o olzwstream.o mandelbrot.o GIF_image.o
 PARAMS = 
 
 # Path where the bin will be

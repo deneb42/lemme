@@ -2,7 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include "olzwstream.hpp"
-#include "extra.h"
+
+using namespace std;
 
 
 GIF_image::GIF_image(int x, int y)
