@@ -2,8 +2,8 @@
 #include <complex>
 #include <vector>
 
-#include "extra.h"
 #include "mandelbrot.hpp"
+#include "GIF_image.hpp"
 
 using namespace std;
 
@@ -12,18 +12,12 @@ const complex<double> c2(-0.5, -0.3); // 1, 1,  diminuer étire resp vers la dro
 
 void write_mandel(std::string name, int x, int y)
 {
-  
-  char col[256*3];
-  std::vector<char> data;
+  GIF_image gif(x, y);
   
   for(int i=0; i<256;i++)
   {
-	  col[3*i]=i;
-	  col[3*i+1]=i;
-	  col[3*i+2]=(char)255; // initialisation des couleurs (nuances de gris)
+	  gif.setColor(i, i, i, (char)255);
   }
-  
-  data.resize(y*x);
 
   for (int i = 0; i < y; i++) 
   { 
@@ -38,9 +32,9 @@ void write_mandel(std::string name, int x, int y)
 		z = z*z+c;
 		iter++;
       }
-      data[i*x+j] = ((MAX_ITER-iter)*255)/40;
+      gif.setPixel(j, i, ((MAX_ITER-iter)*255)/40);
     }
   }
-  write_gif(name.c_str(), x, y, data.data(), col);
   
+  gif.writeToFile(name.c_str());
 }

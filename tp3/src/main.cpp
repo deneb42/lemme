@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
 			write_mandel("../mandel.gif", 1500, 1500);
 	}
 	else
-		write_mandel("../mandel.gif", 1500, 1500);
+		write_mandel("../mandel.gif", 1500,1500);
 
 	return 0;
 }
