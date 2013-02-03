@@ -6,7 +6,6 @@
 	#include <map>
 	#include <vector>
 	#include <string>
-	#include "extra.h"
 	#include "lzwstream_base.hpp"
 	#include "obitstream.h"
 

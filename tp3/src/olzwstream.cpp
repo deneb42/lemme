@@ -5,26 +5,6 @@
 using namespace std;
 
 
-bool toto(const std::vector<char> v1, const std::vector<char> v2)
-{
-	if(v1.size() != v2.size())
-		return false;
-	for(unsigned int i=0;i<v1.size();i++)
-		if(v1[i]!=v2[i])
-			return false;
-	return true;
-}
-
-bool contains(const std::map<std::vector<char>, uint_32> &d, const std::vector<char> &a)
-{
-	for(std::map<std::vector<char>, uint_32>::const_iterator it=d.begin();it!=d.end();it++)
-	{
-		if(toto(it->first, a))
-			return true;
-	}
-	return false;
-}
-
 olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 {
 	initialize();
