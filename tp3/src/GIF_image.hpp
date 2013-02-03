@@ -1,6 +1,6 @@
 
-#ifndef ____GIF_image__
-#define ____GIF_image__
+#ifndef __GIF_IMAGE_HPP__
+#define __GIF_IMAGE_HPP__
 
 #include <iostream>
 #include <vector>
@@ -12,7 +12,11 @@ class GIF_image
 	public:
 		GIF_image(int x_size, int y_size);
 		void setPixel(int posX, int posY, unsigned char val);
+		void getPixel(int posX, int posY) const { return pixels[posY][posX]; }
 		void resize(int x, int y);
+		
+		void readFromFile(const char *name);
+		void writeToFile(const char *name);
 	
 	
 		static const uint_8 GLOBAL_COLOR_TABLE_FLAG = 0x80;
@@ -26,7 +30,6 @@ class GIF_image
 		static const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_8 = 0x02;
 		static const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_4 = 0x01;
 		static const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_2 = 0x00;
-
 	private:
 	
 		//header
@@ -39,7 +42,7 @@ class GIF_image
 		static const char fin = '0';
 	
 		//terminator
-		const char terminator = ";";
+		static const char terminator = ";";
 	
 };
 
