@@ -12,8 +12,6 @@ olzwstream::olzwstream(std::ostream* strm):obs(strm, 0)
 	write(clear_code());
 }
 
-//olzwstream::~olzwstream() {
-//}
 
 void olzwstream::put(char c)
 {
@@ -41,7 +39,6 @@ void olzwstream::put(char c)
 				next_code++;
 				cur_code_size++;
 				obs.setLength(cur_code_size);
-				//cout << "inc " << endl;
 			}
 		}
 		else
@@ -64,7 +61,6 @@ void olzwstream::close()
 
 void olzwstream::initialize()
 {
-	//std::cout << dictToString();
 	dict.clear();
 	last.clear(); 
 
@@ -80,18 +76,7 @@ void olzwstream::write(uint_32 c)
 {
 	obs.put(c);
 	writen+=cur_code_size;
-	
-	if(VERBOSE)
-	{
-		std::cout << " code word: " << c << " Meaning : ";
-		if(c==clear_code())
-			std::cout << "clear_code";
-		else if(c==end_code())
-			std::cout << "end_code";
-		else
-			std::cout << last;
-		std::cout << std::endl;
-	}
+
 }
 
 std::string olzwstream::dictToString()

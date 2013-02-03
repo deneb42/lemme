@@ -30,7 +30,6 @@ void ilzwstream::read_to_buffer()
 	if (dict.find(cw) != dict.end()) 
 	{
 		str = dict[cw];
-		//cout << "str : " << str[0] << endl;
 	}
 	else
 	{
@@ -39,8 +38,6 @@ void ilzwstream::read_to_buffer()
 	if(!str.empty())
 		for (std::string::iterator it = str.begin(); it != str.end(); it ++) {
 			buffer.push_back(*it);
-			//cout << "coucou " << *it << "huhu " << buffer.back() << std::endl;
-			
 		}
 	if (!last.empty()) {
 		dict[next_code] = last + str[0];
@@ -70,7 +67,6 @@ int ilzwstream::get(char& c)
 	else
 	{
 		c = buffer.front();
-		//std::cout << " data : " << buffer.front() << std::endl;
 		buffer.pop_front();
 		return 1;
 	}
@@ -81,13 +77,11 @@ bool ilzwstream::eof()
 	return _eof;
 }
 
-uint_32 ilzwstream::read()
+uint_32 ilzwstream::read() throw(int)
 {
 	uint_32 c;
 	ibs.get(c);
 	
-	if(VERBOSE)
-		std::cout << " Read code word: " << c << std::endl;
 	return c;
 }
 

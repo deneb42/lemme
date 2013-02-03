@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		{
 			in.open(argv[2], fstream::in);
 			out.open((argc>3?argv[3]:"out.lzw"), fstream::out);
+
 			std::cout << "Compression lzw" << std::endl;
 			olzwstream ol(&out);
 			
@@ -36,6 +37,7 @@ int main(int argc, char* argv[])
 		{
 			in.open(argv[2], fstream::in);
 			out.open((argc>3?argv[3]:"out"), fstream::out);
+			
 			std::cout << "Decompression lzw" << std::endl;
 			ilzwstream il(&in);
 
@@ -58,10 +60,10 @@ int main(int argc, char* argv[])
 			//gif.writeToFile((argc>3?argv[3]:"read.gif"));
 		}*/
 		else
-			write_mandel("../mandel.gif", 1500, 1500);
+			write_mandel("../data/mandel.gif", 1500, 1500);
 	}
 	else
-		write_mandel("../mandel.gif", 1500,1500);
+		write_mandel("../data/mandel.gif", 1500,1500);
 
 	return 0;
 }

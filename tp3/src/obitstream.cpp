@@ -1,5 +1,6 @@
 #include "obitstream.h"
 
+
 /* Constructor */
 obitstream::obitstream(std::ostream* strm, int len)
   : strm(strm), bitlen(len), buffer(0), bufpos(0), status(0)
@@ -7,7 +8,7 @@ obitstream::obitstream(std::ostream* strm, int len)
 }
 
 /* Write bits to stream */
-void obitstream::put(uint_32 bits)
+void obitstream::put(uint_32 bits) 
 {
   // check status
   if (!(*this)) {

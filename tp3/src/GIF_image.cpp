@@ -10,6 +10,7 @@ using namespace std;
 GIF_image::GIF_image(int x, int y) : x_size(x), y_size(y), backColor(0)
 {
 	//version = 0x47, 0x49, 0x46, 0x38, 0x39, 0x61; // {'G', 'I', 'F','8', '9', 'a'};
+
 	pixels.resize(y_size); // dimensionnement de la hauteur
 	color.resize(3*256);
 	
