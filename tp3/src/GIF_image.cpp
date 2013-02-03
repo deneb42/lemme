@@ -14,8 +14,11 @@ GIF_image::GIF_image(int x, int y) : x_size(x), y_size(y), backColor(0)
 	pixels.resize(y_size); // dimensionnement de la hauteur
 	color.resize(3*256);
 	
-	for (unsigned int i=0;i<pixels.size();i++) {
+	for (unsigned int i=0;i<pixels.size();i++) 
+	{
 		pixels[i].resize(x_size);
+		for(unsigned int j=0;j<pixels[i].size();j++)
+			pixels[i][j] = backColor;
 	} //dimensionnement de la largeur de chaque ligne.
 
 }
@@ -29,15 +32,12 @@ void GIF_image::setColor(int id, char r, char g,char b)
 
 void GIF_image::resize(int x, int y)
 {
-	for (std::vector<vector<char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
-		it->resize(x);
-	} //dimensionnement de la largeur de chaque ligne.
-
-	x_size = x;
-	
 	pixels.resize(y);
 	y_size = y;
 	
+	for(unsigned int i=0;i<pixels.size();i++)
+		pixels[i].resize(x);
+	x_size = x;
 }
 
 void GIF_image::stamp()
@@ -78,7 +78,7 @@ void GIF_image::stamp()
 		{
 			setPixel(i, y_size/2+20,255);
 			setPixel(i, y_size/2+21,255);
-			setPixel(i, y_size/2+22,255);
+			setPixel(i, y_size/2+22,255); 
 		}
 	}
 }
@@ -89,7 +89,6 @@ bool GIF_image::readFromFile(const char *name) // ajout de gestion d'un fichier 
 	const uint_8 gif[] = "GIF89a";
 	char buf[7], ch;
 	int tmp, c;
-	std::cout << "toto 5" << std::endl;
 	
 	if(!in.good())
 	{
@@ -161,7 +160,7 @@ bool GIF_image::readFromFile(const char *name) // ajout de gestion d'un fichier 
 		for (int i = 0; i < c; i++) 
 			str += char(in.get());
 	}
-	
+
 	// decode pixels
 	{
 		istringstream iss(str, istringstream::in);
@@ -169,7 +168,6 @@ bool GIF_image::readFromFile(const char *name) // ajout de gestion d'un fichier 
 		for (int i = 0; i < y_size; i++)
 			for (int j = 0; j < x_size; j++)
 			{
-				std::cout << "toto " << i << " " << j<< std::endl;
 				tmp = lzw.get(ch);
 				if(tmp==0)
 				{
@@ -177,7 +175,6 @@ bool GIF_image::readFromFile(const char *name) // ajout de gestion d'un fichier 
 					return false;
 				}
 				setPixel(j, i, (uint_8)ch);
-				std::cout << "toto " << i << " " << j<< std::endl;
 			}
 	}
 	return true;

@@ -48,17 +48,13 @@ int main(int argc, char* argv[])
 			}
 			std::cout << "Decompression terminee" << std::endl;
 		}
-		/*else if(argv[1][0]=='r')
+		else if(argv[1][0]=='r')
 		{
-			std::cout << "toto 0" << std::endl;
 			GIF_image gif;
-			std::cout << "toto 1" << std::endl;
 			gif.readFromFile(argv[2]);
-			std::cout << "toto 2" << std::endl;
 			gif.stamp();
-			std::cout << "toto 3" << std::endl;
-			//gif.writeToFile((argc>3?argv[3]:"read.gif"));
-		}*/
+			gif.writeToFile((argc>3?argv[3]:"read.gif"));
+		}
 		else
 			write_mandel("../data/mandel.gif", 1500, 1500);
 	}
