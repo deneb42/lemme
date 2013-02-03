@@ -8,28 +8,34 @@
 
 using namespace std;
 
+const uint_8 GLOBAL_COLOR_TABLE_FLAG = 0x80;
+const uint_8 COLOR_RESOLUTION_8_BIT = 0x70;
+const uint_8 SORT_FLAG = 0x08;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_256 = 0x07;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_128 = 0x06;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_64 = 0x05;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_32 = 0x04;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_16 = 0x03;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_8 = 0x02;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_4 = 0x01;
+const uint_8 SIZE_OF_GLOBAL_COLOR_TABLE_2 = 0x00;
+
 class GIF_image
 {
 	public:
-		GIF_image(int width, int height);
-		void setPixel(int posX, int PosY, int val);
-		void setColor( int posX, PosY, color c);
+		GIF_image(int x_size, int y_size;
+		~GIF_image();
+		void setPixel(int posX, int posY, int val);
+		//void setColor( int posX, PosY, color c);
 		void setWidth(int wid);
 		void setHeight(int hei);
 	
 	private:	
-		uint_8 header[13] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61, // GIF89a
-			(uint_8)(x_size&0xff), (uint_8)(x_size>>8), // width
-			(uint_8)(y_size&0xff), (uint_8)(y_size>>8), // height
-			GLOBAL_COLOR_TABLE_FLAG | // use global color table
-			COLOR_RESOLUTION_8_BIT |  // use 8 bit per R/G/B
-			SIZE_OF_GLOBAL_COLOR_TABLE_256, // use 256 colours
-			0x00, // default background colour
-			0x00 };
+		uint_8 header[13];
 	
-			int *pixels;
-		
-		
+		int *pixels;
+		int x_size, y_size;
+		char terminator = ";";
 	
 };
 
