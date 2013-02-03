@@ -11,8 +11,10 @@ class GIF_image
 {
 	public:
 		GIF_image(int x_size, int y_size);
-		void setPixel(int posX, int posY, unsigned char val);
+		
+		void setPixel(int posX, int posY, unsigned char val){pixels[posY][posX] = val;};
 		void getPixel(int posX, int posY) const { return pixels[posY][posX]; }
+		
 		void resize(int x, int y);
 		
 		void readFromFile(const char *name);

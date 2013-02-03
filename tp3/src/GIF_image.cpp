@@ -16,12 +16,6 @@ GIF_image::GIF_image(int x, int y)
 	
 }
 
-void GIF_image::setPixel(int posX, int posY, unsigned char val)
-{
-	pixels[posY][posX] = val;
-	
-}
-
 void GIF_image::resize(int x, int y)
 {
 	for (std::vector<vector<char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
