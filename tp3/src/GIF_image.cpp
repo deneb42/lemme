@@ -16,6 +16,13 @@ GIF_image::GIF_image(int x, int y)
 	
 }
 
+void setColor(int id, char r, char g char b)
+{
+	color[3*id] = r; 
+	color[3*id+1] = g; 
+	color[3*id+2] = b; 
+}
+
 void GIF_image::resize(int x, int y)
 {
 	for (std::vector<vector<char> >::iterator it = pixels.begin(); it != pixels.end() ; it++) {
